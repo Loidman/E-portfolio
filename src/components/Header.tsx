@@ -41,7 +41,7 @@ export function ResumePage() {
         {/* Download Button */}
         <div className="flex justify-center mb-8">
           <motion.a 
-            href="/Graduate Student .pdf" 
+            href="Graduate Student .pdf" 
             download="Luke_Joaquin_Bernardo_Resume.pdf" 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}

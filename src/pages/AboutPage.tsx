@@ -55,7 +55,7 @@ export function AboutPage() {
           }} className="flex-shrink-0">
               <div className="w-48 h-48 rounded-2xl overflow-hidden border-4 border-blue-200 shadow-lg">
                 <img 
-                  src="/profile.jpg" 
+                  src="profile.jpg" 
                   alt="Luke Joaquin Bernardo" 
                   className="w-full h-full object-cover"
                 />
