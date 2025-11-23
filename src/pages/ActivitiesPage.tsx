@@ -371,9 +371,9 @@ export function ActivitiesPage() {
                       </AnimatePresence>
                     </div>
                     {selectedActivity.file && (
-                      <div className="mt-6 flex gap-3">
+                      <div className="mt-6">
                         {selectedActivity.file.endsWith('.pdf') ? (
-                          <>
+                          <div className="flex gap-3">
                             <a
                               href={selectedActivity.file}
                               target="_blank"
@@ -391,27 +391,21 @@ export function ActivitiesPage() {
                               <ExternalLinkIcon className="w-5 h-5" />
                               Download
                             </a>
-                          </>
+                          </div>
                         ) : selectedActivity.file.endsWith('.xlsx') ? (
-                          <>
-                            <a
-                              href={`https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(window.location.origin + '/' + selectedActivity.file)}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
-                            >
-                              <ExternalLinkIcon className="w-5 h-5" />
-                              View Excel
-                            </a>
+                          <div>
                             <a
                               href={selectedActivity.file}
                               download
-                              className="inline-flex items-center gap-2 px-6 py-3 bg-gray-600 text-white rounded-lg font-medium hover:bg-gray-700 transition-colors"
+                              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
                             >
                               <ExternalLinkIcon className="w-5 h-5" />
-                              Download
+                              Download Excel File
                             </a>
-                          </>
+                            <p className="text-sm text-gray-600 mt-3">
+                              Download the file to view it in Microsoft Excel or upload it to Excel Online
+                            </p>
+                          </div>
                         ) : (
                           <a
                             href={selectedActivity.file}
