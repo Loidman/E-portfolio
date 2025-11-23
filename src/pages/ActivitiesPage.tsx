@@ -395,7 +395,7 @@ export function ActivitiesPage() {
                         ) : selectedActivity.file.endsWith('.xlsx') ? (
                           <>
                             <a
-                              href={`https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(window.location.origin + selectedActivity.file)}`}
+                              href={`https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(window.location.origin + '/' + selectedActivity.file)}`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
