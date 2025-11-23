@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
@@ -101,7 +101,7 @@ function AnimatedRoutes() {
     </AnimatePresence>;
 }
 export function App() {
-  return <BrowserRouter>
+  return <HashRouter>
       <div className="min-h-screen flex flex-col">
         <Navigation />
         <main className="flex-1">
@@ -109,5 +109,5 @@ export function App() {
         </main>
         <Footer />
       </div>
-    </BrowserRouter>;
+    </HashRouter>;
 }
