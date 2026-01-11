@@ -114,15 +114,15 @@ export function ContactPage() {
                     } transition-colors`}
                     onClick={item.onClick}
                   >
-                    <div className="p-2 bg-sky-500/10 rounded-lg">
+                    <div className="p-2 bg-sky-500/10 rounded-lg flex-shrink-0">
                       <item.icon className="w-5 h-5 text-sky-400" />
                     </div>
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 overflow-hidden">
                       <p className="text-sm text-slate-400 mb-1">{item.label}</p>
-                      <p className="text-slate-200 font-medium break-words text-sm sm:text-base">{item.value}</p>
+                      <p className="text-slate-200 font-medium break-words text-xs sm:text-sm overflow-wrap-anywhere">{item.value}</p>
                     </div>
                     {item.copyable && (
-                      <div className="relative">
+                      <div className="relative flex-shrink-0">
                         {(item.label === 'Email' ? emailCopied : phoneCopied) ? (
                           <Check className="w-5 h-5 text-emerald-400" />
                         ) : (
