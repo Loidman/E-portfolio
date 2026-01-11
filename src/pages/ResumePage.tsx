@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Download, Mail, Phone, MapPin, Briefcase, GraduationCap, Code } from 'lucide-react';
+import { Download, Mail, Phone, MapPin, GraduationCap, Code } from 'lucide-react';
 
 export function ResumePage() {
   return (
@@ -120,19 +120,15 @@ export function ResumePage() {
             {[
               {
                 category: 'Programming Languages',
-                skills: ['JavaScript/TypeScript', 'Python', 'Java', 'SQL']
+                skills: ['PHP', 'Java', 'JavaScript', 'HTML', 'Python', 'MySQL']
               },
               {
-                category: 'Web Development',
-                skills: ['React', 'Node.js', 'Express', 'HTML/CSS', 'Tailwind CSS']
+                category: 'Tools & Development',
+                skills: ['Git & GitHub', 'Node.js', 'Docker', 'VS Code', 'Figma']
               },
               {
-                category: 'Data & Analytics',
-                skills: ['Excel (Advanced)', 'Python (NumPy, Pandas)', 'Data Visualization', 'Statistical Analysis']
-              },
-              {
-                category: 'Tools & Technologies',
-                skills: ['Git/GitHub', 'VS Code', 'MongoDB', 'PostgreSQL', 'REST APIs']
+                category: 'Design & UI',
+                skills: ['UI/UX Design', 'Responsive Design', 'Tailwind CSS', 'Framer Motion', 'Accessibility', 'Design Systems']
               }
             ].map((group, index) => (
               <motion.div
@@ -150,71 +146,6 @@ export function ResumePage() {
                       className="px-3 py-1 bg-slate-800/50 text-slate-300 rounded-md text-sm border border-slate-700/50"
                     >
                       {skill}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Projects/Experience */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="glass-card p-8"
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <div className="p-3 bg-purple-500/10 rounded-lg">
-              <Briefcase className="w-6 h-6 text-purple-400" />
-            </div>
-            <h2 className="text-2xl font-bold text-slate-100">Key Projects</h2>
-          </div>
-          <div className="space-y-6">
-            {[
-              {
-                title: 'Professional E-Portfolio',
-                period: '2024',
-                description: 'Designed and developed a high-end portfolio website featuring sophisticated dark theme, glassmorphism effects, and advanced animations.',
-                technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion']
-              },
-              {
-                title: 'Data Analytics Dashboard',
-                period: '2024',
-                description: 'Built interactive dashboard for visualizing complex datasets with real-time data processing capabilities.',
-                technologies: ['Python', 'Pandas', 'Matplotlib', 'Excel']
-              },
-              {
-                title: 'Task Management System',
-                period: '2024',
-                description: 'Developed collaborative project management tool with drag-and-drop interface and real-time updates.',
-                technologies: ['React', 'Node.js', 'MongoDB', 'Socket.io']
-              }
-            ].map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="border-l-2 border-sky-500/30 pl-6"
-              >
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-xl font-bold text-slate-100">{project.title}</h3>
-                  <span className="text-sky-400 font-mono text-sm">{project.period}</span>
-                </div>
-                <p className="text-slate-300 mb-3 leading-relaxed">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-1 bg-sky-500/10 text-sky-400 rounded text-xs font-medium border border-sky-500/20"
-                    >
-                      {tech}
                     </span>
                   ))}
                 </div>
