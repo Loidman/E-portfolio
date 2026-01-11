@@ -1,7 +1,23 @@
+import React, { Children } from 'react';
 import { motion } from 'framer-motion';
-
+import { BookOpenIcon, TrendingUpIcon, AwardIcon } from 'lucide-react';
 export function ReflectionsPage() {
-  const reflections: Array<{term: string; icon: any; color: string; text: string}> = [];
+  const reflections = [{
+    term: 'Prelim Term',
+    icon: BookOpenIcon,
+    color: 'blue',
+    text: ' At the beginning of the course, I was introduced to the fundamentals of data science and data analytics, with a particular focus on cleaning data and using basic statistical functions in Excel. Initially, I found it challenging to understand why data cleaning is so critical, but as I practiced filtering, sorting, and handling missing values, I began to appreciate how clean data leads to more accurate analysis. Learning Excel’s formulas and functions not only boosted my confidence in handling datasets but also made me more methodical in how I approach problem-solving with numbers. This foundational experience set the stage for deeper analytical work in the following terms.'
+  }, {
+    term: 'Midterm Term',
+    icon: TrendingUpIcon,
+    color: 'green',
+    text: 'During the midterm, I advanced to creating visualizations, statistical graphs, and mastering pivot tables in Excel. Visualizing data with charts and dashboards initially seemed overwhelming due to the variety of options and the importance of clarity in presenting information. However, building different charts and experimenting with pivot tables helped me understand patterns and relationships within data more intuitively. A breakthrough moment was successfully summarizing a complex dataset with a pivot table, realizing how quickly insights can be extracted. These skills made data analysis more interactive and showed me the powerful storytelling element of data visualization.'
+  }, {
+    term: 'Finals Term',
+    icon: AwardIcon,
+    color: 'purple',
+    text: 'In the final term, I transitioned from Excel to Python programming and exploring data analysis libraries like NumPy, pandas, and matplotlib. At first, learning a programming language felt daunting compared to Excel’s visual environment. However, as I progressed, I recognized the flexibility and depth Python offers, especially in handling larger datasets and automating repetitive analysis tasks. Mastering pandas for data manipulation and matplotlib for visualization opened new possibilities, making analysis both faster and more sophisticated. Connecting Python tools with my Excel experience revealed how both platforms complement each other and deepened my understanding of modern data analytics.'
+  }];
   const colorClasses = {
     blue: {
       bg: 'from-blue-50 to-blue-100',

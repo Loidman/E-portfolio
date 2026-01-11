@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileTextIcon, ClipboardListIcon, FileCheckIcon, HelpCircleIcon, ExternalLinkIcon, XIcon } from 'lucide-react';
 
@@ -37,70 +37,27 @@ export function ActivitiesPage() {
 
   const activitiesData: Record<'prelim' | 'midterm' | 'final', TermActivities> = {
     prelim: {
-      activities: [
-        { title: 'Activity 1', thumbnail: 'activities/prelim/Prelim Act 1.png', file: 'activities/prelim/PRELIM ACTIVITY NO1_BERNARDO_LUKE JOAQUIN.xlsx', type: 'activity' },
-        { title: 'Activity 2', thumbnail: 'activities/prelim/Prelim Act 2.png', file: 'activities/prelim/PrelimActivityNo2-CleaningData_BERNARDO_LukeJoaquin.xlsx', type: 'activity' }
-      ],
-      quizzes: [
-        { title: 'Quiz 1', thumbnail: 'activities/prelim/Prelim Quiz 1.png', type: 'quiz' },
-        { title: 'Quiz 2', thumbnail: 'activities/prelim/Prelim Quiz 2.png', type: 'quiz' }
-      ],
-      exams: [
-        { title: 'Prelim Exam', thumbnail: 'activities/prelim/Prelim Exam.png', type: 'exam' }
-      ],
+      activities: [],
+      quizzes: [],
+      exams: [],
       assignments: [],
       seatwork: [],
       labs: []
     },
     midterm: {
-      activities: [
-        { title: 'Activity 1', thumbnail: 'activities/midterm/Midterm Act 1.png', type: 'activity' },
-        { title: 'Activity 2', thumbnail: 'activities/midterm/Midterm Act 2.png', file: 'activities/midterm/Midterm Act 2 - Freq Distribution Graph - BERNARDO, Luke Joaquin.xlsx', type: 'activity' },
-        { title: 'Activity 3', thumbnail: 'activities/midterm/Midterm Act 3.png', type: 'activity' },
-        { title: 'Activity 4', thumbnail: 'activities/midterm/Midterm Act 4.png', type: 'activity' }
-      ],
-      quizzes: [
-        { title: 'Quiz 1', thumbnail: 'activities/midterm/Midterm Quiz 1.png', type: 'quiz' },
-        { title: 'Quiz 2', thumbnail: 'activities/midterm/Midterm Quiz 2.png', type: 'quiz' }
-      ],
-      exams: [
-        { title: 'Midterm Exam', thumbnail: 'activities/midterm/Midterm Exam.png', type: 'exam' }
-      ],
-      assignments: [
-        { title: 'Using Pivot Table', thumbnail: 'activities/midterm/Midterm Assignment_UsingPivotTable_BERNARDO (1).pdf', file: 'activities/midterm/Midterm Assignment_UsingPivotTable_BERNARDO (1).pdf', type: 'assignment' },
-        { title: 'Probability Activity', thumbnail: 'activities/midterm/ProbabilityActivity - BERNARDO, Luke Joaquin (1).pdf', file: 'activities/midterm/ProbabilityActivity - BERNARDO, Luke Joaquin (1).pdf', type: 'assignment' }
-      ],
-      seatwork: [
-        { title: 'Seatwork 1', thumbnail: 'activities/midterm/Midterm Seatwork 1.png', file: 'activities/midterm/Midterm Seatwork No.1_Charts and Sparklines - Bernardo, Luke Joaquin.xlsx', type: 'seatwork' },
-        { title: 'Seatwork 2', thumbnail: 'activities/midterm/Midterm Seatwork 2.png', type: 'seatwork' }
-      ],
-      labs: [
-        { title: 'Lab 1 - Car Sale', thumbnail: 'activities/midterm/Car Sale Lab1_Bernardo, Luke Joaquin (1).xlsx', file: 'activities/midterm/Car Sale Lab1_Bernardo, Luke Joaquin (1).xlsx', type: 'lab' },
-        { title: 'Lab 2 - Car Sale', thumbnail: 'activities/midterm/Car Sale Lab2_Bernardo, Luke Joaquin (1).xlsx', file: 'activities/midterm/Car Sale Lab2_Bernardo, Luke Joaquin (1).xlsx', type: 'lab' },
-        { title: 'Creating Charts', thumbnail: 'activities/midterm/Midterm Lab Activity 1_ Creating Charts_Bernardo, Luke Joaquin 1.xlsx', file: 'activities/midterm/Midterm Lab Activity 1_ Creating Charts_Bernardo, Luke Joaquin 1.xlsx', type: 'lab' }
-      ]
+      activities: [],
+      quizzes: [],
+      exams: [],
+      assignments: [],
+      seatwork: [],
+      labs: []
     },
     final: {
-      activities: [
-        { title: 'Activity 1', thumbnail: 'activities/finals/Finals Act 1.png', file: 'activities/finals/FinalTermActivityNo.1 - PythonListTuples_BERNARDO, Luke Joaquin (1).pdf', type: 'activity' },
-        { title: 'Activity 2', thumbnail: 'activities/finals/Finals Act 2.png', file: 'activities/finals/FinalTerm Activity No.2_PythonListTupple - BERNARDO, Luke Joaquin.pdf', type: 'activity' },
-        { title: 'Activity 3', thumbnail: 'activities/finals/Finals Act 3.png', type: 'activity' }
-      ],
-      quizzes: [
-        { title: 'Quiz 1', thumbnail: 'activities/finals/Finals Quiz 1.png', type: 'quiz' },
-        { title: 'Quiz 2', thumbnail: 'activities/finals/Finals Quiz 2.png', type: 'quiz' }
-      ],
-      exams: [
-        { title: 'Finals Exam', thumbnail: 'activities/finals/Finals Exam.png', type: 'exam' }
-      ],
-      assignments: [
-        { title: 'Python MatPlotLib', thumbnail: 'activities/finals/Finalterm Assignment_PythonMatPlotLib_BERNARDO (1).pdf', file: 'activities/finals/Finalterm Assignment_PythonMatPlotLib_BERNARDO (1).pdf', type: 'assignment' }
-      ],
-      seatwork: [
-        { title: 'Seatwork 1', thumbnail: 'activities/finals/Finals Seatwork 1.png', type: 'seatwork' },
-        { title: 'Database Certification Survey', thumbnail: 'activities/finals/Finals Seatwork Database Certification Survey.png', type: 'seatwork' },
-        { title: 'Data Certification Report', thumbnail: 'activities/finals/Finals Seatwork Data Certification Report.png', file: 'activities/finals/ITS-DATABASE CERTIFICATION EXAM REPORT - BERNARDO, Luke Joaquin (1).pdf', type: 'seatwork' }
-      ],
+      activities: [],
+      quizzes: [],
+      exams: [],
+      assignments: [],
+      seatwork: [],
       labs: []
     }
   };
