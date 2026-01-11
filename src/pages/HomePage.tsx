@@ -16,7 +16,7 @@ export function HomePage() {
   };
 
   const techStack = [
-    'React', 'TypeScript', 'Node.js', 'Python', 'PostgreSQL', 'MongoDB', 'Tailwind CSS', 'Git'
+    'PHP', 'Java', 'JavaScript', 'HTML', 'Python', 'MySQL', 'Git', 'Node.js'
   ];
 
   const highlights = [
