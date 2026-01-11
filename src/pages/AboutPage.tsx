@@ -14,7 +14,7 @@ export function AboutPage() {
   ];
 
   const toolsDevOps = [
-    'Git & GitHub', 'Docker', 'AWS', 'CI/CD', 'Linux', 'VS Code', 'Postman', 'Figma'
+    'Git & GitHub', 'Docker', 'VS Code', 'Figma'
   ];
 
   const designSkills = [
