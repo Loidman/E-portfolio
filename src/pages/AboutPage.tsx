@@ -203,6 +203,17 @@ export function AboutPage() {
                 and software development.
               </p>
             </div>
+            <div>
+              <h4 className="text-xl font-semibold text-gray-900">
+                Pateros Catholic School
+              </h4>
+              <p className="text-blue-600 font-medium">
+                2010 - 2023
+              </p>
+              <p className="text-gray-600 mt-2">
+                Graduated from Pateros Catholic School where I built a strong academic foundation and developed essential values that prepared me for college. The school's emphasis on discipline, critical thinking, and holistic education shaped my work ethic and gave me the confidence to pursue Information Technology. The skills and character I developed during my time there continue to guide me as I tackle the challenges of my college journey.
+              </p>
+            </div>
           </div>
         </motion.div>
       </div>
