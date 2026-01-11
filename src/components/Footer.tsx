@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,7 +12,7 @@ export function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid md:grid-cols-3 gap-8 mb-8"
+          className="grid md:grid-cols-2 gap-8 mb-8"
         >
           {/* About Section */}
           <div>
@@ -70,21 +70,6 @@ export function Footer() {
               ))}
             </ul>
           </div>
-
-          {/* Education */}
-          <div>
-            <h3 className="text-lg font-bold mb-4 text-slate-200">Education</h3>
-            <div className="space-y-3 text-sm">
-              <div>
-                <p className="text-slate-300 font-semibold">Jose Rizal University</p>
-                <p className="text-slate-400">BS Information Technology</p>
-              </div>
-              <div>
-                <p className="text-slate-300 font-semibold">Pateros Catholic School</p>
-                <p className="text-slate-400">2010 - 2023</p>
-              </div>
-            </div>
-          </div>
         </motion.div>
 
         {/* Bottom Bar */}
@@ -93,13 +78,10 @@ export function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="pt-8 border-t border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-4"
+          className="pt-8 border-t border-slate-800/50 text-center"
         >
           <p className="text-sm text-slate-400">
             © {currentYear} Luke Joaquin Bernardo. All rights reserved.
-          </p>
-          <p className="text-sm text-slate-400 flex items-center gap-2">
-            Built with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> using React & TypeScript
           </p>
         </motion.div>
       </div>
