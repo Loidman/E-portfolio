@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail } from 'lucide-react';
 
 export function Footer() {
@@ -59,14 +60,19 @@ export function Footer() {
             <div>
               <h3 className="text-lg font-bold mb-4 text-slate-200">Quick Links</h3>
               <ul className="space-y-2">
-                {['About', 'Projects', 'Resume', 'Contact'].map((item) => (
-                  <li key={item}>
-                    <a
-                      href={`/${item.toLowerCase()}`}
+                {[
+                  { name: 'About', path: '/about' },
+                  { name: 'Projects', path: '/activities' },
+                  { name: 'Resume', path: '/resume' },
+                  { name: 'Contact', path: '/contact' }
+                ].map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      to={item.path}
                       className="text-slate-400 hover:text-sky-400 transition-colors"
                     >
-                      {item}
-                    </a>
+                      {item.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
