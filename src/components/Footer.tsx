@@ -12,63 +12,65 @@ export function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid md:grid-cols-2 gap-8 mb-8"
+          className="mb-8"
         >
           {/* About Section */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">
-              <span className="gradient-text">LJB</span>
-            </h3>
-            <p className="text-slate-400 leading-relaxed mb-4">
-              IT Student passionate about building innovative solutions through code.
-            </p>
-            <div className="flex items-center gap-4">
-              <motion.a
-                href="https://github.com/Loidman"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-                className="p-2 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 transition-colors group"
-              >
-                <Github className="w-5 h-5 text-slate-400 group-hover:text-sky-400 transition-colors" />
-              </motion.a>
-              <motion.a
-                href="https://www.linkedin.com/in/luke-joaquin-bernardo-587381364/"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.2, rotate: -5 }}
-                whileTap={{ scale: 0.9 }}
-                className="p-2 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 transition-colors group"
-              >
-                <Linkedin className="w-5 h-5 text-slate-400 group-hover:text-sky-400 transition-colors" />
-              </motion.a>
-              <motion.a
-                href="mailto:lukejoaquin.bernardo00@gmail.com"
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                className="p-2 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 transition-colors group"
-              >
-                <Mail className="w-5 h-5 text-slate-400 group-hover:text-sky-400 transition-colors" />
-              </motion.a>
+          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">
+                <span className="gradient-text">LJB</span>
+              </h3>
+              <p className="text-slate-400 leading-relaxed mb-4">
+                IT Student passionate about building innovative solutions through code.
+              </p>
+              <div className="flex items-center gap-4">
+                <motion.a
+                  href="https://github.com/Loidman"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="p-2 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 transition-colors group"
+                >
+                  <Github className="w-5 h-5 text-slate-400 group-hover:text-sky-400 transition-colors" />
+                </motion.a>
+                <motion.a
+                  href="https://www.linkedin.com/in/luke-joaquin-bernardo-587381364/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.2, rotate: -5 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="p-2 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 transition-colors group"
+                >
+                  <Linkedin className="w-5 h-5 text-slate-400 group-hover:text-sky-400 transition-colors" />
+                </motion.a>
+                <motion.a
+                  href="mailto:lukejoaquin.bernardo00@gmail.com"
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="p-2 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 transition-colors group"
+                >
+                  <Mail className="w-5 h-5 text-slate-400 group-hover:text-sky-400 transition-colors" />
+                </motion.a>
+              </div>
             </div>
-          </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-bold mb-4 text-slate-200">Quick Links</h3>
-            <ul className="space-y-2">
-              {['About', 'Projects', 'Resume', 'Contact'].map((item) => (
-                <li key={item}>
-                  <a
-                    href={`/${item.toLowerCase()}`}
-                    className="text-slate-400 hover:text-sky-400 transition-colors"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            {/* Quick Links */}
+            <div>
+              <h3 className="text-lg font-bold mb-4 text-slate-200">Quick Links</h3>
+              <ul className="space-y-2">
+                {['About', 'Projects', 'Resume', 'Contact'].map((item) => (
+                  <li key={item}>
+                    <a
+                      href={`/${item.toLowerCase()}`}
+                      className="text-slate-400 hover:text-sky-400 transition-colors"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </motion.div>
 
