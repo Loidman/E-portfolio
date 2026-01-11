@@ -1,59 +1,82 @@
-import React, { Children } from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCapIcon, TargetIcon, CodeIcon } from 'lucide-react';
+import { Code2, Palette, Terminal, GraduationCap, Award } from 'lucide-react';
+
 export function AboutPage() {
-  return <div className="min-h-screen py-12 px-4">
-      <div className="max-w-5xl mx-auto">
+  const coreSkills = [
+    { name: 'JavaScript/TypeScript', level: 90, icon: '⚡' },
+    { name: 'React & Next.js', level: 85, icon: '⚛️' },
+    { name: 'Node.js & Express', level: 80, icon: '🟢' },
+    { name: 'Python', level: 85, icon: '🐍' },
+    { name: 'SQL & NoSQL', level: 75, icon: '🗄️' }
+  ];
+
+  const toolsDevOps = [
+    'Git & GitHub', 'Docker', 'AWS', 'CI/CD', 'Linux', 'VS Code', 'Postman', 'Figma'
+  ];
+
+  const designSkills = [
+    'UI/UX Design', 'Responsive Design', 'Tailwind CSS', 'Framer Motion', 'Accessibility', 'Design Systems'
+  ];
+
+  const timeline = [
+    {
+      year: '2010 - 2023',
+      title: 'Pateros Catholic School',
+      type: 'education',
+      description: 'Built a strong academic foundation and developed essential values that prepared me for college. The emphasis on discipline, critical thinking, and holistic education shaped my work ethic.',
+      icon: GraduationCap
+    },
+    {
+      year: '2023 - Present',
+      title: 'Jose Rizal University',
+      type: 'education',
+      description: 'Pursuing Bachelor of Science in Information Technology with comprehensive coursework in programming, systems analysis, database management, networking, and software development.',
+      icon: GraduationCap
+    },
+    {
+      year: '2024',
+      title: 'Data Analytics Specialization',
+      type: 'achievement',
+      description: 'Completed advanced coursework in data science, statistical analysis, and machine learning. Developed expertise in Excel, Python libraries (NumPy, pandas, matplotlib).',
+      icon: Award
+    }
+  ];
+
+  return (
+    <div className="min-h-screen py-20 px-4">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} animate={{
-        opacity: 1,
-        y: 0
-      }} transition={{
-        duration: 0.6
-      }} className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            About Me
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            About <span className="gradient-text">Me</span>
           </h1>
-          <motion.div initial={{
-          width: 0
-        }} animate={{
-          width: 96
-        }} transition={{
-          delay: 0.4,
-          duration: 0.6
-        }} className="w-24 h-1 bg-blue-600 mx-auto rounded-full" />
+          <p className="text-xl text-slate-400 max-w-3xl mx-auto">
+            Passionate IT student combining technical expertise with creative problem-solving
+          </p>
         </motion.div>
 
         {/* Profile Section */}
-        <motion.div initial={{
-        opacity: 0,
-        y: 30
-      }} animate={{
-        opacity: 1,
-        y: 0
-      }} transition={{
-        delay: 0.3,
-        duration: 0.6
-      }} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12 mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="glass-card p-8 md:p-12 mb-12"
+        >
           <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
-            <motion.div initial={{
-            scale: 0.8,
-            opacity: 0
-          }} animate={{
-            scale: 1,
-            opacity: 1
-          }} transition={{
-            delay: 0.5,
-            type: 'spring',
-            stiffness: 200
-          }} whileHover={{
-            scale: 1.05,
-            rotate: 2
-          }} className="flex-shrink-0">
-              <div className="w-48 h-48 rounded-2xl overflow-hidden border-4 border-blue-200 shadow-lg">
+            {/* Profile Image */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.4, type: 'spring', stiffness: 200 }}
+              whileHover={{ scale: 1.05 }}
+              className="flex-shrink-0"
+            >
+              <div className="w-48 h-48 rounded-2xl overflow-hidden border-4 border-sky-500/50 shadow-2xl shadow-sky-500/20 ring-4 ring-slate-800/50">
                 <img 
                   src="profile.jpg" 
                   alt="Luke Joaquin Bernardo" 
@@ -62,160 +85,193 @@ export function AboutPage() {
               </div>
             </motion.div>
 
-            <motion.div variants={{
-            hidden: {
-              opacity: 0
-            },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.2,
-                delayChildren: 0.6
-              }
-            }} }initial="hidden" animate="visible" className="flex-1">
-              <motion.h2 variants={{
-              hidden: {
-                opacity: 0,
-                y: 10
-              },
-              visible: {
-                opacity: 1,
-                y: 0
-              }
-            }} className="text-3xl font-bold text-gray-900 mb-2">
+            {/* Bio */}
+            <div className="flex-1">
+              <h2 className="text-3xl font-bold mb-2 text-slate-100">
                 Luke Joaquin Bernardo
-              </motion.h2>
-              <motion.p variants={{
-              hidden: {
-                opacity: 0,
-                y: 10
-              },
-              visible: {
-                opacity: 1,
-                y: 0
-              }
-            }} className="text-lg text-blue-600 font-medium mb-6">
-                Bachelor of Science in Information Technology
-              </motion.p>
+              </h2>
+              <p className="text-xl text-sky-400 font-semibold mb-6">
+                IT Student & Aspiring Full-Stack Developer
+              </p>
+              <div className="space-y-4 text-slate-300 leading-relaxed">
+                <p>
+                  I'm an Information Technology student at Jose Rizal University with a strong passion for building innovative solutions through code. My journey in tech is driven by curiosity and a desire to create meaningful applications that solve real-world problems.
+                </p>
+                <p>
+                  Throughout my academic career, I've developed expertise in <span className="text-sky-400 font-semibold">full-stack development</span>, <span className="text-sky-400 font-semibold">data analytics</span>, and <span className="text-sky-400 font-semibold">UI/UX design</span>. I'm constantly learning and adapting to new technologies in this ever-evolving field.
+                </p>
+                <p>
+                  Beyond coding, I focus on writing clean, maintainable code and creating user-centric designs that prioritize accessibility and performance. I believe great software should be both powerful and intuitive.
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
-              {["I'm an Information Technology student at Jose Rizal University with a strong interest in technology, digital tools, and building structured academic projects. My journey in IT has been driven by curiosity and a desire to understand how technology shapes our world.", "Throughout my studies, I've developed skills in programming, system analysis, and digital problem-solving. I approach each project with attention to detail and a commitment to creating meaningful, well-organized work that demonstrates both technical competence and creative thinking.", "This portfolio represents my academic growth and serves as a comprehensive record of my coursework, reflections, and achievements. I'm continuously learning and expanding my capabilities in the ever-evolving field of information technology."].map((text, i) => <motion.p key={i} variants={{
-              hidden: {
-                opacity: 0,
-                y: 10
-              },
-              visible: {
-                opacity: 1,
-                y: 0
-              }
-            }} className="text-gray-700 leading-relaxed mb-4">
-                  {text}
-                </motion.p>)}
+        {/* Skills Section */}
+        <div className="mb-20">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl font-bold mb-12 text-center"
+          >
+            Technical <span className="gradient-text">Expertise</span>
+          </motion.h2>
+
+          {/* Core Stack */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="glass-card p-8 mb-8"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 bg-sky-500/10 rounded-lg">
+                <Code2 className="w-6 h-6 text-sky-400" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-100">Core Stack</h3>
+            </div>
+            <div className="space-y-6">
+              {coreSkills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-slate-200 font-medium flex items-center gap-2">
+                      <span className="text-2xl">{skill.icon}</span>
+                      {skill.name}
+                    </span>
+                    <span className="text-sky-400 font-semibold">{skill.level}%</span>
+                  </div>
+                  <div className="h-3 bg-slate-800/50 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${skill.level}%` }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 + 0.2, duration: 0.8 }}
+                      className="h-full bg-gradient-to-r from-sky-500 to-emerald-500 rounded-full"
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Tools & DevOps */}
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="glass-card p-8"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 bg-emerald-500/10 rounded-lg">
+                  <Terminal className="w-6 h-6 text-emerald-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-100">Tools & DevOps</h3>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {toolsDevOps.map((tool, index) => (
+                  <motion.span
+                    key={tool}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    className="px-4 py-2 bg-slate-800/50 text-slate-300 rounded-lg text-sm font-medium border border-slate-700/50 hover:border-emerald-500/50 hover:text-emerald-400 transition-all duration-300"
+                  >
+                    {tool}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Design */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="glass-card p-8"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 bg-purple-500/10 rounded-lg">
+                  <Palette className="w-6 h-6 text-purple-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-100">Design</h3>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {designSkills.map((skill, index) => (
+                  <motion.span
+                    key={skill}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    className="px-4 py-2 bg-slate-800/50 text-slate-300 rounded-lg text-sm font-medium border border-slate-700/50 hover:border-purple-500/50 hover:text-purple-400 transition-all duration-300"
+                  >
+                    {skill}
+                  </motion.span>
+                ))}
+              </div>
             </motion.div>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Key Areas with Stagger */}
-        <motion.div variants={{
-        hidden: {
-          opacity: 0
-        },
-        visible: {
-          opacity: 1,
-          transition: {
-            staggerChildren: 0.15
-          }
-        }
-      }} initial="hidden" whileInView="visible" viewport={{
-        once: true,
-        margin: '-50px'
-      }} className="grid md:grid-cols-3 gap-6 mb-8">
-          {[{
-          icon: GraduationCapIcon,
-          title: 'Academic Focus',
-          text: 'Pursuing comprehensive knowledge in information systems, software development, and digital technologies at Jose Rizal University.'
-        }, {
-          icon: CodeIcon,
-          title: 'Technical Interests',
-          text: 'Passionate about programming, web development, database management, and exploring emerging technologies in the IT landscape.'
-        }, {
-          icon: TargetIcon,
-          title: 'Future Goals',
-          text: 'Aiming to build a strong foundation in IT, contribute to meaningful projects, and develop expertise that bridges technology and practical problem-solving.'
-        }].map((item, index) => <motion.div key={index} variants={{
-          hidden: {
-            opacity: 0,
-            y: 20
-          },
-          visible: {
-            opacity: 1,
-            y: 0
-          }
-        }} whileHover={{
-          y: -5,
-          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)'
-        }} transition={{
-          type: 'spring',
-          stiffness: 300,
-          damping: 20
-        }} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-              <motion.div whileHover={{
-            scale: 1.1,
-            rotate: 5
-          }} transition={{
-            type: 'spring',
-            stiffness: 400,
-            damping: 10
-          }}>
-                <item.icon className="w-10 h-10 text-blue-600 mb-4" />
+        {/* Timeline */}
+        <div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl font-bold mb-12 text-center"
+          >
+            My <span className="gradient-text">Journey</span>
+          </motion.h2>
+
+          <div className="space-y-8">
+            {timeline.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+                className="glass-card p-8 hover:shadow-2xl hover:shadow-sky-500/10 transition-all duration-300"
+              >
+                <div className="flex gap-6">
+                  <div className="flex-shrink-0">
+                    <div className="p-4 bg-sky-500/10 rounded-xl">
+                      <item.icon className="w-8 h-8 text-sky-400" />
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="px-3 py-1 bg-sky-500/10 text-sky-400 rounded-full text-sm font-mono border border-sky-500/20">
+                        {item.year}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl font-bold mb-3 text-slate-100">
+                      {item.title}
+                    </h3>
+                    <p className="text-slate-400 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
               </motion.div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                {item.title}
-              </h3>
-              <p className="text-gray-600">{item.text}</p>
-            </motion.div>)}
-        </motion.div>
-
-        {/* Education Details */}
-        <motion.div initial={{
-        opacity: 0,
-        y: 30
-      }} whileInView={{
-        opacity: 1,
-        y: 0
-      }} viewport={{
-        once: true,
-        margin: '-100px'
-      }} transition={{
-        duration: 0.6
-      }} className="bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-sm border border-blue-100 p-8 md:p-12">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">Education</h3>
-          <div className="space-y-4">
-            <div>
-              <h4 className="text-xl font-semibold text-gray-900">
-                Jose Rizal University
-              </h4>
-              <p className="text-blue-600 font-medium">
-                Bachelor of Science in Information Technology
-              </p>
-              <p className="text-gray-600 mt-2">
-                Currently pursuing a comprehensive IT degree with coursework in
-                programming, systems analysis, database management, networking,
-                and software development.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-xl font-semibold text-gray-900">
-                Pateros Catholic School
-              </h4>
-              <p className="text-blue-600 font-medium">
-                2010 - 2023
-              </p>
-              <p className="text-gray-600 mt-2">
-                Graduated from Pateros Catholic School where I built a strong academic foundation and developed essential values that prepared me for college. The school's emphasis on discipline, critical thinking, and holistic education shaped my work ethic and gave me the confidence to pursue Information Technology. The skills and character I developed during my time there continue to guide me as I tackle the challenges of my college journey.
-              </p>
-            </div>
+            ))}
           </div>
-        </motion.div>
+        </div>
       </div>
-    </div>;
+    </div>
+  );
 }
