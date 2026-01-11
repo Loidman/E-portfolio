@@ -127,28 +127,6 @@ export function ReflectionsPage() {
               </motion.div>;
         })}
         </motion.div>
-
-        {/* Summary Card */}
-        <motion.div initial={{
-        opacity: 0,
-        y: 30
-      }} whileInView={{
-        opacity: 1,
-        y: 0
-      }} viewport={{
-        once: true
-      }} transition={{
-        duration: 0.6
-      }} className="mt-12 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-          <h3 className="text-xl font-bold text-gray-900 mb-4">
-            Reflection Summary
-          </h3>
-          <p className="text-gray-700 leading-relaxed">
-            Looking back at the semester, I see clear growth in both my technical and analytical abilities. Starting from basic data cleaning in Excel, I built a strong foundation that allowed me to confidently tackle more complex tasks, such as creating dashboards and pivot tables. This paved the way for my leap into Python, where I learned to automate and enhance my data analysis. The progression from Excel basics to advanced Python libraries not only expanded my skill set but also changed the way I think about problem-solving and data-driven decision-making. Every challenge helped me become more adaptable and resourceful, preparing me for future work in the IT and data analytics fields.
-
-
-          </p>
-        </motion.div>
       </div>
     </div>;
 }
