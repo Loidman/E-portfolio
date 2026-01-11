@@ -3,11 +3,14 @@ import { Code2, Palette, Terminal, GraduationCap, Award } from 'lucide-react';
 
 export function AboutPage() {
   const coreSkills = [
-    { name: 'JavaScript/TypeScript', level: 90, icon: '⚡' },
-    { name: 'React & Next.js', level: 85, icon: '⚛️' },
-    { name: 'Node.js & Express', level: 80, icon: '🟢' },
+    { name: 'PHP', level: 85, icon: '🐘' },
+    { name: 'Java', level: 80, icon: '☕' },
+    { name: 'JavaScript', level: 90, icon: '⚡' },
+    { name: 'HTML', level: 95, icon: '📄' },
     { name: 'Python', level: 85, icon: '🐍' },
-    { name: 'SQL & NoSQL', level: 75, icon: '🗄️' }
+    { name: 'MySQL', level: 80, icon: '🗄️' },
+    { name: 'Git', level: 85, icon: '🔀' },
+    { name: 'Node.js', level: 80, icon: '🟢' }
   ];
 
   const toolsDevOps = [
