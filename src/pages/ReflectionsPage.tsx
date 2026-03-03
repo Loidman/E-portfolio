@@ -2,7 +2,14 @@ import { motion } from 'framer-motion';
 import { Lightbulb } from 'lucide-react';
 
 export function ReflectionsPage() {
-  const reflections: Array<{term: string; icon: any; color: string; text: string}> = [];
+  const reflections: Array<{term: string; icon: any; color: string; text: string}> = [
+    {
+      term: 'Prelim Period Reflection',
+      icon: Lightbulb,
+      color: 'sky',
+      text: 'My experience of the prelim period was my introduction to the fundamentals of data science and machine learning. The entire data cleaning and exploration were conducted solo, and I found that cleaning data should be the first step before any good insights can be made. Working with Excel only allowed me to identify patterns, correct missing data, and identify outliers independently. Converting sloppy raw data into tidy structured data was not easy though quite rewarding. Respectively, trial and error taught me that cleaning data is not a pre-step, but a skill, which requires a considerable amount of patience, care, and my judgment. Exam and Long quiz challenged me to apply my analysis when considering data structures, changes and the ethical issues of data use. This experience reminded me that all machine learning models are constructed using many of hours of intensive, single-person data preparation. My approach to any data project is based on the independence and technical skills that I attained in prelims such as self-checking data, working with odd numbers, and making useful features.'
+    }
+  ];
 
   return (
     <div className="min-h-screen py-20 px-4">
