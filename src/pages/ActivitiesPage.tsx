@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, X } from 'lucide-react';
+import { FileText, X, Code } from 'lucide-react';
 import { useState } from 'react';
 
 export function ActivitiesPage() {
@@ -11,7 +11,64 @@ export function ActivitiesPage() {
       description: 'A comprehensive professional article exploring key concepts and insights in the field.',
       techStack: ['Research', 'Technical Writing', 'Analysis'],
       link: `${import.meta.env.BASE_URL}Professional Article - Bernardo, Luke Joaquin.pdf`,
-      type: 'Academic Writing'
+      type: 'Academic Writing',
+      isNotebook: false
+    },
+    {
+      title: 'PT-P2: Iris Classification with kNN',
+      description: 'Implementation of K-Nearest Neighbors algorithm for Iris species classification including model training, evaluation, and comprehensive data visualization.',
+      techStack: ['Python', 'scikit-learn', 'Machine Learning', 'Data Visualization'],
+      link: `${import.meta.env.BASE_URL}PT-P2/PT-P2 - BERNARDO, Luke Joaquin.pdf`,
+      type: 'Machine Learning Project',
+      isNotebook: false
+    },
+    {
+      title: 'PT-P2: Iris Classification (Notebook)',
+      description: 'Interactive Jupyter notebook with executable code for K-Nearest Neighbors implementation on the Iris dataset, including step-by-step analysis and visualizations.',
+      techStack: ['Jupyter', 'Python', 'scikit-learn', 'Interactive'],
+      link: `${import.meta.env.BASE_URL}PT-P2/PT_P2_BERNARDO,_Luke_Joaquin.html`,
+      type: 'Jupyter Notebook',
+      isNotebook: true
+    },
+    {
+      title: 'PT-P3: Real Estate Price Prediction',
+      description: 'Complete machine learning pipeline for predicting real estate prices, featuring data cleaning, preprocessing, and regression modeling with extensive feature engineering.',
+      techStack: ['Python', 'Pandas', 'Data Preprocessing', 'Regression'],
+      link: `${import.meta.env.BASE_URL}PT-P3/PT_P3_BERNARDO,_Luke_Joaquin.pdf`,
+      type: 'Machine Learning Project',
+      isNotebook: false
+    },
+    {
+      title: 'PT-P3: Real Estate Prediction (Notebook)',
+      description: 'Interactive Jupyter notebook for real estate price prediction with live code execution, data exploration, and model development workflow.',
+      techStack: ['Jupyter', 'Pandas', 'Regression', 'Interactive'],
+      link: `${import.meta.env.BASE_URL}PT-P3/PT_P3_BERNARDO,_Luke_Joaquin.html`,
+      type: 'Jupyter Notebook',
+      isNotebook: true
+    },
+    {
+      title: 'WW-P2: Customer Data Cleaning Pipeline',
+      description: 'Comprehensive data cleaning and preprocessing pipeline implementing outlier handling, feature engineering, normalization, and categorical encoding for customer analytics.',
+      techStack: ['Python', 'Data Cleaning', 'Feature Engineering', 'Data Preprocessing'],
+      link: `${import.meta.env.BASE_URL}WW-P2/BERNARDO WW2-datacleaning.pdf`,
+      type: 'Data Engineering',
+      isNotebook: false
+    },
+    {
+      title: 'WW-P2: Data Cleaning Pipeline (Notebook)',
+      description: 'Interactive Jupyter notebook demonstrating the complete data cleaning workflow with executable code cells and inline visualizations.',
+      techStack: ['Jupyter', 'Pandas', 'Data Cleaning', 'Interactive'],
+      link: `${import.meta.env.BASE_URL}WW-P2/BERNARDO_WW2_datacleaning.html`,
+      type: 'Jupyter Notebook',
+      isNotebook: true
+    },
+    {
+      title: 'Revised kNN IEEE Report',
+      description: 'Addendum activity document providing detailed analysis and documentation for the K-Nearest Neighbors algorithm implementation and research findings.',
+      techStack: ['Technical Writing', 'IEEE Format', 'Research Documentation'],
+      link: `${import.meta.env.BASE_URL}Revised kNN IEEE Report/Addendum Activity - BERNARDO, Luke Joaquin.pdf`,
+      type: 'Academic Documentation',
+      isNotebook: false
     }
   ];
 
@@ -45,8 +102,16 @@ export function ActivitiesPage() {
               className="glass-card p-6 hover:shadow-xl transition-shadow cursor-pointer"
             >
               <div className="flex items-start justify-between mb-4">
-                <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg">
-                  <FileText className="w-6 h-6 text-white" />
+                <div className={`p-3 rounded-lg ${
+                  project.isNotebook 
+                    ? 'bg-gradient-to-br from-green-500 to-teal-600' 
+                    : 'bg-gradient-to-br from-blue-500 to-purple-600'
+                }`}>
+                  {project.isNotebook ? (
+                    <Code className="w-6 h-6 text-white" />
+                  ) : (
+                    <FileText className="w-6 h-6 text-white" />
+                  )}
                 </div>
               </div>
               
