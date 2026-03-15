@@ -1,15 +1,14 @@
 import { motion } from 'framer-motion';
 import { Lightbulb } from 'lucide-react';
+import { activities } from '../data/activities';
 
 export function ReflectionsPage() {
-  const reflections: Array<{term: string; icon: any; color: string; text: string}> = [
-    {
-      term: 'Prelim Period Reflection',
-      icon: Lightbulb,
-      color: 'sky',
-      text: 'My experience of the prelim period was my introduction to the fundamentals of data science and machine learning. The entire data cleaning and exploration were conducted solo, and I found that cleaning data should be the first step before any good insights can be made. Working with Excel only allowed me to identify patterns, correct missing data, and identify outliers independently. Converting sloppy raw data into tidy structured data was not easy though quite rewarding. Respectively, trial and error taught me that cleaning data is not a pre-step, but a skill, which requires a considerable amount of patience, care, and my judgment. Exam and Long quiz challenged me to apply my analysis when considering data structures, changes and the ethical issues of data use. This experience reminded me that all machine learning models are constructed using many of hours of intensive, single-person data preparation. My approach to any data project is based on the independence and technical skills that I attained in prelims such as self-checking data, working with odd numbers, and making useful features.'
-    }
-  ];
+  const reflections = activities
+    .filter((activity) => activity.reflection && activity.reflection.trim().length > 0)
+    .map((activity) => ({
+      term: activity.title,
+      text: activity.reflection,
+    }));
 
   return (
     <div className="min-h-screen py-20 px-4">
@@ -69,14 +68,14 @@ export function ReflectionsPage() {
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     className="flex-shrink-0 p-4 bg-sky-500/10 rounded-xl"
                   >
-                    <reflection.icon className="w-8 h-8 text-sky-400" />
+                    <Lightbulb className="w-8 h-8 text-sky-400" />
                   </motion.div>
 
                   <div className="flex-1">
                     <h2 className="text-2xl font-bold mb-4 text-slate-100">
                       {reflection.term}
                     </h2>
-                    <p className="text-slate-300 leading-relaxed text-lg">
+                    <p className="text-slate-300 leading-relaxed text-lg whitespace-pre-line">
                       {reflection.text}
                     </p>
                   </div>
