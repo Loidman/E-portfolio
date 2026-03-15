@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRightIcon, Github, Linkedin, Mail, Code2, Database, Palette, ChevronDown } from 'lucide-react';
+import { ArrowRightIcon, Github, Linkedin, Mail, Code2, Database, Palette, ChevronDown, BookOpen, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 
 export function HomePage() {
@@ -228,6 +228,86 @@ export function HomePage() {
             </motion.div>
           ))}
         </div>
+      </section>
+
+      {/* Professional Article Section */}
+      <section className="max-w-6xl mx-auto px-4 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Featured <span className="gradient-text">Publication</span>
+          </h2>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            A professional article showcasing research, analysis, and technical writing
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="relative glass-card overflow-hidden"
+        >
+          {/* Decorative gradient blob */}
+          <div className="absolute -top-20 -right-20 w-72 h-72 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-violet-500/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 p-10">
+            {/* Icon */}
+            <motion.div
+              whileHover={{ scale: 1.05, rotate: 3 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+              className="flex-shrink-0 w-24 h-24 rounded-2xl bg-gradient-to-br from-sky-500 to-violet-600 flex items-center justify-center shadow-2xl shadow-sky-500/30"
+            >
+              <BookOpen className="w-12 h-12 text-white" />
+            </motion.div>
+
+            {/* Content */}
+            <div className="flex-1 text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
+                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                  Academic Writing
+                </span>
+                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/10 text-violet-400 border border-violet-500/20">
+                  Prelim Period
+                </span>
+              </div>
+
+              <h3 className="text-2xl md:text-3xl font-bold text-slate-100 mb-3">
+                Professional Article
+              </h3>
+
+              <p className="text-slate-400 leading-relaxed mb-5 max-w-2xl">
+                A comprehensive professional article exploring key concepts and insights in the field of data science —
+                covering research methodology, technical analysis, and practical applications.
+              </p>
+
+              <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
+                {['Research', 'Technical Writing', 'Analysis'].map((tag) => (
+                  <span key={tag} className="px-3 py-1 bg-slate-700/50 text-slate-300 rounded-full text-sm">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <a
+                href={`${import.meta.env.BASE_URL}Professional Article - Bernardo, Luke Joaquin.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 btn-primary"
+              >
+                Read Article
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* CTA Section */}

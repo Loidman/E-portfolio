@@ -6,6 +6,7 @@ import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ActivitiesPage } from './pages/ActivitiesPage';
+import { ActivityDetailPage } from './pages/ActivityDetailPage';
 import { ReflectionsPage } from './pages/ReflectionsPage';
 import { ResumePage } from './pages/ResumePage';
 import { ContactPage } from './pages/ContactPage';
@@ -54,6 +55,20 @@ function AnimatedRoutes() {
         duration: 0.3
       }}>
               <ActivitiesPage />
+            </motion.div>} />
+        <Route path="/activities/:id" element={<motion.div initial={{
+        opacity: 0,
+        y: 20
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} exit={{
+        opacity: 0,
+        y: -20
+      }} transition={{
+        duration: 0.3
+      }}>
+              <ActivityDetailPage />
             </motion.div>} />
         <Route path="/reflections" element={<motion.div initial={{
         opacity: 0,

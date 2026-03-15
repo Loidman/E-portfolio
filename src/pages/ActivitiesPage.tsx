@@ -1,80 +1,19 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, X, Code } from 'lucide-react';
-import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { FileText, Code, ChevronRight, BookOpen } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { activities, periodOrder, periodColors, periodTextColors, periodBgColors } from '../data/activities';
 
 export function ActivitiesPage() {
-  const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-  const projects = [
-    {
-      title: 'Professional Article',
-      description: 'A comprehensive professional article exploring key concepts and insights in the field.',
-      techStack: ['Research', 'Technical Writing', 'Analysis'],
-      link: `${import.meta.env.BASE_URL}Professional Article - Bernardo, Luke Joaquin.pdf`,
-      type: 'Academic Writing',
-      isNotebook: false
-    },
-    {
-      title: 'PT-P2: Iris Classification with kNN',
-      description: 'Implementation of K-Nearest Neighbors algorithm for Iris species classification including model training, evaluation, and comprehensive data visualization.',
-      techStack: ['Python', 'scikit-learn', 'Machine Learning', 'Data Visualization'],
-      link: `${import.meta.env.BASE_URL}PT-P2/PT-P2 - BERNARDO, Luke Joaquin.pdf`,
-      type: 'Machine Learning Project',
-      isNotebook: false
-    },
-    {
-      title: 'PT-P2: Iris Classification (Notebook)',
-      description: 'Interactive Jupyter notebook with executable code for K-Nearest Neighbors implementation on the Iris dataset, including step-by-step analysis and visualizations.',
-      techStack: ['Jupyter', 'Python', 'scikit-learn', 'Interactive'],
-      link: `${import.meta.env.BASE_URL}PT-P2/PT_P2_BERNARDO,_Luke_Joaquin.html`,
-      type: 'Jupyter Notebook',
-      isNotebook: true
-    },
-    {
-      title: 'PT-P3: Real Estate Price Prediction',
-      description: 'Complete machine learning pipeline for predicting real estate prices, featuring data cleaning, preprocessing, and regression modeling with extensive feature engineering.',
-      techStack: ['Python', 'Pandas', 'Data Preprocessing', 'Regression'],
-      link: `${import.meta.env.BASE_URL}PT-P3/PT_P3_BERNARDO,_Luke_Joaquin.pdf`,
-      type: 'Machine Learning Project',
-      isNotebook: false
-    },
-    {
-      title: 'PT-P3: Real Estate Prediction (Notebook)',
-      description: 'Interactive Jupyter notebook for real estate price prediction with live code execution, data exploration, and model development workflow.',
-      techStack: ['Jupyter', 'Pandas', 'Regression', 'Interactive'],
-      link: `${import.meta.env.BASE_URL}PT-P3/PT_P3_BERNARDO,_Luke_Joaquin.html`,
-      type: 'Jupyter Notebook',
-      isNotebook: true
-    },
-    {
-      title: 'WW-P2: Customer Data Cleaning Pipeline',
-      description: 'Comprehensive data cleaning and preprocessing pipeline implementing outlier handling, feature engineering, normalization, and categorical encoding for customer analytics.',
-      techStack: ['Python', 'Data Cleaning', 'Feature Engineering', 'Data Preprocessing'],
-      link: `${import.meta.env.BASE_URL}WW-P2/BERNARDO WW2-datacleaning.pdf`,
-      type: 'Data Engineering',
-      isNotebook: false
-    },
-    {
-      title: 'WW-P2: Data Cleaning Pipeline (Notebook)',
-      description: 'Interactive Jupyter notebook demonstrating the complete data cleaning workflow with executable code cells and inline visualizations.',
-      techStack: ['Jupyter', 'Pandas', 'Data Cleaning', 'Interactive'],
-      link: `${import.meta.env.BASE_URL}WW-P2/BERNARDO_WW2_datacleaning.html`,
-      type: 'Jupyter Notebook',
-      isNotebook: true
-    },
-    {
-      title: 'Revised kNN IEEE Report',
-      description: 'Addendum activity document providing detailed analysis and documentation for the K-Nearest Neighbors algorithm implementation and research findings.',
-      techStack: ['Technical Writing', 'IEEE Format', 'Research Documentation'],
-      link: `${import.meta.env.BASE_URL}Revised kNN IEEE Report/Addendum Activity - BERNARDO, Luke Joaquin.pdf`,
-      type: 'Academic Documentation',
-      isNotebook: false
-    }
-  ];
+  const grouped = periodOrder.map((period) => ({
+    period,
+    items: activities.filter((a) => a.period === period),
+  }));
 
   return (
     <div className="min-h-screen py-20 px-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -86,98 +25,108 @@ export function ActivitiesPage() {
             My <span className="gradient-text">Projects</span>
           </h1>
           <p className="text-xl text-slate-400">
-            Showcasing my development work and technical solutions
+            Click any project to view the task and reflection
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid gap-6 md:grid-cols-2">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
+        {/* Period Sections */}
+        <div className="space-y-14">
+          {grouped.map(({ period, items }, sectionIndex) => (
+            <motion.section
+              key={period}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              onClick={() => setSelectedPdf(project.link)}
-              className="glass-card p-6 hover:shadow-xl transition-shadow cursor-pointer"
+              transition={{ duration: 0.5, delay: sectionIndex * 0.15 }}
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className={`p-3 rounded-lg ${
-                  project.isNotebook 
-                    ? 'bg-gradient-to-br from-green-500 to-teal-600' 
-                    : 'bg-gradient-to-br from-blue-500 to-purple-600'
-                }`}>
-                  {project.isNotebook ? (
-                    <Code className="w-6 h-6 text-white" />
-                  ) : (
-                    <FileText className="w-6 h-6 text-white" />
-                  )}
-                </div>
+              {/* Period Header */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className={`h-px flex-1 bg-gradient-to-r ${periodColors[period]} opacity-40`} />
+                <span className={`px-4 py-1.5 rounded-full text-sm font-semibold border ${periodBgColors[period]} ${periodTextColors[period]}`}>
+                  {period} Period
+                </span>
+                <div className={`h-px flex-1 bg-gradient-to-l ${periodColors[period]} opacity-40`} />
               </div>
-              
-              <h3 className="text-xl font-bold mb-2 text-slate-100">
-                {project.title}
-              </h3>
-              
-              <p className="text-sm text-blue-400 mb-3">
-                {project.type}
-              </p>
-              
-              <p className="text-slate-400 mb-4">
-                {project.description}
-              </p>
-              
-              <div className="flex flex-wrap gap-2">
-                {project.techStack.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 bg-slate-700/50 text-slate-300 rounded-full text-sm"
-                  >
-                    {tech}
-                  </span>
-                ))}
+
+              {/* Activity Cards */}
+              <div className="grid gap-5 sm:grid-cols-2">
+                {items.map((activity, index) => {
+                  const hasNotebook = activity.documents.some((d) => d.isNotebook);
+                  const hasDoc = activity.documents.some((d) => !d.isNotebook);
+
+                  return (
+                    <motion.button
+                      key={activity.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.08 }}
+                      whileHover={{ scale: 1.02, boxShadow: '0 20px 60px rgba(56,189,248,0.12)' }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => navigate(`/activities/${activity.id}`)}
+                      className="glass-card p-6 text-left w-full cursor-pointer group transition-shadow"
+                    >
+                      {/* Icon row */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className={`p-3 rounded-lg bg-gradient-to-br ${periodColors[period]}`}>
+                          {hasNotebook ? (
+                            <Code className="w-6 h-6 text-white" />
+                          ) : (
+                            <FileText className="w-6 h-6 text-white" />
+                          )}
+                        </div>
+
+                        {/* Document type badges */}
+                        <div className="flex items-center gap-2">
+                          {hasDoc && (
+                            <span className="flex items-center gap-1 px-2 py-1 bg-blue-500/10 text-blue-400 text-xs rounded-full border border-blue-500/20">
+                              <FileText className="w-3 h-3" /> Report
+                            </span>
+                          )}
+                          {hasNotebook && (
+                            <span className="flex items-center gap-1 px-2 py-1 bg-green-500/10 text-green-400 text-xs rounded-full border border-green-500/20">
+                              <BookOpen className="w-3 h-3" /> Notebook
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      <h3 className="text-lg font-bold mb-1 text-slate-100 group-hover:text-white transition-colors">
+                        {activity.title}
+                      </h3>
+
+                      <p className={`text-xs font-medium mb-3 ${periodTextColors[period]}`}>
+                        {activity.type}
+                      </p>
+
+                      <p className="text-slate-400 text-sm mb-4 line-clamp-2">
+                        {activity.description}
+                      </p>
+
+                      <div className="flex items-center justify-between">
+                        <div className="flex flex-wrap gap-1.5">
+                          {activity.techStack.slice(0, 3).map((tech, i) => (
+                            <span
+                              key={i}
+                              className="px-2 py-0.5 bg-slate-700/50 text-slate-300 rounded-full text-xs"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                          {activity.techStack.length > 3 && (
+                            <span className="px-2 py-0.5 bg-slate-700/50 text-slate-400 rounded-full text-xs">
+                              +{activity.techStack.length - 3}
+                            </span>
+                          )}
+                        </div>
+                        <ChevronRight className="w-5 h-5 text-slate-500 group-hover:text-slate-300 transition-colors flex-shrink-0" />
+                      </div>
+                    </motion.button>
+                  );
+                })}
               </div>
-            </motion.div>
+            </motion.section>
           ))}
         </div>
       </div>
-
-      {/* PDF Viewer Modal */}
-      <AnimatePresence>
-        {selectedPdf && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
-            onClick={() => setSelectedPdf(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full h-full max-w-6xl max-h-[90vh] bg-slate-900 rounded-lg shadow-2xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedPdf(null)}
-                className="absolute top-4 right-4 z-10 p-2 bg-slate-800 hover:bg-slate-700 rounded-full transition-colors"
-                aria-label="Close PDF viewer"
-              >
-                <X className="w-6 h-6 text-white" />
-              </button>
-
-              {/* PDF Viewer */}
-              <iframe
-                src={selectedPdf}
-                className="w-full h-full"
-                title="PDF Viewer"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
