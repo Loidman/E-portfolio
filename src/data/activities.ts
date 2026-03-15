@@ -19,6 +19,72 @@ export interface Activity {
 
 export const activities: Activity[] = [
   {
+    id: 'prelim-long-quiz-set-b',
+    title: 'Prelim Long Quiz: Set B',
+    description:
+      'Long quiz assessment for the prelim period covering core course topics and applied problem solving.',
+    period: 'Prelim',
+    type: 'Long Quiz',
+    techStack: ['Course Assessment', 'Problem Solving', 'Concept Mastery'],
+    reflection: `Q1: Target Variable Selection
+
+The decision to use the energy rating as a target variable is something I was so much into because of the setting of the data since it was a Property Developer scenario. This dataset contained a number of attributes, such as square feet, proximity to the city center, the year of construction, energy efficiency, and the presence of parking, which I needed to select the one that would produce the most significant prediction target.
+
+Energy rating impressed me since it is both a categorical result and a result that has real-life implications in the real estate industry. The prediction of the energy rating would be of great use to property developers who may want to determine the property that would most likely be high-value or marketable. A Grade is not an efficient property, it is a selling point. I believe that when formulating the issue in terms of energy sustainability, the model is not only technically functional but also truly helpful in the field.
+
+Q2: KNN vs. Linear Regression
+
+As soon as I chose Energy Rating as the target variable, the algorithm to choose also became clear. Linear Regression works well with continuous numbers, but since Energy Rating is not a regression problem but a classification problem; it is A, B or C. That is why I chose K-Nearest Neighbors (KNN).
+
+The feature that I liked in KNN to use it on this project is its simplistic concept that similar properties should possess similar energy characteristics. When a large house is being examined which was constructed recently, then that house is likely to act similar to other large and contemporary houses in terms of energy consumption. The idea of KNN is that it utilizes the Euclidean distance to identify the k nearest similarities in the feature space, and then applies that similarity to the new property giving it the most prevalent label among the nearest similarity.
+
+Drawing the diagram was of great assistance to my thoughts. Squaring the footage on the y-axis and the year built on the x-axis I was able to observe the grouping of A, B, and C properties. It provided me with visual insight into the landing location of a new and unlabeled property and the way KNN would grade it depending on the distance.
+
+Q3: Training, Testing & Evaluation Metrics
+
+I had to stop halfway in my reply to Q3 due to lack of time. I began by emphasizing that we need to normalize data, as KNN requires the use of the Euclidean distance, and therefore raw values on very different scales would dominate Square Footage and Distance to City Center and Year Built. I indicated that a normalization puts all the features into a similar range so that all features make equal contributions to the distance formula, but that was as far as I got.
+
+The fundamental part of the question that I did not get was the actual training/test split and the metrics of evaluation. The complete answer would justify dividing the data into an 80/20 train-test set to ensure that the model was trained on one part and tested on the unseen data. In case of categorical Energy Rating and three classes (A, B, C), I would not use regression metrics such as MAE or RMSE, but accuracy, precision, recall, and F1-score. Missing out on those sections is an apparent weakness I have that is reflected in the necessity to work on time in written exams so that I can cover all the points, even though only briefly.`,
+    documents: [
+      {
+        label: 'Task File',
+        link: `${BASE}activities/prelim/Quiz SET B - BERNARDO.pdf`,
+        isNotebook: false,
+      },
+    ],
+  },
+  {
+    id: 'prelim-exam-set-b',
+    title: 'Prelim Exam: Set B',
+    description:
+      'Summative prelim assessment task documenting understanding of key course concepts.',
+    period: 'Prelim',
+    type: 'Assessment Task',
+    techStack: ['Course Assessment', 'Problem Solving', 'Technical Writing'],
+    reflection: `Test I: Correlation & Data Exploration
+
+The process of working the scatterplot in Test I actually made me see the world of Unit Price and Quantity Sold as I actually see it. Plotting the five data points and putting Quantity Sold on the y-axis it became apparent that the higher the price the lower the quantity sold - an obvious downward trend left to right. That gave the relationship an intuitive feel to it, similar to the textbook example. On that I was confident that the correlation coefficient would be close to -1. The reasoning was clear and easy to follow: the trend was the same and it was indisputable. All the stores of the dataset appeared to act similarly - an increase in price, the decrease in the number of sold units. That is precisely the sort of steady negative pattern that has not a lot of scatters that drives the r value to the strong negative territory.
+
+Responding to the question on whether Unit Price is a predictive variable strong enough to predict Quantity Sold was also made evident when I had the scatterplot in my view. Since the points were also moving in a rather narrow downward trend, I was compelled to assume that, yes, the Unit Price has enough predictive power to be of use. Reflectively, I believe that the strength of a correlation can only be considered not only mathematically but also in a real-world context - in retail pricing almost always has a direct influence on buying behavior which reinforced this conclusion further.
+
+Test II: Model Parameters & Fitness
+
+I did not feel entirely confident as I was responding to this section on which part of the equation was the intercept and which one was the slope. Rather than using guesses, I simply wrote the entire formula: Quantity Sold = 1200 - 0.55(Price) and discussed the model in general. I said that at a price of zero the quantity would be theoretically high and that an addition of one peso would reduce the quantity by 1200 but I did not label the 1200 as the intercept (B0) or the -0.55 as the slope (B1).
+
+In revelation, I realize that there is a difference. An intercept (B0 = 1200) is the quantity of units sold when price is zero - where the regression line begins on the Y-axis. The slope (B1 = -0.55) explains that increasing the price by one peso lowers the amount of the quantity sold by 0.55 units. I understood the message; I was just not comfortable to classify them properly initially. I will ensure that I am more specific on that in future assignments.
+
+On the model fitness, the R-Sq reading of 0.48 I found to be a fair to average fit. An R-squared of 0.48 implies that the effects of unit price on the quantity sold account for about half the change. To any person who follows this model, it offers a helpful tip but it is not supposed to be the only decision making tool.
+
+The most provocative one was the real life question of why a model can never reach zero error. My response centered on the fact that the request to minimize errors to zero would result in a model being recalling the training data, therefore, too sensitive to noise. That is to say that it would do well on the data it experienced but do poorly on new data. It actually pointed me to the trade-off between overfitting data and having a useful model in practice, and it is one that I would like to explore further.`,
+    documents: [
+      {
+        label: 'Task File',
+        link: `${BASE}activities/prelim/Exam SET B - BERNARDO.pdf`,
+        isNotebook: false,
+      },
+    ],
+  },
+  {
     id: 'ww-p2',
     title: 'WW-P2: Customer Data Cleaning Pipeline',
     description:
