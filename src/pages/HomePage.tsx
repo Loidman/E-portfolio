@@ -297,7 +297,7 @@ export function HomePage() {
               </div>
 
               <a
-                href={`${import.meta.env.BASE_URL}Professional Article - Bernardo, Luke Joaquin.pdf`}
+                href={`${import.meta.env.BASE_URL}Professional Article - Bernardo, Luke Joaquin (1).pdf`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 btn-primary"
