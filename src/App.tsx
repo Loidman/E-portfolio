@@ -7,7 +7,6 @@ import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ActivitiesPage } from './pages/ActivitiesPage';
 import { ActivityDetailPage } from './pages/ActivityDetailPage';
-import { ReflectionsPage } from './pages/ReflectionsPage';
 import { ResumePage } from './pages/ResumePage';
 import { ContactPage } from './pages/ContactPage';
 function AnimatedRoutes() {
@@ -70,20 +69,6 @@ function AnimatedRoutes() {
       }}>
               <ActivityDetailPage />
             </motion.div>} />
-        <Route path="/reflections" element={<motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} animate={{
-        opacity: 1,
-        y: 0
-      }} exit={{
-        opacity: 0,
-        y: -20
-      }} transition={{
-        duration: 0.3
-      }}>
-              <ReflectionsPage />
-            </motion.div>} />
         <Route path="/resume" element={<motion.div initial={{
         opacity: 0,
         y: 20
@@ -117,10 +102,35 @@ function AnimatedRoutes() {
 }
 export function App() {
   const [showUpdateNotice, setShowUpdateNotice] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window === 'undefined') {
+      return 'dark';
+    }
+    const storedTheme = window.localStorage.getItem('theme');
+    if (storedTheme === 'light' || storedTheme === 'dark') {
+      return storedTheme;
+    }
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  });
 
   useEffect(() => {
     setShowUpdateNotice(true);
   }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    const root = window.document.documentElement;
+    root.classList.remove('theme-light', 'theme-dark');
+    root.classList.add(`theme-${theme}`);
+    root.style.colorScheme = theme;
+    window.localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((current) => (current === 'dark' ? 'light' : 'dark'));
+  };
 
   return <HashRouter>
       <div className="min-h-screen flex flex-col">
@@ -153,8 +163,8 @@ export function App() {
                 <div className="space-y-3 text-slate-300 leading-relaxed">
                   <p>Good day, Sir Raga,</p>
                   <p>I hope you're having a productive week.</p>
-                  <p>I would like to update you on the changes I've made to my E-portfolio. I have moved my Professional Article to the homepage for better visibility; it was previously located under the projects page.</p>
-                  <p>Additionally, all of my preliminary submissions are now organized within the Projects tab. Each task is clickable, leading directly to the actual submission and my corresponding reflection.</p>
+                  <p>I would like to update you on the changes I've made to my E-portfolio.</p>
+                  <p>I have organized my midterm and finals activities within the Projects tab. Each task is clickable, leading directly to the actual submission and my corresponding reflection.</p>
                   <p>Thank you for your time and guidance.</p>
                 </div>
 
@@ -166,7 +176,7 @@ export function App() {
               </motion.div>
             </motion.div>}
         </AnimatePresence>
-        <Navigation />
+        <Navigation theme={theme} onToggleTheme={toggleTheme} />
         <main className="flex-1">
           <AnimatedRoutes />
         </main>

@@ -1,0 +1,83 @@
+
+<h2 class="sr-only">Self-reflection for Exercise PT-F2: Model Comparison by Luke Joaquin Bernardo</h2>
+
+<div style="max-width:660px; padding:1.5rem 0 2.5rem;">
+
+  <div style="margin-bottom:1.75rem;">
+    <p style="font-size:12px; font-weight:500; letter-spacing:0.08em; color:var(--color-text-tertiary); text-transform:uppercase; margin:0 0 6px;">ITC-C506 — Exercise PT-F2 · Finals</p>
+    <h1 style="font-size:22px; font-weight:500; margin:0 0 4px; color:var(--color-text-primary);">Final activity reflection</h1>
+    <p style="font-size:14px; color:var(--color-text-secondary); margin:0 0 10px;">Bernardo, Luke Joaquin &nbsp;·&nbsp; Dr. Rodolfo Raga &nbsp;·&nbsp; MLR vs. Linear SVM on UCI Wine Dataset</p>
+    <div style="display:inline-block; background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:4px 14px;">
+      <span style="font-size:13px; color:var(--color-text-secondary);">Status: </span><span style="font-size:13px; font-weight:500; color:var(--color-text-primary);">Awaiting grade</span>
+    </div>
+  </div>
+
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 1.5rem;">
+    Exercise PT-F2 was the most conceptually layered activity of the term. Unlike PT-M1 which focused on a single model applied to messy data, this exercise required me to implement two fundamentally different classification paradigms — a probabilistic model and a geometric one — fine-tune both rigorously, and produce a comparative analysis that explained not just which model performed better, but why. Having completed and submitted the work, this reflection is my honest assessment of what I accomplished and where I think there is still room to grow.
+  </p>
+
+  <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">What I did well</h2>
+
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    The experimental design was genuinely thorough. Rather than testing the three suggested C values as a minimum, I tested 17 log-spaced values from 10⁻⁴ to 10⁴ for both models — and on top of that, I tuned additional hyperparameters simultaneously: tolerance values and class weight options for MLR (102 total combinations), and those plus loss function options for SVM (204 combinations). The exercise asked me to "test as many C values as I can and prove through results which value is best," and I think the log-spaced grid with multi-parameter tuning genuinely answered that question rather than just satisfying it on the surface.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    The pipeline implementation was correct and principled. Using sklearn's Pipeline to chain StandardScaler with each model meant the scaler was fitted only on training folds during cross-validation — never on the validation or test fold. This is the data leakage prevention the exercise explicitly required, and I made sure it was documented clearly in both the notebook and the report's methodology section.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    The results themselves were strong and produced a genuinely interesting finding. Both models tied at 98.62% mean CV accuracy during training, but on the held-out test set, MLR achieved perfect classification (Accuracy = F1 = κ = 1.000) while SVM committed one misclassification. That single difference — one Class 2 sample predicted as Class 1 by SVM — became the basis for a meaningful discussion about how the probabilistic softmax approach generalizes differently from margin maximization on this particular chemometric space. The conclusion was grounded in the actual results, not just theoretical expectations.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    The feature weight comparison was an element I found genuinely satisfying to execute. Plotting the mean absolute weights across classes for both models revealed that Flavanoids, Proline, OD280, and Alcohol were the top discriminators for both MLR and SVM independently. The fact that two models trained with completely different learning objectives agreed on the same top features gave the conclusion a stronger foundation — it suggested these features are genuine chemical discriminators of wine cultivar, not just artifacts of one model's assumptions.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 1.5rem;">
+    The notebook documentation maintained the same structured format I developed in PT-M1, with line-by-line tables for every cell. I also added return_train_score=True to both GridSearchCV instances, which let me track training accuracy alongside CV accuracy — enabling me to observe the overfitting behavior at high C values for MLR (training accuracy hits 100% at C ≥ 1 while CV accuracy plateaus), which I then wrote up as a key finding in the report.
+  </p>
+
+  <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">Areas I think could have been stronger</h2>
+
+  <p style="font-size:14px; line-height:1.7; color:var(--color-text-secondary); margin:0 0 1rem; font-style:italic;">
+    Since this submission has not yet been graded, the following reflect my own honest self-assessment — not confirmed deductions.
+  </p>
+
+  <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:0.75rem;">
+    <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-dots-circle-horizontal" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Report — Section III structure deviated from the rubric</p>
+    <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+      The exercise rubric specified Section III as "Experimental Design" with subsections III-A for MLR and III-B for SVM. In my submitted report, I combined the experimental narrative within Section III rather than maintaining strict III-A and III-B subsection labels throughout. While the content was present, a grader checking section structure against the rubric might flag this as a formatting deviation.
+    </p>
+  </div>
+
+  <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:0.75rem;">
+    <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-dots-circle-horizontal" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Perfect test accuracy — could raise questions about overfitting to the test set</p>
+    <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+      MLR achieving 100% on the test set is a genuinely good result, but it is also the kind of result that can raise eyebrows. While I used a properly held-out test set that never touched the training pipeline, the Wine dataset is known to be relatively easy for linear classifiers on scaled features — so the perfect score is likely legitimate rather than a sign of leakage. Still, I could have included a brief note in the discussion addressing this directly, acknowledging the dataset's characteristics and why perfect classification is plausible rather than suspicious.
+    </p>
+  </div>
+
+  <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:0.75rem;">
+    <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-dots-circle-horizontal" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Notebook cell documentation — less deep than PT-M1</p>
+    <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+      In PT-M1, each cell had a purpose statement, full line-by-line table, explicit input and output sections, and references to lecture concepts. In this notebook, the markdown cells used line-by-line tables but dropped the dedicated Input/Output and conceptual context sections. Given that the rubric rewards depth and completeness of documentation, this was a step back from the standard I had set in the midterm activity.
+    </p>
+  </div>
+
+  <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:1.5rem;">
+    <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-dots-circle-horizontal" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>The "additional task" — further hyperparameter analysis could have been deeper</p>
+    <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+      The exercise explicitly marked an "Additional Task" for both models: fine-tune other parameters beyond C and determine if they still improve performance. I did tune tolerance and class_weight for MLR, and added loss function for SVM — but my written discussion of how these parameters individually affected results was brief. A more explicit breakdown of whether balanced class weighting or a specific tolerance value made a measurable difference would have addressed the additional task more directly.
+    </p>
+  </div>
+
+  <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">What this activity taught me</h2>
+
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    The most important thing I took away from PT-F2 is the difference between cross-validation performance and test set performance — and why they can diverge even when both are implemented correctly. Both models tied at 98.62% mean CV accuracy, which would have suggested they were equally good. The test set told a different story: MLR generalized perfectly, SVM did not. That gap, caused by one misclassified sample in a 36-sample test set, is a reminder that CV gives you an estimate, not a guarantee, and that the final held-out evaluation always has the last word.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    I also learned something concrete about the two models' personalities. MLR preferred strong regularization (C = 0.01) — it needed to be constrained to generalize well. SVM needed a much larger C (≈ 3.162) to perform at the same level, meaning it required less regularization to find a good margin. These are not just numbers from a table; they tell a story about how each model relates to the data's geometry, and connecting those numbers to that story is what made the comparative analysis feel meaningful rather than mechanical.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0;">
+    Going into future activities, I want to bring back the full documentation depth from PT-M1 — explicit purpose, input, output, and conceptual context for every cell. I also want to be more deliberate about addressing the "additional task" components of exercises explicitly, rather than folding them into the main experiment without calling them out. These are small execution habits, but they reflect the difference between doing the work and presenting it with the clarity it deserves.
+  </p>
+
+</div>

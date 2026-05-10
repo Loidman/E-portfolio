@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, Moon, Sun, X } from 'lucide-react';
 
-export function Navigation() {
+interface NavigationProps {
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
+}
+
+export function Navigation({ theme, onToggleTheme }: NavigationProps) {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -11,7 +16,6 @@ export function Navigation() {
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
     { path: '/activities', label: 'Projects' },
-    { path: '/reflections', label: 'Reflections' },
     { path: '/resume', label: 'Resume' },
     { path: '/contact', label: 'Contact' }
   ];
@@ -76,19 +80,52 @@ export function Navigation() {
               })}
             </div>
 
-            {/* Mobile Menu Button */}
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleMobileMenu}
-              className="md:hidden p-2 text-slate-300 hover:text-white"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </motion.button>
+            {/* Theme Toggle (Desktop) */}
+            <div className="hidden md:flex items-center">
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                onClick={onToggleTheme}
+                className="ml-2 flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800/60 border border-slate-700/60 text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors"
+                aria-label="Toggle light and dark mode"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-4 h-4" />
+                ) : (
+                  <Moon className="w-4 h-4" />
+                )}
+                <span className="text-xs font-semibold">
+                  {theme === 'dark' ? 'Light' : 'Night'}
+                </span>
+              </motion.button>
+            </div>
+
+            {/* Mobile Actions */}
+            <div className="md:hidden flex items-center gap-2">
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                onClick={onToggleTheme}
+                className="p-2 rounded-lg bg-slate-800/60 border border-slate-700/60 text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors"
+                aria-label="Toggle light and dark mode"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-5 h-5" />
+                ) : (
+                  <Moon className="w-5 h-5" />
+                )}
+              </motion.button>
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                onClick={toggleMobileMenu}
+                className="p-2 text-slate-300 hover:text-white"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
+              </motion.button>
+            </div>
           </div>
         </div>
       </motion.nav>

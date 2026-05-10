@@ -129,3 +129,161 @@
   background: rgba(56, 189, 248, 0.3);
   color: #F1F5F9;
 }
+
+/* Theme overrides */
+:root {
+  color-scheme: dark;
+}
+
+.theme-light {
+  color-scheme: light;
+}
+
+.theme-light body {
+  color: #0B1220;
+  background: linear-gradient(135deg, #F7FAFF 0%, #EEF2F8 45%, #F8FBF1 100%);
+  background-size: 400% 400%;
+  background-attachment: fixed;
+}
+
+.theme-light body::before {
+  background-image:
+    radial-gradient(circle at 18% 28%, rgba(14, 165, 233, 0.14) 0%, transparent 52%),
+    radial-gradient(circle at 82% 78%, rgba(34, 197, 94, 0.12) 0%, transparent 55%),
+    radial-gradient(circle at 55% 15%, rgba(249, 115, 22, 0.08) 0%, transparent 40%),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(148, 163, 184, 0.16) 2px, rgba(148, 163, 184, 0.16) 4px);
+}
+
+.theme-light h1,
+.theme-light h2,
+.theme-light h3,
+.theme-light h4,
+.theme-light h5,
+.theme-light h6 {
+  color: #0B1220;
+}
+
+.theme-light .glass-card {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(148, 163, 184, 0.4);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1);
+}
+
+.theme-light .btn-secondary {
+  background-color: #E9EEF5;
+  color: #0B1220;
+  border-color: #CBD5E1;
+}
+
+.theme-light .btn-secondary:hover {
+  background-color: #D7E0EB;
+  border-color: #94A3B8;
+}
+
+.theme-light .bg-slate-900\/80 { background-color: rgba(248, 250, 255, 0.92); }
+.theme-light .bg-slate-900\/50 { background-color: rgba(241, 245, 251, 0.82); }
+.theme-light .bg-slate-900\/95 { background-color: rgba(248, 250, 255, 0.96); }
+.theme-light .bg-slate-800\/60 { background-color: rgba(230, 236, 244, 0.86); }
+.theme-light .bg-slate-800\/50 { background-color: rgba(230, 236, 244, 0.72); }
+.theme-light .bg-slate-800\/30 { background-color: rgba(230, 236, 244, 0.55); }
+.theme-light .bg-slate-700\/60 { background-color: rgba(208, 218, 232, 0.82); }
+.theme-light .bg-slate-700\/50 { background-color: rgba(208, 218, 232, 0.72); }
+
+.theme-light .hover\:bg-slate-800\/50:hover { background-color: rgba(208, 218, 232, 0.75); }
+.theme-light .hover\:bg-slate-700\/50:hover { background-color: rgba(208, 218, 232, 0.85); }
+.theme-light .hover\:bg-slate-700\/60:hover { background-color: rgba(208, 218, 232, 0.92); }
+.theme-light .hover\:bg-slate-600\/60:hover { background-color: rgba(148, 163, 184, 0.3); }
+
+.theme-light .border-slate-800\/50 { border-color: rgba(148, 163, 184, 0.42); }
+.theme-light .border-slate-700\/60 { border-color: rgba(148, 163, 184, 0.5); }
+.theme-light .border-slate-700\/50 { border-color: rgba(148, 163, 184, 0.4); }
+.theme-light .border-slate-600 { border-color: #94A3B8; }
+
+.theme-light .text-slate-50 { color: #0B1220; }
+.theme-light .text-slate-100 { color: #0B1220; }
+.theme-light .text-slate-200 { color: #1E293B; }
+.theme-light .text-slate-300 { color: #2F3B52; }
+.theme-light .text-slate-400 { color: #4B5B73; }
+.theme-light .text-slate-500 { color: #5F6F86; }
+.theme-light .text-slate-600 { color: #5F6F86; }
+.theme-light .text-slate-700 { color: #2F3B52; }
+
+.theme-light ::-webkit-scrollbar-track {
+  background: #E7EDF5;
+}
+
+.theme-light ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #38BDF8 0%, #0EA5E9 100%);
+}
+
+.theme-light ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #0284C7 0%, #0EA5E9 100%);
+}
+
+.theme-light ::selection {
+  background: rgba(14, 165, 233, 0.22);
+  color: #0B1220;
+}
+
+/* Subtle horizontal tab scrollbars */
+.tab-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+}
+
+.tab-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tab-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tab-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 999px;
+}
+
+.tab-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
+
+.theme-light .tab-scroll::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.35);
+}
+
+.theme-light .tab-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.55);
+}
+
+/* Subtle CSV scrollbars */
+.csv-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+}
+
+.csv-scroll::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.csv-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.csv-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 999px;
+}
+
+.csv-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
+
+.theme-light .csv-scroll::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.35);
+}
+
+.theme-light .csv-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.55);
+}

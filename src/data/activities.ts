@@ -4,6 +4,7 @@ export interface ActivityDocument {
   label: string;
   link: string;
   isNotebook: boolean;
+  downloadName?: string;
 }
 
 export interface Activity {
@@ -196,6 +197,302 @@ The most provocative one was the real life question of why a model can never rea
         label: 'Notebook',
         link: `${BASE}PT-P3/PT_P3_BERNARDO,_Luke_Joaquin.html`,
         isNotebook: true,
+      },
+    ],
+  },
+  {
+    id: 'midterm-long-quiz-set-a1',
+    title: 'Midterm Long Quiz: Set A-1',
+    description:
+      'Self-reflection on the midterm long quiz covering logistic regression fundamentals and decision thresholds.',
+    period: 'Midterm',
+    type: 'Long Quiz',
+    techStack: ['Logistic Regression', 'Assessment', 'Reflection'],
+    reflection: `Midterm Long Quiz - Self-Reflection
+Score: 31
+
+**OVERVIEW:**
+The Midterm Long Quiz covered the foundations of Logistic Regression - designing a meaningful dataset, understanding the Sigmoid curve, and applying model outputs to real scenarios. Looking back at my answers, I can see moments where my understanding came through, alongside some critical gaps that cost me points.
+
+**WHAT I DID WELL:**
+In Test I, I successfully designed a dataset for an Online Shopping domain with a binary target attribute (Shopee Mall Certified: YES/NO) and provided five sample instances with varied values. My explanation of the business benefit - assurance and trust for companies choosing certified stores - was relevant and coherent. I also showed self-awareness by identifying that Store ID would not contribute to the prediction, which demonstrated I was thinking critically about what makes an attribute meaningful.
+
+In Test II, I correctly identified that the Sigmoid curve is unsuitable for continuous outcomes because logistic regression is categorical in nature, and I mentioned the threshold concept, which is the right mechanism to invoke. For Question 3, my reasoning about False Negatives in a hospital context was empathetic and grounded - I connected the Philippine healthcare cost reality to the consequence of misclassifying a sick patient as healthy, which showed real-world awareness beyond just the technical definition.
+
+**WHERE I FELL SHORT:**
+**Test I** - non-predictor included in dataset
+I included Store ID as one of my four predictor attributes, which I acknowledged myself contributes nothing to the prediction. Knowing it was wrong and not replacing it was a missed opportunity. The question asked for four attributes that would each work well in predicting the target - Store ID fails that requirement entirely. I should have replaced it with a meaningful numerical or categorical predictor, such as average delivery time or return rate.
+
+**Test I** - grouped justification instead of per-attribute
+The question asked me to explain and justify each of the four predictor attributes individually. Instead, I gave a combined explanation treating three of them as a group. Each attribute has its own relationship with the target - Monthly Items Sold, Store Review, and Chat Response Rate each predict certification differently - and I needed to articulate those individual connections.
+
+**Test II Q1** - missing the scatterplot description
+The question explicitly required me to sketch or describe what happens to the regression line when binary values are plotted. I discussed the threshold conceptually but never described the visual behavior - that binary 0/1 outcomes cluster at two horizontal bands, making a straight linear line a poor fit that pushes predictions outside the [0, 1] range. The diagram or description was a scored component I did not deliver.
+
+**Test II Q2** - misread the 0.15 output direction
+I concluded that a 0.15 output means the student will pass, reasoning it is "near 0.1." This is a direct conceptual error. A Sigmoid output of 0.15 means the model sees only a 15% probability of the positive class (passing). Since 0.15 is well below the 0.5 threshold, the model classifies the student as failing - not passing. I confused a low probability with a safe or positive outcome.
+
+**WHAT I WILL DO DIFFERENTLY:**
+The quiz showed me that I understand Logistic Regression at a surface level but lose precision when applying it to specific values. I need to internalize that Sigmoid outputs are probabilities of the positive class - a low value always predicts the negative class, regardless of how small it feels.
+
+I also need to follow instructions at the item level, not the question level. When a question says "for each attribute," that is a signal to answer in individual, separate explanations - not a grouped one. Going forward, I will annotate each sub-requirement before I start writing.`,
+    documents: [
+      {
+        label: 'Quiz PDF',
+        link: `${BASE}activities/midterm/Midterm Quiz.pdf`,
+        isNotebook: false,
+      },
+    ],
+  },
+  {
+    id: 'midterm-exam-set-b18',
+    title: 'Midterm Exam: Set B-18',
+    description:
+      'Self-reflection on the midterm exam focused on delay risk prediction and validation strategies.',
+    period: 'Midterm',
+    type: 'Exam',
+    techStack: ['Predictive Modeling', 'Assessment', 'Reflection'],
+    reflection: `Midterm Exam - Self-Reflection
+Score: 23
+
+**OVERVIEW:**
+The Midterm Exam applied predictive modeling concepts to a DOE fuel delivery crisis scenario. Set B asked me to work with Delay_Risk as a target attribute, evaluate model validation strategies, and reason about the real-world consequences of model errors. My score of 23 is lower than my quiz, and the reasons for that drop are specific and correctable.
+
+**WHAT I DID WELL:**
+My algorithm choice answer in Test I was strong. I correctly identified Logistic Regression, cited its suitability for binary categorical targets, named the Sigmoid function, and even mentioned the Confusion Matrix as a way to present results - showing I am connecting tools across the course, not treating them in isolation.
+
+For the 0.34 probability output of TRK-205, I correctly applied the 0.5 threshold, classified the delivery as Low Risk, and supported it with a probability conversion (34 out of 100%). This was a precise, well-structured answer that matched exactly what the answer key expected.
+
+In Test II Q1, I correctly identified the core danger of the 60/40 split - that a test set containing only Low Risk deliveries makes the model appear accurate even when it has never seen a High Risk case. The phrase "highly optimistic to low risk deliveries" captures the bias problem well.
+
+**WHERE I FELL SHORT:**
+**Test I Q1** - answered with algorithm logic, not stakeholder logic
+I justified Delay_Risk over Travel_Distance by pointing out that the former is categorical and therefore supports Logistic Regression better. That is true, but the question asked why Delay_Risk is more useful to the DOE as a decision-making tool. The expected answer was about operational value - distance tells you how far a truck travels, while Delay_Risk tells you which deliveries are likely to fail, enabling the DOE to proactively reroute supplies. I gave a technical answer to a strategic question.
+
+**Test II Q2** - wrong fold count and vague diagram
+My diagram for 6-Fold Cross-Validation showed 5 boxes (labeled 6, 12, 18, 24, 30) instead of 6 folds. The question specified 6-fold on 30 rows, which means 6 groups of 5 rows each, with 6 training iterations. My diagram also described the rotation vaguely through arrows rather than as a clear iteration table. The expected format is a 6-row grid where exactly one fold is marked as VALIDATE in each row while the rest are marked Train. This was noted as wrong in my own booklet - and the error was structural, not minor.
+
+**Test II Q3** - False Negative consequence was inverted
+I wrote that a False Negative causes the DOE to dispatch tankers to a province that does not need them. That is actually the consequence of a False Positive. A False Negative means the model predicted Low Risk when the province is actually High Risk - so the DOE dispatches no tanker to a province that is about to run out of fuel. The province experiences an unmanaged shortage with no buffer time to respond. I had the direction completely reversed, which suggests I need to study these definitions in context, not just in the abstract.
+
+**WHAT I WILL DO DIFFERENTLY:**
+The exam revealed three distinct problem types: answering the wrong layer of a question (technical vs. strategic), getting the structure of a diagram wrong, and confusing False Positive with False Negative consequences. Each has a specific fix.
+
+For False Negatives, I will practice with the phrase: "the model said no, but the truth was yes - so nothing was done, and something bad happened." That directional anchor should prevent the inversion I made here.
+
+For k-fold cross-validation, I will memorize the grid format - k rows, k columns, one VALIDATE per row - and practice drawing it until it is automatic.
+
+Most critically, I will slow down when reading questions that ask "why is this useful" or "what is the consequence" - these are asking for real-world reasoning, not just technical definitions. My exam answers often had the right concept but pointed it at the wrong level of the question.`,
+    documents: [
+      {
+        label: 'Exam PDF',
+        link: `${BASE}activities/midterm/Midterm Exam.pdf`,
+        isNotebook: false,
+      },
+    ],
+  },
+  {
+    id: 'pt-m1-logistic-regression',
+    title: 'PT-M1: Binary Logistic Regression on Cirrhosis Survival',
+    description:
+      'Midterm activity reflection for PT-M1 focused on data cleaning, experimentation, and reporting.',
+    period: 'Midterm',
+    type: 'Practical Task',
+    techStack: ['Python', 'Logistic Regression', 'Data Cleaning', 'IEEE Report'],
+    reflection: `PT-M1 Activity Reflection
+Score: 88 / 100
+
+**OVERVIEW:**
+Exercise PT-M1 was the most technically demanding activity of the term so far. It required me to simultaneously document code at a line-by-line level, select and clean a real-world dataset, run three structured experiments, and present findings in an IEEE-formatted research report. Finishing with an 88 out of 100 reflects genuine effort and solid execution across most phases - and while I was not told specifically where the remaining 12 points were lost, reviewing my own work carefully gives me a clear enough picture of where I could have done better.
+
+**WHAT I DID WELL:**
+The dataset selection was one of my strongest decisions. The Cirrhosis Patient Survival dataset from Kaggle was genuinely challenging - 1,033 missing cells across 12 columns, a three-class target that needed to be collapsed into a binary one, and a class imbalance of 39% to 61%. Choosing a dataset with real data quality problems, rather than a clean pre-built one, gave every cleaning decision in Cell 3 actual meaning. I also made a deliberate and well-justified call to retain clinical outliers rather than remove them, reasoning that extreme Bilirubin, Copper, and SGOT values are genuine medical signals in cirrhosis patients - not errors. That decision held up in the experimental results.
+
+My notebook documentation was thorough. Each cell had a structured markdown section covering purpose, line-by-line explanation, inputs, and outputs - formatted consistently with tables where helpful. For Cell 3 alone, I documented eight distinct cleaning steps with specific reasoning for each choice: mode vs. median imputation, why ID was dropped, why Edema needed ordinal rather than binary encoding. That level of detail shows I was not just running code - I understood what each step was doing and why.
+
+The three experiments were well-structured and produced results that made clinical sense. In Experiment 1, C = 0.001 produced the best F1-Score across both feature subsets, and I supported this with coefficient magnitude comparisons and sigmoid curve visualizations confirming the regularization behaved as expected. In Experiment 2, the progressive improvement from a single-feature Bilirubin model (F1 = 0.4898) to the seven-feature extended model (F1 = 0.6182) was backed by clinical reasoning - I explained why Disease Stage in particular gave the model a meaningful jump in recall. In Experiment 3, my justification for choosing threshold 0.3 was grounded in the domain: in cirrhosis management, a False Negative is far more dangerous than a False Positive, and threshold 0.3 reduced False Negatives to just 2 out of 32 actual deaths.
+
+The report met IEEE formatting standards - two-column layout, properly numbered figures and tables, LaTeX-formatted equations, and five cited academic sources. The abstract covered all required elements within the 150-word target: domain, dataset, prediction goal, and key findings.
+
+
+**AREAS I THINK COULD HAVE BEEN STRONGER:**
+My professor did not specify where points were deducted, so the following are my own honest assessments of where my submission may not have reached its full potential - not confirmed mistakes.
+
+Experiment 1 - C range could have been wider
+I tested only the three suggested C values (0.001, 1.0, 1000) without exploring intermediate ones like 0.01, 0.1, or 10. The instructions asked to "record all values tested to find the best," which implies exploration beyond the sample. Testing a wider range would have strengthened the claim that 0.001 was genuinely optimal rather than just the best among three fixed options - and would have made the guide question answer more defensible.
+
+Report conclusion - possible internal inconsistency
+Re-reading my report, I noticed the conclusion states C = 0.001 as the optimal regularization parameter, while the Performance Evaluation section (Table V) describes the best configuration as Model C with C = 1.0 at threshold 0.3. These two sections point to different C values for what I called the "best model." Whether or not this was penalized, it is an internal contradiction I should have caught before submitting - a final cross-section read-through would have flagged it.
+
+Introduction - log-odds section was thin
+The rubric required a brief explanation of log-odds. I included the logit formula and stated that it transforms a probability into an unbounded real number - technically correct - but I did not connect it back to the linear model or explain why this transformation is what makes logistic regression work. The deeper insight - that the log-odds being linear in the features is the theoretical bridge between linear and logistic regression - was missing.
+
+Presentation quality - figures could have been better referenced
+The rubric specifically called for figures to be "properly referenced in the text." While my figures were numbered and captioned, there were moments in the discussion where I described results without pointing back to a specific figure number. More consistent in-text references like "as shown in Fig. 7" at every relevant point would have met that requirement more completely.
+
+
+**WHAT I LEARNED FROM THE PROCESS:**
+This activity gave me something the midterm exams could not: the experience of building a real model from scratch and watching the numbers change as I made deliberate decisions. The moment that stood out most was Experiment 3 - seeing that a patient with a predicted mortality probability of 0.3519 would be classified as "Survived" under the default 0.5 threshold, but correctly flagged as high-risk under 0.3. That is not an abstract concept anymore. It is a number I generated from real clinical data, and it has a real consequence attached to it.
+
+The data cleaning phase also changed how I think about datasets. Working with 1,033 missing cells forced me to think about why each column was missing and what the right fill strategy was for each type - choosing median over mean for Bilirubin specifically because I knew the outliers were clinically real, not noise. That was a decision I had to justify, not just apply.
+
+Going forward, I will do a final cross-section read of my reports before submitting - comparing the conclusion directly against the results tables to catch any inconsistencies. I will also treat hyperparameter experiments as genuinely open-ended rather than stopping at the suggested values. An 88 is a result I am satisfied with, but looking back honestly, the points I may have missed are all recoverable through more careful execution rather than deeper understanding - and that is something I can directly control next time.`,
+    documents: [
+      {
+        label: 'Report',
+        link: `${BASE}activities/midterm/PT-M1 Report - Bernardo.pdf`,
+        isNotebook: false,
+      },
+      {
+        label: 'Notebook',
+        link: `${BASE}activities/midterm/PT-M1 Notebook - Bernardo.html`,
+        isNotebook: true,
+      },
+    ],
+  },
+  {
+    id: 'pt-f2-model-comparison',
+    title: 'PT-F2: Model Comparison (MLR vs Linear SVM)',
+    description:
+      'Finals activity comparing multinomial logistic regression and linear SVM with extensive hyperparameter tuning.',
+    period: 'Finals',
+    type: 'Practical Task',
+    techStack: ['Python', 'Logistic Regression', 'Linear SVM', 'Model Comparison'],
+    reflection: `PT-F2 Activity Reflection
+Status: Awaiting grade
+
+**OVERVIEW:**
+Exercise PT-F2 was the most conceptually layered activity of the term. Unlike PT-M1 which focused on a single model applied to messy data, this exercise required me to implement two fundamentally different classification paradigms, fine-tune both rigorously, and produce a comparative analysis that explained not just which model performed better, but why. Having completed and submitted the work, this reflection is my honest assessment of what I accomplished and where I think there is still room to grow.
+
+**WHAT I DID WELL:**
+The experimental design was genuinely thorough. Rather than testing the three suggested C values as a minimum, I tested 17 log-spaced values from 10^-4 to 10^4 for both models, and I tuned additional hyperparameters at the same time: tolerance values and class weight options for MLR (102 total combinations), and those plus loss function options for SVM (204 combinations). The exercise asked me to test as many C values as I could and prove through results which value is best, and the log-spaced grid with multi-parameter tuning directly addressed that requirement.
+
+The pipeline implementation was correct and principled. Using sklearn's Pipeline to chain StandardScaler with each model meant the scaler was fitted only on training folds during cross-validation, never on the validation or test fold. This is the data leakage prevention the exercise explicitly required, and I documented it clearly in both the notebook and the report methodology.
+
+The results were strong and produced a genuinely interesting finding. Both models tied at 98.62% mean CV accuracy during training, but on the held-out test set, MLR achieved perfect classification (Accuracy = F1 = kappa = 1.000) while SVM committed one misclassification. That single difference became the basis for a meaningful discussion about how probabilistic softmax generalizes differently from margin maximization on this dataset.
+
+The feature weight comparison was satisfying to execute. Plotting mean absolute weights across classes for both models revealed that Flavanoids, Proline, OD280, and Alcohol were the top discriminators for both MLR and SVM independently. The fact that two models trained with completely different learning objectives agreed on the same top features gave the conclusion stronger footing.
+
+The notebook documentation maintained the structured format I developed in PT-M1, with line-by-line tables for every cell. I also added return_train_score=True to both GridSearchCV instances, which let me track training accuracy alongside CV accuracy and observe overfitting behavior at high C values for MLR, which I then reported as a key finding.
+
+**AREAS I THINK COULD HAVE BEEN STRONGER:**
+Since this submission has not yet been graded, the following reflect my own self-assessment, not confirmed deductions.
+
+Report structure - Section III formatting deviated from the rubric
+The rubric specified Section III as Experimental Design with III-A for MLR and III-B for SVM. I combined the narrative in Section III rather than maintaining strict III-A and III-B labels throughout. While the content was present, a strict rubric check might flag the formatting deviation.
+
+Perfect test accuracy - could raise questions about overfitting
+MLR achieving 100% on the test set is strong, but it can raise eyebrows. The Wine dataset is known to be relatively easy for linear classifiers on scaled features, so the perfect score is likely legitimate. Still, a brief note acknowledging why perfect classification is plausible would have strengthened the discussion.
+
+Notebook documentation depth - less detailed than PT-M1
+In PT-M1, each cell included explicit input/output sections and concept context. In PT-F2, I kept line-by-line tables but dropped some of those sections. Given the rubric emphasis on documentation depth, this was a step back.
+
+Additional task analysis - could have been deeper
+I tuned tolerance and class_weight for MLR and added loss function for SVM, but my written discussion of how those parameters affected results was brief. A clearer breakdown of which settings mattered would have addressed the additional task more explicitly.
+
+**WHAT THIS ACTIVITY TAUGHT ME:**
+The key lesson was the difference between cross-validation performance and test set performance. Both models tied at 98.62% mean CV accuracy, but the test set told a different story: MLR generalized perfectly while SVM did not. That gap, caused by one misclassified sample in a 36-sample test set, is a reminder that CV provides an estimate, not a guarantee.
+
+I also learned something concrete about each model's behavior. MLR preferred strong regularization (C = 0.01), while SVM needed a much larger C (about 3.162) to perform at the same level. Connecting those values to model geometry made the comparison meaningful instead of just a table of numbers.
+
+Going forward, I want to restore PT-M1-level documentation (explicit purpose, input, output, and conceptual context for every cell) and address "additional task" prompts as their own section rather than folding them into the main experiment.`,
+    documents: [
+      {
+        label: 'Lab Exercise',
+        link: `${BASE}activities/finals/PT-F2 Lab Exercise - Bernardo.pdf`,
+        isNotebook: false,
+      },
+      {
+        label: 'IEEE Report',
+        link: `${BASE}activities/finals/PT-F2 IEEE Report - Bernardo.pdf`,
+        isNotebook: false,
+      },
+      {
+        label: 'Notebook',
+        link: `${BASE}activities/finals/PT-F2 Notebook - Bernardo.html`,
+        isNotebook: true,
+      },
+    ],
+  },
+  {
+    id: 'pt-f1-final-project',
+    title: 'PT-F1: Final Project - Pre-Harvest Agricultural Forecasting',
+    description:
+      'Final project building a predictive model for palay yield forecasting using PSA data.',
+    period: 'Finals',
+    type: 'Final Project',
+    techStack: ['Python', 'Regression', 'Data Engineering', 'Policy Modeling'],
+    reflection: `PT-F1 Final Project Reflection
+Status: Awaiting grade
+
+**OVERVIEW:**
+The Final Project was the culmination of ITC-C506, not just as a technical exercise but as an attempt to answer a real problem. Building a pre-harvest palay yield forecasting model grounded in Philippine Statistics Authority data and aligned with SDG Target 2.4 felt meaningfully different from earlier activities. The stakes felt higher because the problem itself is higher stakes: rice supply concentration, El Nino-driven shortages, and farmgate price spikes that affect every Filipino household.
+
+**WHAT I DID WELL:**
+The data pipeline was the part of this project I am most proud of. I did not use a pre-cleaned dataset. I sourced three PSA OpenStat files in wide format, reshaped all three using pandas.melt(), extracted year and quarter from string period labels, built a province-to-region mapping to bridge the granularity gap between fertilizer data (regional level) and production data (provincial level), and merged everything into a single 2,112-row analytical dataset. Every step was deliberate and documented.
+
+The model comparison produced results I did not fully anticipate. Random Forest won with R2 = 0.9868 and MAE of 5,041 MT, but MLR was still strong at R2 = 0.9568 despite being the simplest model. SVR was weakest at R2 = 0.8136, which became a meaningful finding: its epsilon-insensitive tube is a poor fit for a target as right-skewed and heterogeneous as provincial palay production.
+
+Choosing MLR as the primary policy-facing model rather than Random Forest was a deliberate trade-off. The coefficients (4.80 MT per additional hectare harvested, 14,457 MT per additional kg/ha of Urea, -51,368 MT for Rainfed vs. Irrigated) are numbers a government planner can read, audit, and question. A black-box Random Forest with slightly higher R2 is less useful to an agency that needs interpretability.
+
+The pre-harvest simulation grounded the project in practical use. I ran all four models on a Region II, Q2 scenario with 45,000 ha planted and then identified the simulation's limitation: MLR's 215,909 MT forecast is 1,760% above the region's historical median because of the large input area, so it must be interpreted alongside local crop calendars.
+
+The notebook documentation returned to the PT-M1 standard, with a project overview, model strategy table, and cell-level explanations covering purpose, input/output rationale, and conceptual context at each step. The proposal presentation was also visually polished, with a clear narrative arc from problem to dataset to model to policy action.
+
+**AREAS I THINK COULD HAVE BEEN STRONGER:**
+Since this project has not yet been graded, the following are my own self-assessments, not confirmed deductions.
+
+Geographic scope was narrow - only two regions
+The region mapping covered only Region II and Region III. While they represent about one-third of national supply, a national forecasting tool should include all 17 PSA regions. This limits generalizability to other regions with different fertilizer patterns and yield behavior.
+
+No climate variables despite being central to the framing
+The introduction centered on El Nino volatility and climate risk, yet the model uses no climate variables. Rainfall and temperature were excluded due to data availability, but the gap means the model cannot respond to drought years.
+
+Feature dominance by Area Harvested may mask real utility
+Random Forest feature importance showed Area Harvested at 0.974. That raises a question I did not address: if area is already known, does the model add value beyond a single-feature area baseline? A dedicated benchmark would have clarified the contribution of fertilizer and ecosystem variables.
+
+Ammosul coefficient sign deserved more discussion
+The MLR equation produced a large negative coefficient for Ammosul (-47,290 MT per kg/ha), which is counterintuitive. This likely reflects multicollinearity between the fertilizer variables. I reported the coefficient without flagging that risk, which a policy audience might find confusing.
+
+**WHAT THIS PROJECT TAUGHT ME ABOUT PREDICTIVE MODELING:**
+The hardest part of machine learning is the data. I spent more time reshaping, mapping, merging, and validating the PSA datasets than I spent on all four models combined. The models are a few lines of scikit-learn; making the data trustworthy was the real work.
+
+I also learned to treat the audience as a design constraint. Choosing MLR despite a lower R2 was not a compromise, it was a decision made for a specific user who needs to audit every number before acting. That interpretability-versus-accuracy framing is something I will carry into future projects.
+
+Looking at the full arc of the term, from the midterm quiz on Logistic Regression to a regression pipeline trained on 21 years of Philippine agricultural data, the growth is clear. The concepts I struggled to define in March are now tools I reach for and apply.`,
+    documents: [
+      {
+        label: 'Project Proposal',
+        link: `${BASE}activities/finals/PT-F1 Project Proposal - Bernardo.pdf`,
+        isNotebook: false,
+      },
+      {
+        label: 'Final Report',
+        link: `${BASE}activities/finals/PT-F1 Final Project Report - Bernardo.pdf`,
+        isNotebook: false,
+      },
+      {
+        label: 'Notebook',
+        link: `${BASE}activities/finals/PT-F1 Final Project Notebook - Bernardo.html`,
+        isNotebook: true,
+      },
+      {
+        label: 'Area Harvested CSV',
+        link: `${BASE}activities/finals/PT-F1 Area Harvested Dataset.csv`,
+        isNotebook: false,
+        downloadName: 'The Area Harvested Dataset.csv',
+      },
+      {
+        label: 'Fertilizer CSV',
+        link: `${BASE}activities/finals/PT-F1 Fertilizer Dataset.csv`,
+        isNotebook: false,
+        downloadName: 'The Fertilizer Dataset.csv',
+      },
+      {
+        label: 'Production CSV',
+        link: `${BASE}activities/finals/PT-F1 Volume of Production Dataset.csv`,
+        isNotebook: false,
+        downloadName: 'The Volume of Production Dataset.csv',
       },
     ],
   },

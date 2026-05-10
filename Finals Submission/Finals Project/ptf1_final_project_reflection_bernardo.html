@@ -1,0 +1,83 @@
+
+<h2 class="sr-only">Self-reflection for the Final Project: Pre-Harvest Agricultural Forecasting by Luke Joaquin Bernardo</h2>
+
+<div style="max-width:660px; padding:1.5rem 0 2.5rem;">
+
+  <div style="margin-bottom:1.75rem;">
+    <p style="font-size:12px; font-weight:500; letter-spacing:0.08em; color:var(--color-text-tertiary); text-transform:uppercase; margin:0 0 6px;">ITC-C506 — Final Project (PT-F1)</p>
+    <h1 style="font-size:22px; font-weight:500; margin:0 0 4px; color:var(--color-text-primary);">Final project reflection</h1>
+    <p style="font-size:14px; color:var(--color-text-secondary); margin:0 0 10px;">Bernardo, Luke Joaquin &nbsp;·&nbsp; Dr. Rodolfo Raga &nbsp;·&nbsp; Pre-Harvest Agricultural Forecasting: A Predictive Model for Palay Yields</p>
+    <div style="display:inline-block; background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:4px 14px;">
+      <span style="font-size:13px; color:var(--color-text-secondary);">Status: </span><span style="font-size:13px; font-weight:500; color:var(--color-text-primary);">Awaiting grade</span>
+    </div>
+  </div>
+
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 1.5rem;">
+    The Final Project was the culmination of everything covered in ITC-C506 — not just as a technical exercise, but as an attempt to answer a real question about a real problem. Building a pre-harvest palay yield forecasting model grounded in Philippine Statistics Authority data and aligned with SDG Target 2.4 felt meaningfully different from the earlier activities. The stakes felt higher because the problem itself is higher stakes: rice supply concentration, El Niño-driven shortages, and farmgate price spikes that affect every Filipino household. This reflection is my honest accounting of what I built, what I am proud of, and what I would approach differently.
+  </p>
+
+  <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">What I did well</h2>
+
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    The data pipeline was the part of this project I am most proud of. I did not use a pre-cleaned dataset from Kaggle or a textbook example — I sourced three separate PSA OpenStat files in wide format, reshaped all three using pandas.melt(), extracted year and quarter from string period labels, built a province-to-region mapping to bridge the granularity gap between fertilizer data (regional level) and production data (provincial level), and merged everything into a single 2,112-row analytical dataset. Every step was deliberate and documented. That level of data engineering — starting from raw government files with title rows and wide-format structures — is something I could not have done at the start of this course.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    The model comparison was genuinely competitive and produced results I did not fully anticipate. I expected Random Forest to win — it did, with R² = 0.9868 and MAE of 5,041 MT — but what surprised me was how strong MLR performed at R² = 0.9568 despite being the simplest model. SVR was the weakest at R² = 0.8136, which was a meaningful finding in itself: SVR's ε-insensitive tube, which works well when errors should be minimized uniformly, is a poor fit for a target variable as right-skewed and heterogeneous as provincial palay production. Writing that analysis in the report — not just reporting the numbers but explaining the mechanism behind the ranking — was a skill I consciously applied from the course.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    The decision to present MLR as the primary policy-facing model rather than Random Forest was a deliberate trade-off I am confident about. The coefficients — 4.80 MT per additional hectare harvested, 14,457 MT per additional kg/ha of Urea, −51,368 MT for Rainfed vs. Irrigated — are numbers a government planner can read, audit, and question. A Random Forest with R² = 0.9868 that operates as a black box is less useful to the Department of Agriculture than an MLR with R² = 0.9568 whose every input can be traced. That distinction between accuracy and interpretability is one of the core ideas of the course, and it shaped the entire framing of the final report.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    The pre-harvest simulation — running all four models on a Region II, Q2 scenario with 45,000 ha planted — grounded the project in practical use. Rather than ending at model evaluation, I showed the next step: how a government planner would actually use the output. The fact that I also identified and explained the simulation's own limitation — that MLR's 215,909 MT forecast is 1,760% above the region's historical median because of the large input area, and needs to be interpreted alongside local crop calendars — showed I was thinking critically about real-world deployment, not just model performance on a test set.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 1.5rem;">
+    The notebook documentation reached back to the standard I set in PT-M1 — with a project overview, model strategy table, and detailed cell-level explanations covering purpose, input/output rationale, and conceptual context at each step. The proposal presentation was also visually polished, with a dark-themed deck, illustrated slides, and a clear narrative arc from problem to dataset to model to policy action.
+  </p>
+
+  <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">Areas I think could have been stronger</h2>
+
+  <p style="font-size:14px; line-height:1.7; color:var(--color-text-secondary); margin:0 0 1rem; font-style:italic;">
+    Since this project has not yet been graded, the following are my own honest self-assessments — not confirmed deductions.
+  </p>
+
+  <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:0.75rem;">
+    <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-dots-circle-horizontal" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Geographic scope was narrow — only two regions</p>
+    <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+      The region mapping I built only covered Region II (Cagayan Valley) and Region III (Central Luzon), which are the two largest producers. All other provinces were excluded from the final merged dataset. While these two regions represent 33% of national supply, a truly national forecasting tool would need to include all 17 PSA regions. The limitation is acknowledged in the report, but narrowing the scope this way means the model's generalizability to other regions — which may have different fertilizer use patterns, ecosystem compositions, and yield behaviors — is untested.
+    </p>
+  </div>
+
+  <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:0.75rem;">
+    <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-dots-circle-horizontal" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>No climate variables despite being central to the problem framing</p>
+    <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+      The entire problem introduction is built around El Niño volatility and climate risk — yet the model contains no climate variables. Rainfall, temperature, and drought indices were excluded due to data availability, which is a valid constraint. But the gap between the problem framing ("climate volatility threatens supply") and the model inputs ("area, fertilizer, ecosystem, quarter") means the model cannot actually detect or respond to El Niño years. A planner using this tool during a drought year would receive the same forecast as a normal year, which is the exact failure mode the system was designed to prevent.
+    </p>
+  </div>
+
+  <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:0.75rem;">
+    <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-dots-circle-horizontal" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Feature dominance by Area Harvested may mask the model's real utility</p>
+    <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+      Random Forest's feature importance analysis showed Area Harvested at 0.974 — meaning it alone explains nearly all of the model's predictions. While this makes agricultural sense, it also raises a question I did not address: if planted area is already known at the start of the season, does the model add meaningful predictive value beyond what area alone would give? A fairer experiment would have benchmarked a single-feature area model against the full six-feature model to quantify how much the fertilizer and ecosystem variables actually contribute — similar to the Experiment 2 structure I used in PT-M1.
+    </p>
+  </div>
+
+  <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:1.5rem;">
+    <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-dots-circle-horizontal" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Ammosul coefficient sign deserved more discussion</p>
+    <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+      The MLR equation produced a large negative coefficient for Ammosul (−47,290 MT per kg/ha), which is counterintuitive — more fertilizer reducing predicted yield. This likely reflects multicollinearity between the three fertilizer variables rather than a true causal relationship, since Urea, Ammosul, and Complete fertilizer are often applied together. I reported the coefficient without flagging this, which a policy audience reading the equation might find alarming or confusing. A variance inflation factor check or a brief note on multicollinearity would have addressed this directly.
+    </p>
+  </div>
+
+  <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">What this project taught me about predictive modelling</h2>
+
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    The most important thing this project reinforced is that the hardest part of machine learning is not the model — it is the data. I spent more time reshaping, mapping, merging, and validating the three PSA datasets than I spent on all four models combined. The models themselves are a few lines of scikit-learn. Getting the data into a state where those lines of code produce meaningful output required understanding the PSA's data structure, the difference between regional and provincial granularity, what wide format means and why it needs to be transformed, and how to handle a merge that bridges two different levels of geographic aggregation. None of that is in any library's documentation.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    I also learned to think about the audience for a predictive model as a design constraint, not an afterthought. Choosing MLR as the primary model despite it having a lower R² than Random Forest was not a compromise — it was a design decision made for a specific user (a government planner who needs to audit every number before acting on it). That framing — the interpretability-versus-accuracy trade-off positioned in terms of who uses the output and what they need to trust it — is something I will carry into every future data project.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0;">
+    Looking at the full arc of this term — from the midterm quiz on Logistic Regression with a hand-drawn dataset, to a live regression pipeline trained on 21 years of Philippine agricultural data — the growth is clear to me. The concepts I struggled to precisely define in March are now tools I reach for and apply. That progression is what this project represents more than any score.
+  </p>
+
+</div>

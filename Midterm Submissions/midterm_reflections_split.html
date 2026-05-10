@@ -1,0 +1,132 @@
+
+<h2 class="sr-only">Separate self-reflections for Midterm Long Quiz and Midterm Exam by Luke Joaquin Bernardo</h2>
+
+<div style="max-width:660px; padding:1.5rem 0 2.5rem;">
+
+  <!-- QUIZ REFLECTION -->
+  <div style="margin-bottom:3rem;">
+    <div style="margin-bottom:1.5rem;">
+      <p style="font-size:12px; font-weight:500; letter-spacing:0.08em; color:var(--color-text-tertiary); text-transform:uppercase; margin:0 0 6px;">ITC-C506 · March 17, 2026 · Set A-1</p>
+      <h1 style="font-size:22px; font-weight:500; margin:0 0 4px; color:var(--color-text-primary);">Midterm long quiz — self-reflection</h1>
+      <div style="display:inline-block; background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:4px 12px; margin-top:6px;">
+        <span style="font-size:13px; color:var(--color-text-secondary);">Score: </span><span style="font-size:13px; font-weight:500; color:var(--color-text-primary);">31</span>
+      </div>
+    </div>
+
+    <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 1.25rem;">
+      The Midterm Long Quiz covered the foundations of Logistic Regression — designing a meaningful dataset, understanding the Sigmoid curve, and applying model outputs to real scenarios. Looking back at my answers, I can see moments where my understanding came through, alongside some critical gaps that cost me points.
+    </p>
+
+    <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">What I did well</h2>
+    <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 1.25rem;">
+      In Test I, I successfully designed a dataset for an Online Shopping domain with a binary target attribute (Shopee Mall Certified: YES/NO) and provided five sample instances with varied values. My explanation of the business benefit — assurance and trust for companies choosing certified stores — was relevant and coherent. I also showed self-awareness by identifying that Store ID would not contribute to the prediction, which demonstrated I was thinking critically about what makes an attribute meaningful.
+    </p>
+    <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 1.25rem;">
+      In Test II, I correctly identified that the Sigmoid curve is unsuitable for continuous outcomes because logistic regression is categorical in nature, and I mentioned the threshold concept, which is the right mechanism to invoke. For Question 3, my reasoning about False Negatives in a hospital context was empathetic and grounded — I connected the Philippine healthcare cost reality to the consequence of misclassifying a sick patient as healthy, which showed real-world awareness beyond just the technical definition.
+    </p>
+
+    <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">Where I fell short</h2>
+
+    <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:0.75rem;">
+      <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-alert-triangle" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Test I — non-predictor included in dataset</p>
+      <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+        I included Store ID as one of my four predictor attributes, which I acknowledged myself contributes nothing to the prediction. Knowing it was wrong and not replacing it was a missed opportunity. The question asked for four attributes that would each work well in predicting the target — Store ID fails that requirement entirely. I should have replaced it with a meaningful numerical or categorical predictor, such as average delivery time or return rate.
+      </p>
+    </div>
+
+    <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:0.75rem;">
+      <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-alert-triangle" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Test I — grouped justification instead of per-attribute</p>
+      <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+        The question asked me to explain and justify each of the four predictor attributes individually. Instead, I gave a combined explanation treating three of them as a group. Each attribute has its own relationship with the target — Monthly Items Sold, Store Review, and Chat Response Rate each predict certification differently — and I needed to articulate those individual connections.
+      </p>
+    </div>
+
+    <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:0.75rem;">
+      <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-alert-triangle" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Test II Q1 — missing the scatterplot description</p>
+      <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+        The question explicitly required me to sketch or describe what happens to the regression line when binary values are plotted. I discussed the threshold conceptually but never described the visual behavior — that binary 0/1 outcomes cluster at two horizontal bands, making a straight linear line a poor fit that pushes predictions outside the [0, 1] range. The diagram or description was a scored component I did not deliver.
+      </p>
+    </div>
+
+    <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:1.25rem;">
+      <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-alert-triangle" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Test II Q2 — misread the 0.15 output direction</p>
+      <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+        I concluded that a 0.15 output means the student will pass, reasoning it is "near 0.1." This is a direct conceptual error. A Sigmoid output of 0.15 means the model sees only a 15% probability of the positive class (passing). Since 0.15 is well below the 0.5 threshold, the model classifies the student as failing — not passing. I confused a low probability with a safe or positive outcome.
+      </p>
+    </div>
+
+    <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">What I will do differently</h2>
+    <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+      The quiz showed me that I understand Logistic Regression at a surface level but lose precision when applying it to specific values. I need to internalize that Sigmoid outputs are probabilities of the positive class — a low value always predicts the negative class, regardless of how small it feels.
+    </p>
+    <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0;">
+      I also need to follow instructions at the item level, not the question level. When a question says "for each attribute," that is a signal to answer in individual, separate explanations — not a grouped one. Going forward, I will annotate each sub-requirement before I start writing.
+    </p>
+  </div>
+
+  <div style="border-top:0.5px solid var(--color-border-tertiary); margin-bottom:3rem;"></div>
+
+  <!-- EXAM REFLECTION -->
+  <div>
+    <div style="margin-bottom:1.5rem;">
+      <p style="font-size:12px; font-weight:500; letter-spacing:0.08em; color:var(--color-text-tertiary); text-transform:uppercase; margin:0 0 6px;">ITC-C506 · March 31, 2026 · Set B-18</p>
+      <h1 style="font-size:22px; font-weight:500; margin:0 0 4px; color:var(--color-text-primary);">Midterm exam — self-reflection</h1>
+      <div style="display:inline-block; background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:4px 12px; margin-top:6px;">
+        <span style="font-size:13px; color:var(--color-text-secondary);">Score: </span><span style="font-size:13px; font-weight:500; color:var(--color-text-primary);">23</span>
+      </div>
+    </div>
+
+    <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 1.25rem;">
+      The Midterm Exam applied predictive modelling concepts to a DOE fuel delivery crisis scenario. Set B asked me to work with Delay_Risk as a target attribute, evaluate model validation strategies, and reason about the real-world consequences of model errors. My score of 23 is lower than my quiz, and the reasons for that drop are specific and correctable.
+    </p>
+
+    <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">What I did well</h2>
+    <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+      My algorithm choice answer in Test I was strong. I correctly identified Logistic Regression, cited its suitability for binary categorical targets, named the Sigmoid function, and even mentioned the Confusion Matrix as a way to present results — showing I am connecting tools across the course, not treating them in isolation.
+    </p>
+    <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 1.25rem;">
+      For the 0.34 probability output of TRK-205, I correctly applied the 0.5 threshold, classified the delivery as Low Risk, and supported it with a probability conversion (34 out of 100%). This was a precise, well-structured answer that matched exactly what the answer key expected.
+    </p>
+    <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 1.25rem;">
+      In Test II Q1, I correctly identified the core danger of the 60/40 split — that a test set containing only Low Risk deliveries makes the model appear accurate even when it has never seen a High Risk case. The phrase "highly optimistic to low risk deliveries" captures the bias problem well.
+    </p>
+
+    <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">Where I fell short</h2>
+
+    <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:0.75rem;">
+      <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-alert-triangle" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Test I Q1 — answered with algorithm logic, not stakeholder logic</p>
+      <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+        I justified Delay_Risk over Travel_Distance by pointing out that the former is categorical and therefore supports Logistic Regression better. That is true, but the question asked why Delay_Risk is more useful to the DOE as a decision-making tool. The expected answer was about operational value — distance tells you how far a truck travels, while Delay_Risk tells you which deliveries are likely to fail, enabling the DOE to proactively reroute supplies. I gave a technical answer to a strategic question.
+      </p>
+    </div>
+
+    <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:0.75rem;">
+      <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-alert-triangle" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Test II Q2 — wrong fold count and vague diagram</p>
+      <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+        My diagram for 6-Fold Cross-Validation showed 5 boxes (labeled 6, 12, 18, 24, 30) instead of 6 folds. The question specified 6-fold on 30 rows, which means 6 groups of 5 rows each, with 6 training iterations. My diagram also described the rotation vaguely through arrows rather than as a clear iteration table. The expected format is a 6-row grid where exactly one fold is marked as VALIDATE in each row while the rest are marked Train. This was noted as wrong in my own booklet — and the error was structural, not minor.
+      </p>
+    </div>
+
+    <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:1.25rem;">
+      <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-alert-triangle" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Test II Q3 — False Negative consequence was inverted</p>
+      <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+        I wrote that a False Negative causes the DOE to dispatch tankers to a province that does not need them. That is actually the consequence of a False Positive. A False Negative means the model predicted Low Risk when the province is actually High Risk — so the DOE dispatches no tanker to a province that is about to run out of fuel. The province experiences an unmanaged shortage with no buffer time to respond. I had the direction completely reversed, which suggests I need to study these definitions in context, not just in the abstract.
+      </p>
+    </div>
+
+    <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">What I will do differently</h2>
+    <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+      The exam revealed three distinct problem types: answering the wrong layer of a question (technical vs. strategic), getting the structure of a diagram wrong, and confusing False Positive with False Negative consequences. Each has a specific fix.
+    </p>
+    <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+      For False Negatives, I will practice with the phrase: "the model said no, but the truth was yes — so nothing was done, and something bad happened." That directional anchor should prevent the inversion I made here.
+    </p>
+    <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+      For k-fold cross-validation, I will memorize the grid format — k rows, k columns, one VALIDATE per row — and practice drawing it until it is automatic.
+    </p>
+    <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0;">
+      Most critically, I will slow down when reading questions that ask "why is this useful" or "what is the consequence" — these are asking for real-world reasoning, not just technical definitions. My exam answers often had the right concept but pointed it at the wrong level of the question.
+    </p>
+  </div>
+
+</div>

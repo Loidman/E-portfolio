@@ -1,0 +1,80 @@
+
+<h2 class="sr-only">Self-reflection for Exercise PT-M1: Predictive Modeling Using Binary Logistic Regression by Luke Joaquin Bernardo</h2>
+
+<div style="max-width:660px; padding:1.5rem 0 2.5rem;">
+
+  <div style="margin-bottom:1.75rem;">
+    <p style="font-size:12px; font-weight:500; letter-spacing:0.08em; color:var(--color-text-tertiary); text-transform:uppercase; margin:0 0 6px;">ITC-C506 — Exercise PT-M1</p>
+    <h1 style="font-size:22px; font-weight:500; margin:0 0 4px; color:var(--color-text-primary);">Midterm activity reflection</h1>
+    <p style="font-size:14px; color:var(--color-text-secondary); margin:0 0 10px;">Bernardo, Luke Joaquin &nbsp;·&nbsp; Dr. Rodolfo Raga &nbsp;·&nbsp; Binary Logistic Regression on Cirrhosis Patient Survival</p>
+    <div style="display:inline-block; background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:4px 14px;">
+      <span style="font-size:13px; color:var(--color-text-secondary);">Score: </span><span style="font-size:15px; font-weight:500; color:var(--color-text-primary);">88 / 100</span>
+    </div>
+  </div>
+
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 1.5rem;">
+    Exercise PT-M1 was the most technically demanding activity of the term so far. It required me to simultaneously document code at a line-by-line level, select and clean a real-world dataset, run three structured experiments, and present findings in an IEEE-formatted research report. Finishing with an 88 out of 100 reflects genuine effort and solid execution across most phases — and while I was not told specifically where the remaining 12 points were lost, reviewing my own work carefully gives me a clear enough picture of where I could have done better.
+  </p>
+
+  <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">What I did well</h2>
+
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    The dataset selection was one of my strongest decisions. The Cirrhosis Patient Survival dataset from Kaggle was genuinely challenging — 1,033 missing cells across 12 columns, a three-class target that needed to be collapsed into a binary one, and a class imbalance of 39% to 61%. Choosing a dataset with real data quality problems, rather than a clean pre-built one, gave every cleaning decision in Cell 3 actual meaning. I also made a deliberate and well-justified call to retain clinical outliers rather than remove them, reasoning that extreme Bilirubin, Copper, and SGOT values are genuine medical signals in cirrhosis patients — not errors. That decision held up in the experimental results.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    My notebook documentation was thorough. Each cell had a structured markdown section covering purpose, line-by-line explanation, inputs, and outputs — formatted consistently with tables where helpful. For Cell 3 alone, I documented eight distinct cleaning steps with specific reasoning for each choice: mode vs. median imputation, why ID was dropped, why Edema needed ordinal rather than binary encoding. That level of detail shows I was not just running code — I understood what each step was doing and why.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    The three experiments were well-structured and produced results that made clinical sense. In Experiment 1, C = 0.001 produced the best F1-Score across both feature subsets, and I supported this with coefficient magnitude comparisons and sigmoid curve visualizations confirming the regularization behaved as expected. In Experiment 2, the progressive improvement from a single-feature Bilirubin model (F1 = 0.4898) to the seven-feature extended model (F1 = 0.6182) was backed by clinical reasoning — I explained why Disease Stage in particular gave the model a meaningful jump in recall. In Experiment 3, my justification for choosing threshold 0.3 was grounded in the domain: in cirrhosis management, a False Negative is far more dangerous than a False Positive, and threshold 0.3 reduced False Negatives to just 2 out of 32 actual deaths.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 1.5rem;">
+    The report met IEEE formatting standards — two-column layout, properly numbered figures and tables, LaTeX-formatted equations, and five cited academic sources. The abstract covered all required elements within the 150-word target: domain, dataset, prediction goal, and key findings.
+  </p>
+
+  <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">Areas I think could have been stronger</h2>
+
+  <p style="font-size:14px; line-height:1.7; color:var(--color-text-secondary); margin:0 0 1rem; font-style:italic;">
+    My professor did not specify where points were deducted, so the following are my own honest assessments of where my submission may not have reached its full potential — not confirmed mistakes.
+  </p>
+
+  <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:0.75rem;">
+    <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-dots-circle-horizontal" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Experiment 1 — C range could have been wider</p>
+    <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+      I tested only the three suggested C values (0.001, 1.0, 1000) without exploring intermediate ones like 0.01, 0.1, or 10. The instructions asked to "record all values tested to find the best," which implies exploration beyond the sample. Testing a wider range would have strengthened the claim that 0.001 was genuinely optimal rather than just the best among three fixed options — and would have made the guide question answer more defensible.
+    </p>
+  </div>
+
+  <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:0.75rem;">
+    <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-dots-circle-horizontal" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Report conclusion — possible internal inconsistency</p>
+    <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+      Re-reading my report, I noticed the conclusion states C = 0.001 as the optimal regularization parameter, while the Performance Evaluation section (Table V) describes the best configuration as Model C with C = 1.0 at threshold 0.3. These two sections point to different C values for what I called the "best model." Whether or not this was penalized, it is an internal contradiction I should have caught before submitting — a final cross-section read-through would have flagged it.
+    </p>
+  </div>
+
+  <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:0.75rem;">
+    <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-dots-circle-horizontal" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Introduction — log-odds section was thin</p>
+    <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+      The rubric required a brief explanation of log-odds. I included the logit formula and stated that it transforms a probability into an unbounded real number — technically correct — but I did not connect it back to the linear model or explain why this transformation is what makes logistic regression work. The deeper insight — that the log-odds being linear in the features is the theoretical bridge between linear and logistic regression — was missing.
+    </p>
+  </div>
+
+  <div style="background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:1rem 1.25rem; margin-bottom:1.5rem;">
+    <p style="font-size:13px; font-weight:500; color:var(--color-text-secondary); margin:0 0 6px; text-transform:uppercase; letter-spacing:0.06em;"><i class="ti ti-dots-circle-horizontal" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Presentation quality — figures could have been better referenced</p>
+    <p style="font-size:14px; line-height:1.7; color:var(--color-text-primary); margin:0;">
+      The rubric specifically called for figures to be "properly referenced in the text." While my figures were numbered and captioned, there were moments in the discussion where I described results without pointing back to a specific figure number. More consistent in-text references like "as shown in Fig. 7" at every relevant point would have met that requirement more completely.
+    </p>
+  </div>
+
+  <h2 style="font-size:16px; font-weight:500; margin:0 0 0.75rem; color:var(--color-text-primary);">What I learned from the process</h2>
+
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    This activity gave me something the midterm exams could not: the experience of building a real model from scratch and watching the numbers change as I made deliberate decisions. The moment that stood out most was Experiment 3 — seeing that a patient with a predicted mortality probability of 0.3519 would be classified as "Survived" under the default 0.5 threshold, but correctly flagged as high-risk under 0.3. That is not an abstract concept anymore. It is a number I generated from real clinical data, and it has a real consequence attached to it.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0 0 0.75rem;">
+    The data cleaning phase also changed how I think about datasets. Working with 1,033 missing cells forced me to think about why each column was missing and what the right fill strategy was for each type — choosing median over mean for Bilirubin specifically because I knew the outliers were clinically real, not noise. That was a decision I had to justify, not just apply.
+  </p>
+  <p style="font-size:15px; line-height:1.75; color:var(--color-text-primary); margin:0;">
+    Going forward, I will do a final cross-section read of my reports before submitting — comparing the conclusion directly against the results tables to catch any inconsistencies. I will also treat hyperparameter experiments as genuinely open-ended rather than stopping at the suggested values. An 88 is a result I am satisfied with, but looking back honestly, the points I may have missed are all recoverable through more careful execution rather than deeper understanding — and that is something I can directly control next time.
+  </p>
+
+</div>
