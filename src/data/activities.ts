@@ -18,7 +18,19 @@ export interface Activity {
   documents: ActivityDocument[];
 }
 
-export const activities: Activity[] = [
+export const activities: Activity[] = [];
+
+/*
+  Previous project entries were removed from the Projects tab.
+  Add new activities here later if you want them displayed again.
+*/
+
+/**
+ * Legacy content removed from the portfolio UI.
+ * The original activity data has been intentionally cleared.
+ */
+
+/*
   {
     id: 'prelim-long-quiz-set-b',
     title: 'Prelim Long Quiz: Set B',
@@ -497,6 +509,8 @@ Looking at the full arc of the term, from the midterm quiz on Logistic Regressio
     ],
   },
 ];
+
+*/
 
 export const periodOrder: Activity['period'][] = ['Prelim', 'Midterm', 'Finals'];
 

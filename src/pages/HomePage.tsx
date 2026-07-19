@@ -5,8 +5,9 @@ import { useState } from 'react';
 
 export function HomePage() {
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 300], [0, 150]);
-  const opacity = useTransform(scrollY, [0, 200], [1, 0]);
+  const y1 = useTransform(scrollY, [0, 300], [0, 120]);
+  const heroOpacity = useTransform(scrollY, [0, 220], [1, 0.15]);
+  const heroY = useTransform(scrollY, [0, 220], [0, -40]);
   const [emailCopied, setEmailCopied] = useState(false);
 
   const copyEmail = () => {
@@ -52,7 +53,7 @@ export function HomePage() {
         />
 
         <motion.div 
-          style={{ opacity }}
+          style={{ opacity: heroOpacity, y: heroY }}
           className="max-w-6xl mx-auto text-center relative z-10"
         >
           {/* Profile Image */}
