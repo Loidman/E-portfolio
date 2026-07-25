@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
@@ -180,26 +179,12 @@
   border-color: #94A3B8;
 }
 
-.theme-light .bg-slate-900\/80 { background-color: rgba(248, 250, 255, 0.92); }
-.theme-light .bg-slate-900\/50 { background-color: rgba(241, 245, 251, 0.82); }
-.theme-light .bg-slate-900\/95 { background-color: rgba(248, 250, 255, 0.96); }
-.theme-light .bg-slate-800\/60 { background-color: rgba(230, 236, 244, 0.86); }
-.theme-light .bg-slate-800\/50 { background-color: rgba(230, 236, 244, 0.72); }
-.theme-light .bg-slate-800\/30 { background-color: rgba(230, 236, 244, 0.55); }
-.theme-light .bg-slate-700\/60 { background-color: rgba(208, 218, 232, 0.82); }
-.theme-light .bg-slate-700\/50 { background-color: rgba(208, 218, 232, 0.72); }
+/* ── Light mode hover text (white → dark) ── */
+.theme-light .hover\:text-white:hover                   { color: #0B1220; }
+.theme-light .group:hover .group-hover\:text-white      { color: #0B1220; }
 
-.theme-light .hover\:bg-slate-800\/50:hover { background-color: rgba(208, 218, 232, 0.75); }
-.theme-light .hover\:bg-slate-700\/50:hover { background-color: rgba(208, 218, 232, 0.85); }
-.theme-light .hover\:bg-slate-700\/60:hover { background-color: rgba(208, 218, 232, 0.92); }
-.theme-light .hover\:bg-slate-600\/60:hover { background-color: rgba(148, 163, 184, 0.3); }
-
-.theme-light .border-slate-800\/50 { border-color: rgba(148, 163, 184, 0.42); }
-.theme-light .border-slate-700\/60 { border-color: rgba(148, 163, 184, 0.5); }
-.theme-light .border-slate-700\/50 { border-color: rgba(148, 163, 184, 0.4); }
-.theme-light .border-slate-600 { border-color: #94A3B8; }
-
-.theme-light .text-slate-50 { color: #0B1220; }
+/* ── Light mode text ── */
+.theme-light .text-slate-50  { color: #0B1220; }
 .theme-light .text-slate-100 { color: #0B1220; }
 .theme-light .text-slate-200 { color: #1E293B; }
 .theme-light .text-slate-300 { color: #2F3B52; }
@@ -207,6 +192,55 @@
 .theme-light .text-slate-500 { color: #5F6F86; }
 .theme-light .text-slate-600 { color: #5F6F86; }
 .theme-light .text-slate-700 { color: #2F3B52; }
+
+/* ── Light mode backgrounds ── */
+.theme-light .bg-slate-900\/80  { background-color: rgba(248, 250, 255, 0.92); }
+.theme-light .bg-slate-900\/50  { background-color: rgba(241, 245, 251, 0.82); }
+.theme-light .bg-slate-900\/95  { background-color: rgba(248, 250, 255, 0.96); }
+.theme-light .bg-slate-800\/60  { background-color: rgba(220, 228, 240, 0.86); }
+.theme-light .bg-slate-800\/50  { background-color: rgba(220, 228, 240, 0.72); }
+.theme-light .bg-slate-800\/40  { background-color: rgba(220, 228, 240, 0.55); }
+.theme-light .bg-slate-800\/30  { background-color: rgba(220, 228, 240, 0.40); }
+.theme-light .bg-slate-700\/60  { background-color: rgba(200, 212, 228, 0.82); }
+.theme-light .bg-slate-700\/50  { background-color: rgba(200, 212, 228, 0.72); }
+
+/* ── Light mode hover backgrounds ── */
+.theme-light .hover\:bg-slate-800\/50:hover  { background-color: rgba(200, 212, 228, 0.75); }
+.theme-light .hover\:bg-slate-800\/60:hover  { background-color: rgba(200, 212, 228, 0.85); }
+.theme-light .hover\:bg-slate-800\/30:hover  { background-color: rgba(200, 212, 228, 0.55); }
+.theme-light .hover\:bg-slate-700\/50:hover  { background-color: rgba(200, 212, 228, 0.85); }
+.theme-light .hover\:bg-slate-700\/60:hover  { background-color: rgba(200, 212, 228, 0.92); }
+.theme-light .hover\:bg-slate-600\/60:hover  { background-color: rgba(148, 163, 184, 0.30); }
+
+/* ── Light mode borders ── */
+.theme-light .border-slate-800\/50  { border-color: rgba(148, 163, 184, 0.42); }
+.theme-light .border-slate-700\/60  { border-color: rgba(148, 163, 184, 0.50); }
+.theme-light .border-slate-700\/50  { border-color: rgba(148, 163, 184, 0.40); }
+.theme-light .border-slate-700\/40  { border-color: rgba(148, 163, 184, 0.32); }
+.theme-light .border-slate-700\/30  { border-color: rgba(148, 163, 184, 0.24); }
+.theme-light .border-slate-600      { border-color: #94A3B8; }
+
+/* ── Light mode hover borders ── */
+.theme-light .hover\:border-emerald-500\/30:hover { border-color: rgba(16, 185, 129, 0.45); }
+.theme-light .hover\:border-sky-500\/50:hover     { border-color: rgba(14, 165, 233, 0.55); }
+
+/* ── Ring (profile image outline) ── */
+.theme-light .ring-slate-800\/50 { --tw-ring-color: rgba(148, 163, 184, 0.35); }
+
+/* ── Skill progress bar track ── */
+.theme-light .bg-slate-800\/50.rounded-full { background-color: rgba(203, 213, 225, 0.80); }
+
+/* ── Navigation active highlight ── */
+.theme-light .border-sky-500\/30 { border-color: rgba(14, 165, 233, 0.40); }
+
+/* ── Separator line in Course Expectations ── */
+.theme-light .bg-slate-700\/50.h-px { background-color: rgba(148, 163, 184, 0.40); }
+
+/* ── Selection ── */
+.theme-light ::selection {
+  background: rgba(14, 165, 233, 0.22);
+  color: #0B1220;
+}
 
 .theme-light ::-webkit-scrollbar-track {
   background: #E7EDF5;
@@ -218,11 +252,6 @@
 
 .theme-light ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #0284C7 0%, #0EA5E9 100%);
-}
-
-.theme-light ::selection {
-  background: rgba(14, 165, 233, 0.22);
-  color: #0B1220;
 }
 
 /* Subtle horizontal tab scrollbars */

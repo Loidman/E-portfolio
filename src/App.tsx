@@ -9,11 +9,12 @@ import { ActivitiesPage } from './pages/ActivitiesPage';
 import { ActivityDetailPage } from './pages/ActivityDetailPage';
 import { ResumePage } from './pages/ResumePage';
 import { ContactPage } from './pages/ContactPage';
+import { CourseExpectationsPage } from './pages/CourseExpectationsPage';
 function AnimatedRoutes() {
   const location = useLocation();
   return <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<motion.div initial={{
+    <Routes location={location} key={location.pathname}>
+      <Route path="/" element={<motion.div initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -25,9 +26,9 @@ function AnimatedRoutes() {
       }} transition={{
         duration: 0.3
       }}>
-              <HomePage />
-            </motion.div>} />
-        <Route path="/about" element={<motion.div initial={{
+        <HomePage />
+      </motion.div>} />
+      <Route path="/about" element={<motion.div initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -39,9 +40,9 @@ function AnimatedRoutes() {
       }} transition={{
         duration: 0.3
       }}>
-              <AboutPage />
-            </motion.div>} />
-        <Route path="/activities" element={<motion.div initial={{
+        <AboutPage />
+      </motion.div>} />
+      <Route path="/activities" element={<motion.div initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -53,9 +54,9 @@ function AnimatedRoutes() {
       }} transition={{
         duration: 0.3
       }}>
-              <ActivitiesPage />
-            </motion.div>} />
-        <Route path="/activities/:id" element={<motion.div initial={{
+        <ActivitiesPage />
+      </motion.div>} />
+      <Route path="/activities/:id" element={<motion.div initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -67,9 +68,9 @@ function AnimatedRoutes() {
       }} transition={{
         duration: 0.3
       }}>
-              <ActivityDetailPage />
-            </motion.div>} />
-        <Route path="/resume" element={<motion.div initial={{
+        <ActivityDetailPage />
+      </motion.div>} />
+      <Route path="/resume" element={<motion.div initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -81,9 +82,9 @@ function AnimatedRoutes() {
       }} transition={{
         duration: 0.3
       }}>
-              <ResumePage />
-            </motion.div>} />
-        <Route path="/contact" element={<motion.div initial={{
+        <ResumePage />
+      </motion.div>} />
+      <Route path="/contact" element={<motion.div initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -95,10 +96,24 @@ function AnimatedRoutes() {
       }} transition={{
         duration: 0.3
       }}>
-              <ContactPage />
-            </motion.div>} />
-      </Routes>
-    </AnimatePresence>;
+        <ContactPage />
+      </motion.div>} />
+      <Route path="/course-expectations" element={<motion.div initial={{
+        opacity: 0,
+        y: 20
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} exit={{
+        opacity: 0,
+        y: -20
+      }} transition={{
+        duration: 0.3
+      }}>
+        <CourseExpectationsPage />
+      </motion.div>} />
+    </Routes>
+  </AnimatePresence>;
 }
 export function App() {
   const [showUpdateNotice, setShowUpdateNotice] = useState(false);
@@ -133,16 +148,16 @@ export function App() {
   };
 
   return <HashRouter>
-      <div className="min-h-screen flex flex-col">
-        <AnimatePresence>
-          {showUpdateNotice && <motion.div initial={{
+    <div className="min-h-screen flex flex-col">
+      <AnimatePresence>
+        {showUpdateNotice && <motion.div initial={{
           opacity: 0
         }} animate={{
           opacity: 1
         }} exit={{
           opacity: 0
         }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
-              <motion.div initial={{
+          <motion.div initial={{
             opacity: 0,
             y: 20,
             scale: 0.97
@@ -157,30 +172,29 @@ export function App() {
           }} transition={{
             duration: 0.25
           }} className="w-full max-w-2xl glass-card p-6 md:p-8 border-sky-500/30 shadow-2xl shadow-sky-500/20">
-                <p className="text-xs md:text-sm font-mono uppercase tracking-[0.2em] text-sky-400 mb-2">Update</p>
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-100 mb-4">Message to Sir Raga</h2>
+            <p className="text-xs md:text-sm font-mono uppercase tracking-[0.2em] text-sky-400 mb-2">Update</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-100 mb-4">Message to Sir Raga</h2>
 
-                <div className="space-y-3 text-slate-300 leading-relaxed">
-                  <p>Good day, Sir Raga,</p>
-                  <p>I hope you're having a productive week.</p>
-                  <p>I would like to update you on the changes I've made to my E-portfolio.</p>
-                  <p>I have organized my midterm and finals activities within the Projects tab. Each task is clickable, leading directly to the actual submission and my corresponding reflection.</p>
-                  <p>Thank you for your time and guidance.</p>
-                </div>
+            <div className="space-y-3 text-slate-300 leading-relaxed">
+              <p>Good day, Sir Raga,</p>
+              <p>I hope you're having a productive week.</p>
+              <p>You will find my answers for <span className="text-sky-400 font-semibold">Exercise #WW-P1</span> in the <span className="text-sky-400 font-semibold">Course Expectations</span> tab.</p>
+              <p>Thank you for your time and guidance.</p>
+            </div>
 
-                <div className="mt-6 flex justify-end">
-                  <button onClick={() => setShowUpdateNotice(false)} className="btn-primary px-5 py-2.5">
-                    Close
-                  </button>
-                </div>
-              </motion.div>
-            </motion.div>}
-        </AnimatePresence>
-        <Navigation theme={theme} onToggleTheme={toggleTheme} />
-        <main className="flex-1">
-          <AnimatedRoutes />
-        </main>
-        <Footer />
-      </div>
-    </HashRouter>;
+            <div className="mt-6 flex justify-end">
+              <button onClick={() => setShowUpdateNotice(false)} className="btn-primary px-5 py-2.5">
+                Close
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>}
+      </AnimatePresence>
+      <Navigation theme={theme} onToggleTheme={toggleTheme} />
+      <main className="flex-1">
+        <AnimatedRoutes />
+      </main>
+      <Footer />
+    </div>
+  </HashRouter>;
 }

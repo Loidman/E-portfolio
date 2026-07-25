@@ -16,9 +16,11 @@ export function Navigation({ theme, onToggleTheme }: NavigationProps) {
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
     { path: '/activities', label: 'Projects' },
+    { path: '/course-expectations', label: 'Course Expectations' },
     { path: '/resume', label: 'Resume' },
     { path: '/contact', label: 'Contact' }
   ];
+
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
