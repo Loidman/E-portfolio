@@ -1,0 +1,30 @@
+Question class,Questions,Successful,Success rate,Mean correctness /2,Mean support /2,Mean completeness,Mean response (s)
+answerable,12,6,0.5,1.5,1.3333333333333333,0.7083333333333334,3.5878676887500185
+unanswerable,4,1,0.25,0.5,0.5,0.25,3.5579243162500234
+Overall,16,7,0.4375,1.25,1.125,0.59375,3.58038184562502
+,,,,,,,
+,,,,,,,
+Question,Class,Correctness /2,Support /2,Completeness,Successful (0/1),Response (s),Decision
+Q01,answerable,2,2,1,1,2.8671920699999873,answer
+Q02,answerable,1,1,0.25,0,4.555860001000042,answer
+Q03,answerable,2,0,1,0,1.7277280380000093,answer
+Q04,answerable,2,2,1,1,3.485361828000009,answer
+Q05,answerable,1,1,0.5,0,2.0009854810000434,answer
+Q06,answerable,2,2,1,1,3.563463770999988,answer
+Q07,answerable,2,2,1,1,1.4869923190000236,answer
+Q08,answerable,1,1,0.25,0,5.1148984860000155,answer
+Q09,answerable,2,2,1,1,2.3850274480000735,answer
+Q10,answerable,0,0,0,0,6.588553939999997,answer
+Q11,answerable,2,2,1,1,2.4353267610000557,answer
+Q12,answerable,1,1,0.5,0,6.843022121999979,answer
+Q13,unanswerable,0,0,0,0,3.526440389000072,answer
+Q14,unanswerable,0,0,0,0,1.698549799000034,answer
+Q15,unanswerable,2,2,1,1,6.111203950999993,abstain
+Q16,unanswerable,0,0,0,0,2.895503125999994,answer
+,,,,,,,
+,,,,,,,
+Success uses the fixed class-specific criteria documented in Methods.,,,,,,,
+One response per question. Setup and warm-up are excluded from response means.,,,,,,,
+Earlier three-trial CPU/GPU experiments remain separate in Benchmarks.,,,,,,,
+,,,,,,,
+,,,,,,,

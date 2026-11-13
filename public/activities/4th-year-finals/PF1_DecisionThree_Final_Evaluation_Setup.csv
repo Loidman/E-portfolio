@@ -1,0 +1,6 @@
+Recorded_Stage,Elapsed_s,Timing_Scope
+Source loading,3.012492285999997,One setup operation
+Embedding model loading,22.427180486999987,One setup operation
+LLM loading,29.949388476999957,One setup operation
+"Chunking, embedding and vector indexing",1.3870060939999576,One setup build; combined recorded time
+Warm-up response,2.4027837240000736,Excluded from response means

@@ -1,0 +1,517 @@
+Review ID,Experiment,Config,Question ID,Correctness /2,Source support /2,Correct element IDs,Required elements,Correct elements,Completeness,Relevant passages,Returned passages,Precision at K,Covered evidence units,Required evidence units,Evidence coverage,Fully successful (0/1),Actual generated answer,Reason for scores,Reference answer,Relevant ranks,Covered evidence IDs,Verification status,First raw notebook record,Retrieved PDF pages,Exact context signature
+REV001,Original prompt,A,Q01,2,2,Q01-E1;Q01-E2,2,2,1,1,3,0.3333333333333333,2,2,1,1,"The Bachelor of Science in Computer Engineering (BSCpE) program focuses on the science and technology of designing, developing, implementing, maintaining, and integrating software and hardware components in modern computing systems and computer-controlled equipment.",Both required program-focus elements are correct and supported by passage 1. Other returned passages concern objectives rather than the requested focus.,"BSCpE covers the design, development, implementation, maintenance and integration of software and hardware components for modern computing systems and computer-controlled equipment.",1,Q01-E1;Q01-E2,Group-verified; source-audited,experiments/main/results/cpu_A_T1.json,3; 3; 3,c9760582ec6b765e3b994080c0632ecf20834ad289470a48b2a80b1cef4d7d5f
+REV002,Original prompt,A,Q02,1,1,Q02-A1,4,1,0.25,0,3,0,0,3,0,0,"The unit value for Computer Architecture and Organization (CPE C401) in the BSCpE year-by-year curriculum is 2 units.
+In the group requirements section, it states ""Prerequisite: CPE C403"".
+For the CPE C401 course description, it mentions ""This course includes the study of the evolution of computer architecture and the factors influencing the design of hardware and software elements of computer systems.""
+These listings do not exactly match but they both relate to Computer Architecture and Organization within the context of the BSCpE program.","The year-by-year value is incorrectly given as 2, the group value is replaced by an unrelated prerequisite, and the description credit is omitted. Only the disagreement qualification is credited. No retrieved passage establishes a requested unit value.","The year-by-year curriculum lists CPE C401 as 4 units, the group-requirements table lists Computer Architecture & Organization as 2 units, and the course description lists 4 credit units. They do not agree (4, 2 and 4). These passages do not establish which listing should be corrected.",,,Group-verified; source-audited,experiments/main/results/cpu_A_T1.json,36; 43; 35,76992bdd78dbbc05f26fc40788ff932b81d118d00a62676130ed664dd304681a
+REV003,Original prompt,A,Q03,2,0,Q03-E1,1,1,1,1,3,0.3333333333333333,0,1,0,0,"According to the provided context, ECE C405, Design Project 1 is listed with 1 lecture unit.","The 1 lecture-unit answer is correct in the handbook, but passage 2 supplies only a curriculum unit value without a lecture label. Completeness is full; source support is zero.","ECE C405, Design Project 1, lists 1 lecture unit.",2,,Group-verified; source-audited,experiments/main/results/cpu_A_T1.json,10; 10; 36,6cefe544ca0a197ee86cf66821ffa2f1558f7d122af3520250de6d8c3384f946
+REV004,Original prompt,A,Q04,1,1,Q04-E3;Q04-E4,4,2,0.5,1,3,0.3333333333333333,1,4,0.25,0,"The prerequisite for ECE C401, ECE Elective 1 (Broadcast Production Engineering 1) is ECE C303. The lecture hours for this course are 4 units, the laboratory hours are 1 unit, and the credit units are also 4.","Laboratory 1 and credit 4 are correct; lecture 4 and prerequisite ECE C303 are wrong. The curriculum supplies only a useful total-unit fact, not the lecture/laboratory split or prerequisite set.","The prerequisites are ECE C306 and ECE C308. The course lists 3 lecture units, 1 laboratory unit and 4 credit units.",3,Q04-E4,Group-verified; source-audited,experiments/main/results/cpu_A_T1.json,41; 42; 10,340441bfa93151ceb9aea89385824ed1db1caf2e4a0e0a0c51549a84c09649f7
+REV005,Original prompt,A,Q05,0,0,,2,0,0,1,3,0.3333333333333333,1,2,0.5,0,"Based on the provided context:
+
+EMC C402 Internship is listed in the Third Year, First Semester.
+
+It carries 3 units.","Third Year, First Semester and 3 units are wrong. Passage 1 establishes the requested course’s 9 units, but no returned text unambiguously maps it to the required year/semester.","EMC C402 Internship is listed in the fourth year, second semester, with 9 units.",1,Q05-E2,Group-verified; source-audited,experiments/main/results/cpu_A_T1.json,15; 60; 15,60c6e866ec7b99f400a8da9beb8f29954f547a1afcf4ba5f7c2694bfa196f4a6
+REV006,Original prompt,A,Q06,1,0,Q06-E3;Q06-E4,4,2,0.5,0,3,0,0,4,0,0,"The prerequisite for EMC C504 Advanced 2D Animation is EMC C513. The lecture hours for this course are not specified in the provided text. Laboratory hours are listed as 1 unit, and the credit units are 3.","Laboratory 1 and credit 3 match the handbook, but EMC C513 is the wrong prerequisite and lecture 2 is missing. The supplied footer belongs to a different course; the C504 passage has no requested footer facts.","The prerequisites are EMC C203 and EMC C501. Advanced 2D Animation lists 2 lecture units, 1 laboratory unit and 3 credit units.",,,Group-verified; source-audited,experiments/main/results/cpu_A_T1.json,60; 15; 60,6728a6cee9c9ee15805bf173ec4759708da1fbc42e54319e461e10938c4a703e
+REV007,Original prompt,A,Q07,2,2,Q07-E1,1,1,1,1,3,0.3333333333333333,1,1,1,1,The prerequisite listed for EMC C614 Multi-Player and Network Games is EMC C603.,EMC C603 is the correct prerequisite and is explicitly linked to EMC C614 in passage 1. The other returned courses or curriculum listings do not add a prerequisite fact.,The listed prerequisite is EMC C603.,1,Q07-E1,Group-verified; source-audited,experiments/main/results/cpu_A_T1.json,64; 18; 18,f1b7c0681ea87b022c82fd800cfe754cc0d035503eb33c30b23f3131fcdede4f
+REV008,Original prompt,A,Q08,1,0,,4,0,0,0,3,0,0,3,0,0,"The complete prerequisite list for Game Programming 1 is:
+
+1. EMC C501
+2. EMC C601
+
+For Game Programming 2, the prerequisite is:
+
+1. EMC C601
+2. EMC C602
+
+Passing Game Programming 1 alone does not satisfy the listed prerequisites for Game Programming 2 because Game Programming 2 requires additional courses beyond just Game Programming 1.
+
+Therefore, to pass Game Programming 2, one must have completed both Game Programming 1 and Game Programming 2 along with the specified prerequisites.","The prerequisite sets are incorrect or omitted, and the response adds a circular requirement. Its generic insufficiency statement does not identify the required additional EMC C608 qualification. No returned passage supplies a requested prerequisite fact.","Game Programming 1 (EMC C602) requires EMC C201, EMC C203 and EMC C601. Game Programming 2 (EMC C603) requires EMC C602 and EMC C608. Game Programming 3 (EMC C604) requires EMC C603. Passing Game Programming 1 alone does not satisfy the full listed prerequisite set for Game Programming 2 because EMC C608 is also listed.",,,Group-verified; source-audited,experiments/main/results/cpu_A_T1.json,61; 63; 62,48e28b45478eb8b8d7c507cf0e3b8e0fadd9c3b75dff3e77bfd62e24781c7b24
+REV009,Original prompt,A,Q09,0,0,,2,0,0,0,3,0,0,2,0,0,"The course description for ITC C402 Internship lists no specific prerequisites or credit units. The relevant sections from the provided sources indicate that this course is an internship program rather than a traditional academic course. It mentions ""Laboratory: 1 unit"" but does not specify any prerequisite courses or credit units beyond those already mentioned for other internships (e.g., ITC C102). Therefore, based on the given information, there are no explicit prerequisites or credit units listed specifically for ITC C402 Internship.",No requested prerequisite or credit fact is correctly supplied. The response attaches unrelated course attributes to the internship; no returned passage establishes the requested facts.,ITC C402 Internship lists ITC C508 and ITC C403 as prerequisites and carries 6 credit units.,,,Group-verified; source-audited,experiments/main/results/cpu_A_T1.json,43; 36; 34,d3857591023c2c8416e947afd47b6dc1a51cba881780c95f848f341f13796421
+REV010,Original prompt,A,Q10,0,0,,4,0,0,0,3,0,0,4,0,0,"The provided context does not include specific details about the fourth-year first semester courses for the BSIT and BSIT with specialization in Business Analytics programs. Therefore, based on the given information, it is not possible to compare the course codes and total units listed for these two programs. The context focuses primarily on general degree requirements and student outcomes rather than detailed course offerings at the fourth year level.",The response refuses an answerable comparison without a required fact. The returned material contains no fourth-year first-semester evidence.,"BSIT lists ITC C401, ITC C403, EMC C307 and ITC C508, for a total of 12 units. BSIT with specialization in Business Analytics lists ITC C206, ITC C401, ITC C403, ITC C611 and ITC C612, for a total of 15 units. Each listed first-semester course carries 3 units.",,,Group-verified; source-audited,experiments/main/results/cpu_A_T1.json,26; 44; 24,df5672849177b250d0a188f7fd0b6ae682e38c1836518a6c01dc212fb44ef018
+REV011,Original prompt,A,Q11,2,2,Q11-E1;Q11-E2,2,2,1,1,3,0.3333333333333333,2,2,1,1,"Based on the provided context, the BSIT Business Analytics program develops the following three data competencies:
+
+1. Understanding data structures
+2. Data analysis
+3. Data interpretation
+
+The knowledge gained from these competencies can serve two main business purposes:
+
+1. Operational optimization
+2. Competitive advantage",All three named competencies and both purposes are correct and supported by the specialization-description passage.,"The specialization develops understanding of data structures, data analysis and data interpretation. The knowledge can support operational optimization and competitive advantage.",1,Q11-E1;Q11-E2,Group-verified; source-audited,experiments/main/results/cpu_A_T1.json,23; 26; 24,80cdd83ad6ada0ce7c221a78ece4c13b2972a1199b885b38f913dfc5ac899ba2
+REV012,Original prompt,A,Q12,1,1,Q12-E2;Q12-E4,4,2,0.5,3,3,1,2,4,0.5,0,"Based on the provided context:
+
+1. **Prerequisites**:
+   - ITC C604 Data Analysis Using Excel requires no specific prerequisite.
+   - ITC C605 Data Management and Statistical Analysis using R has an additional prerequisite of ""ITC C601"" (Statistics for Business Analytics).
+
+2. **Credit Units**:
+   - Both courses have the same number of credit units, which is 3.
+
+The main differences between these two courses lie in their prerequisites and the fact that one (Data Analysis Using Excel) does not require any specific prerequisite at all compared to the other (Data Management and Statistical Analysis using R), which necessitates having completed ""ITC C601"" before enrolling.","Both 3-credit values are correct, but both prerequisite descriptions are wrong. The detached Excel footer cannot be fully assigned to C604 without its course heading. Curriculum passages establish both credit facts.","ITC C604 requires ITC C601 and ITC C603 and carries 3 credit units. ITC C605 requires ITC C604, ITC C602 and ITC C201 and also carries 3 credit units. Their prerequisite sets differ, while their credit units are the same.",1;2;3,Q12-E2;Q12-E4,Group-verified; source-audited,experiments/main/results/cpu_A_T1.json,54; 25; 25,dedc77e4eee489c8c442c874fc6e163e67bf0f8040ced898b22380e8fbf1878d
+REV013,Original prompt,B,Q01,2,2,Q01-E1;Q01-E2,2,2,1,1,3,0.3333333333333333,2,2,1,1,"The Bachelor of Science in Computer Engineering (BSCpE) program focuses on the science and technology of designing, developing, implementing, maintaining, and integrating software and hardware components in modern computing systems and computer-controlled equipment.",Both required program-focus elements are correct and supported by passage 1. The other passages do not add a requested fact.,"BSCpE covers the design, development, implementation, maintenance and integration of software and hardware components for modern computing systems and computer-controlled equipment.",1,Q01-E1;Q01-E2,Group-verified; source-audited,experiments/main/results/cpu_B_T1.json,3; 3; 3,ff3cf684daa692441bb204c0b97d8dffdeb1c3d74a998d05c466bd4e6f61126b
+REV014,Original prompt,B,Q02,1,1,Q02-E1;Q02-E3,4,2,0.5,1,3,0.3333333333333333,1,3,0.3333333333333333,0,"The unit value for Computer Architecture and Organization (CPE C401) in the BSCpE year-by-year curriculum is 4 units.
+In the group requirements section, it states ""Computer Architecture and Organization"" under the ""Core Courses"" category with a total of 4 units.
+In the CPE C401 course description, it also mentions ""Credit: 4 units.""","The curriculum value and description credit are correctly stated as 4, but the group value is incorrectly 4 rather than 2. Passage 2 supports only the description credit, not the separate curriculum claim.","The year-by-year curriculum lists CPE C401 as 4 units, the group-requirements table lists Computer Architecture & Organization as 2 units, and the course description lists 4 credit units. They do not agree (4, 2 and 4). These passages do not establish which listing should be corrected.",2,Q02-E3,Group-verified; source-audited,experiments/main/results/cpu_B_T1.json,6; 35; 36,4216b37af37a15996dd8976ee0da3f7697bb2c607b3d594decaaacb6c1a9df21
+REV015,Original prompt,B,Q03,2,0,Q03-E1,1,1,1,1,3,0.3333333333333333,0,1,0,0,"According to the provided context, ECE C405, Design Project 1, has 1 lecture unit listed.","The 1 lecture-unit answer is correct, but the returned curriculum listing does not establish that it is a lecture unit. No returned course-description passage supplies that label.","ECE C405, Design Project 1, lists 1 lecture unit.",1,,Group-verified; source-audited,experiments/main/results/cpu_B_T1.json,10; 36; 42,9e16d068263d635b93986de44ed3352ceec56a54528f420be384da784972cd46
+REV016,Original prompt,B,Q04,1,1,Q04-E2;Q04-E3;Q04-E4,4,3,0.75,3,3,1,4,4,1,0,"According to the provided context:
+
+**Prerequisites:** ECE C303 (Feedback and Control)
+
+**Lecture:** 3 units
+
+**Laboratory:** 1 unit
+
+**Credit:** 4 units","Lecture 3, laboratory 1, and credit 4 are correct. ECE C303 is the wrong prerequisite. The course heading and overlapping continuation together supply the complete correct source facts.","The prerequisites are ECE C306 and ECE C308. The course lists 3 lecture units, 1 laboratory unit and 4 credit units.",1;2;3,Q04-E1;Q04-E2;Q04-E3;Q04-E4,Group-verified; source-audited,experiments/main/results/cpu_B_T1.json,41; 10; 41,2e3ad5c2e7b2f9e16a00406da93c21ba126cb612748f9ca6dfd56b397a2458cd
+REV017,Original prompt,B,Q05,1,1,Q05-E2,2,1,0.5,2,3,0.6666666666666666,1,2,0.5,0,"According to the provided context, EMC C402 Internship is listed in the Fourth Year, specifically in the First Semester. It carries 9 units.",The answer gives the correct 9 units but incorrectly says First Semester. The flattened table does not preserve an unambiguous course-to-semester link; only the documentary unit fact is counted as covered.,"EMC C402 Internship is listed in the fourth year, second semester, with 9 units.",1;3,Q05-E2,Group-verified; source-audited,experiments/main/results/cpu_B_T1.json,15; 60; 15,d262f5817e957bcf697951457654d8d40e74d45e0dd3a3593aa7979f7dc5adff
+REV018,Original prompt,B,Q06,2,2,Q06-E1;Q06-E2;Q06-E3;Q06-E4,4,4,1,1,3,0.3333333333333333,4,4,1,1,"According to the provided context:
+
+Prerequisites for EMC C504 Advanced 2D Animation include:
+- EMC C203
+- EMC C501
+
+Lecture units for EMC C504 are:
+- 2 units
+
+Laboratory units for EMC C504 are:
+- 1 unit
+
+Credit units for EMC C504 are:
+- 3 units",The complete prerequisite set and all three unit fields are correct and supported by passage 1.,"The prerequisites are EMC C203 and EMC C501. Advanced 2D Animation lists 2 lecture units, 1 laboratory unit and 3 credit units.",1,Q06-E1;Q06-E2;Q06-E3;Q06-E4,Group-verified; source-audited,experiments/main/results/cpu_B_T1.json,60; 60; 15,3a86d289725672595b0f31ddc749f5b6b758c175023119e1b87a66009ad483c1
+REV019,Original prompt,B,Q07,2,2,Q07-E1,1,1,1,1,3,0.3333333333333333,1,1,1,1,The prerequisite listed for EMC C614 Multi-Player and Network Games is EMC C603.,EMC C603 is the correct prerequisite and is explicitly linked to EMC C614 in passage 1. The other returned courses or curriculum listings do not add a prerequisite fact.,The listed prerequisite is EMC C603.,1,Q07-E1,Group-verified; source-audited,experiments/main/results/cpu_B_T1.json,64; 63; 17,2f8a077ce6c6c5487cd6291e6b55a2af58dad4cd57490db9232bf347033e81e9
+REV020,Original prompt,B,Q08,1,1,Q08-E1,4,1,0.25,1,3,0.3333333333333333,1,3,0.3333333333333333,0,"The complete prerequisite list for Game Programming 1 (EMC C602) includes:
+
+1. EMC C201
+2. EMC C203
+3. EMC C601
+
+For Game Programming 2 (EMC C603), the prerequisite is:
+
+1. EMC C602
+
+Passing Game Programming 1 alone does **not** satisfy the listed prerequisites for Game Programming 2. To meet the requirements for Game Programming 2, one must have completed both Game Programming 1 and Game Programming 2.","The C602 set is complete. The C603 set omits C608, C604 is unanswered, and the explanation incorrectly requires completing Game Programming 2 itself. Only C602 is supported by the returned evidence.","Game Programming 1 (EMC C602) requires EMC C201, EMC C203 and EMC C601. Game Programming 2 (EMC C603) requires EMC C602 and EMC C608. Game Programming 3 (EMC C604) requires EMC C603. Passing Game Programming 1 alone does not satisfy the full listed prerequisite set for Game Programming 2 because EMC C608 is also listed.",3,Q08-E1,Group-verified; source-audited,experiments/main/results/cpu_B_T1.json,61; 18; 62,8327a3516d63ae8631779e5380a2ba5eeec0c3ed9c7954e2482d86b14c2949d8
+REV021,Original prompt,B,Q09,1,1,Q09-E2,2,1,0.5,2,3,0.6666666666666666,1,2,0.5,0,"According to the provided course descriptions from the context:
+
+The prerequisite for ITC C402 Internship is not explicitly stated, but it's noted that this course carries 6 credit units.
+
+Therefore, the internship requirement itself doesn't have any specific prerequisites mentioned; however, it is described as carrying 6 credit units.",The 6-credit fact is correct. The claim that prerequisites are not listed is wrong for the actual course description. Curriculum passages support the credit value only.,ITC C402 Internship lists ITC C508 and ITC C403 as prerequisites and carries 6 credit units.,1;3,Q09-E2,Group-verified; source-audited,experiments/main/results/cpu_B_T1.json,25; 5; 22,d63fbc81bfc5934f840751d2da833206e870d13cf71e60eac3948bb89c301bad
+REV022,Original prompt,B,Q10,0,0,,4,0,0,0,3,0,0,4,0,0,"The provided information does not specify any differences between the courses offered in the fourth year of study for both the BSIT degree without a specialization in Business Analytics and the BSIT-Business Analytics (BSIT-BA) degree. Therefore, based solely on the given text, there is insufficient information to compare the course codes and total units for these two degrees at the fourth year level.",The response gives no required course-code set or total. The retrieved program requirements and outcomes do not establish the requested semester facts.,"BSIT lists ITC C401, ITC C403, EMC C307 and ITC C508, for a total of 12 units. BSIT with specialization in Business Analytics lists ITC C206, ITC C401, ITC C403, ITC C611 and ITC C612, for a total of 15 units. Each listed first-semester course carries 3 units.",,,Group-verified; source-audited,experiments/main/results/cpu_B_T1.json,26; 24; 44,88423fcfe97880da7d09f05a1fb4b2d0a28c12c5089f67b65c96061619899650
+REV023,Original prompt,B,Q11,2,2,Q11-E2,2,1,0.5,2,3,0.6666666666666666,2,2,1,0,"The BSIT Business Analytics program develops the following data competencies according to its description:
+
+1. Data Management Concepts and Criticality of Data Availability
+2. Understanding Business Intelligence
+3. Where to Look for Data in an Organization and Create Required Reports
+4. Applying Different Analytics Modeling Concepts on Enterprise Data
+5. Understanding Functions and Data Access Constraints of Various Departments Within an Organization and Provide Compliance Reports
+6. Working on Various Analytic Tools Available in the Market for Various Business Functions
+
+Regarding the two business purposes that this knowledge can serve, the provided text states:
+
+""Knowledge can be applied to any industry where data can be used for operational optimization and competitive advantage, which can cater to both local and international industries that demand analytics skills.""",The answer gives genuine program outcomes rather than the requested three-item description set. Its two business purposes are correct. These source-supported outcome statements do not make the requested competency set complete.,"The specialization develops understanding of data structures, data analysis and data interpretation. The knowledge can support operational optimization and competitive advantage.",1;2,Q11-E1;Q11-E2,Group-verified; source-audited,experiments/main/results/cpu_B_T1.json,23; 24; 24,bb21906b852ffbf425c9a9ae3d596a7a239101a45bc78c04713110d2651deb87
+REV024,Original prompt,B,Q12,1,1,Q12-E2;Q12-E4,4,2,0.5,3,3,1,3,4,0.75,0,"Based on the provided context:
+
+1. **Prerequisites**:
+   - ITC C604 requires no specific prerequisite.
+   - ITC C605 requires ""ITC C601"" and ""ITC C603"".
+
+2. **Credit Units**:
+   - Both courses require 3 units each.
+
+The main differences between these two courses lie in their prerequisites and the number of units they offer. While both courses require 3 units, ITC C604 has no specific prerequisite, whereas ITC C605 requires prior completion of ""ITC C601"" and ""ITC C603"". Additionally, while both courses cover similar topics like data analysis and statistical analysis, ITC C604 focuses specifically on Excel, which may be less relevant for students already familiar with other tools like R.",Both 3-credit values are correct; no-prerequisite C604 and C601/C603 for C605 are wrong. The C604 heading plus next-page continuation establish its real set; the curriculum supports C605’s credits.,"ITC C604 requires ITC C601 and ITC C603 and carries 3 credit units. ITC C605 requires ITC C604, ITC C602 and ITC C201 and also carries 3 credit units. Their prerequisite sets differ, while their credit units are the same.",1;2;3,Q12-E1;Q12-E2;Q12-E4,Group-verified; source-audited,experiments/main/results/cpu_B_T1.json,53; 54; 25,12cac46e2c04e2b9ffd6233d54a5211109d66a0f4f630b39ba11e43539d8bdcc
+REV025,Original prompt,C,Q01,2,2,Q01-E1;Q01-E2,2,2,1,1,3,0.3333333333333333,2,2,1,1,"The Bachelor of Science in Computer Engineering (BSCpE) program focuses on the science and technology of designing, developing, implementing, maintaining, and integrating software and hardware components in modern computing systems and computer-controlled equipment.",Both required program-focus elements are correct and supported by passage 2. Passages 1 and 3 concern objectives or another program.,"BSCpE covers the design, development, implementation, maintenance and integration of software and hardware components for modern computing systems and computer-controlled equipment.",2,Q01-E1;Q01-E2,Group-verified; source-audited,experiments/main/results/cpu_C_T1.json,3; 3; 20,92d4c0def7e238a965c7f1ae2136a05ba3ead10f4b319cd317e741ba71168f9e
+REV026,Original prompt,C,Q02,1,1,Q02-E1;Q02-E3,4,2,0.5,1,3,0.3333333333333333,1,3,0.3333333333333333,0,"The unit value for Computer Architecture and Organization (CPE C401) in the BSCpE year-by-year curriculum is 4 units.
+
+In the group requirements section, it states:
+
+""Technical Courses""
+a. IT Core Courses 18
+Fundamentals of Information Technology
+Computer Programming 1
+Computer Programming 2
+Database Fundamentals
+Applications Development and Emerging Technologies
+Data Structures and Algorithm
+3
+3
+3
+3
+3
+3
+
+And in the CPE C401 course description, it mentions:
+
+""CPE C401. Computer Architecture and Organization. This course includes the study of the evolution of computer architecture and the factors influencing the design of hardware and software elements of computer systems. The focus is on the understanding of the design issues; specifically, instruction set architecture and hardware architecture.""
+
+These listings do not exactly match but they both indicate that CPE C401 has 4 units. The discrepancy might be due to different sources providing slightly varying details about the course's structure or credit allocation.",The answer gives the correct 4-unit curriculum and description values but substitutes another program’s group listing. Its conflicting explanation does not clearly establish the requested 4/2/4 disagreement. Passage 1 supports the description credit only.,"The year-by-year curriculum lists CPE C401 as 4 units, the group-requirements table lists Computer Architecture & Organization as 2 units, and the course description lists 4 credit units. They do not agree (4, 2 and 4). These passages do not establish which listing should be corrected.",1,Q02-E3,Group-verified; source-audited,experiments/main/results/cpu_C_T1.json,35; 5; 22,79e3be6f392c858e22541916cf31094873c164d5d5649956c091713d71cc5255
+REV027,Original prompt,C,Q03,2,1,Q03-E1,1,1,1,2,3,0.6666666666666666,1,1,1,0,"According to the provided information from Source 2, ECE C405, Design Project 1, has 1 lecture unit.","The lecture-unit value is correct and the ECE C405 description in Source 3 supports it. The answer explicitly attributes the information to Source 2, which describes other courses. Source support is 1, not 2, because the attribution is wrong even though support exists elsewhere in the supplied context.","ECE C405, Design Project 1, lists 1 lecture unit.",1;3,Q03-E1,Source-audited correction,experiments/main/results/cpu_C_T1.json,10; 41; 42,f96d7714d648776cbd68c89e7b76ebc14d87667624d023f42a7b46d6ef66da78
+REV028,Original prompt,C,Q04,2,2,Q04-E1;Q04-E2;Q04-E3;Q04-E4,4,4,1,2,3,0.6666666666666666,4,4,1,1,"According to the provided context:
+
+**Prerequisites:** ECE C306, ECE C308
+
+**Lecture:** 3 units
+
+**Laboratory:** 1 unit
+
+**Credit:** 4 units",The complete prerequisite set and all three unit fields are correct and supported by the ECE C401 description. The curriculum also supplies a relevant credit-unit fact.,"The prerequisites are ECE C306 and ECE C308. The course lists 3 lecture units, 1 laboratory unit and 4 credit units.",1;2,Q04-E1;Q04-E2;Q04-E3;Q04-E4,Group-verified; source-audited,experiments/main/results/cpu_C_T1.json,41; 10; 40,171fcc6d6bdfefbed47977326e7daaaecd99ed041e3916eac3669f9df6289406
+REV029,Original prompt,C,Q05,1,1,Q05-E2,2,1,0.5,1,3,0.3333333333333333,1,2,0.5,0,"According to the provided information from Source 2, EMC C402 Internship is listed in the Fourth Year of the program. Specifically, it appears on page 85 under the ""Fourth Year"" section with the following details:
+
+- First Semester Units: 9
+- Second Semester Units: 9
+
+This internship course carries 9 units in total across both semesters.","The answer gives 9 total units but incorrectly places the internship in both semesters. The original PDF places it in Fourth Year, Second Semester. The flattened returned table supports the unit fact, not an unambiguous semester assignment.","EMC C402 Internship is listed in the fourth year, second semester, with 9 units.",2,Q05-E2,Group-verified; source-audited,experiments/main/results/cpu_C_T1.json,15; 15; 58,31c5a578438e887024686c6e047f79320a1dd5111236329c4f43ebec082a55f3
+REV030,Original prompt,C,Q06,2,2,Q06-E1;Q06-E2;Q06-E3;Q06-E4,4,4,1,1,3,0.3333333333333333,4,4,1,1,"According to the provided context:
+
+**Prerequisites:** EMC C203, EMC C501
+
+**Lecture Units:** 2 units
+
+**Laboratory Units:** 1 unit
+
+**Credit Units:** 3 units",The complete prerequisite set and all three unit fields are correct and supported by passage 2.,"The prerequisites are EMC C203 and EMC C501. Advanced 2D Animation lists 2 lecture units, 1 laboratory unit and 3 credit units.",2,Q06-E1;Q06-E2;Q06-E3;Q06-E4,Group-verified; source-audited,experiments/main/results/cpu_C_T1.json,63; 60; 58,bb4a6679fd7410a269eb966c5bc163c293b8f136559294c93f98ad401634912e
+REV031,Original prompt,C,Q07,2,2,Q07-E1,1,1,1,1,3,0.3333333333333333,1,1,1,1,The prerequisite listed for EMC C614 Multi-Player and Network Games is EMC C603.,EMC C603 is the correct prerequisite and is explicitly linked to EMC C614 in passage 1. The other returned courses or curriculum listings do not add a prerequisite fact.,The listed prerequisite is EMC C603.,1,Q07-E1,Group-verified; source-audited,experiments/main/results/cpu_C_T1.json,64; 62; 17,4768e33b7a68104db69d4c65343de802b1d1cbaee3316e3251a3802e54de2b27
+REV032,Original prompt,C,Q08,1,1,Q08-E1,4,1,0.25,1,3,0.3333333333333333,1,3,0.3333333333333333,0,"The prerequisite list for Game Programming 1 (EMC C602) includes:
+
+- EMC C201
+- EMC C203
+- EMC C601
+
+For Game Programming 2 (EMC C603), the prerequisite list is:
+
+- EMC C602
+- EMC C601
+
+And for Game Programming 3 (EMC C604):
+
+- EMC C603
+- EMC C601
+
+Passing Game Programming 1 alone does **not** satisfy the listed prerequisites for Game Programming 2. To meet the requirements for Game Programming 2, one must have completed both Game Programming 1 and Game Programming 2.","The C602 set is complete. The C603 and C604 sets add or substitute C601, and the final explanation is circular. Only the C602 set is established by the returned passages.","Game Programming 1 (EMC C602) requires EMC C201, EMC C203 and EMC C601. Game Programming 2 (EMC C603) requires EMC C602 and EMC C608. Game Programming 3 (EMC C604) requires EMC C603. Passing Game Programming 1 alone does not satisfy the full listed prerequisite set for Game Programming 2 because EMC C608 is also listed.",1,Q08-E1,Group-verified; source-audited,experiments/main/results/cpu_C_T1.json,62; 18; 17,80e331e874b65dacd07cd13fd9c9eb710c45a4ffdfcec9e6e243c2ec6b7d9889
+REV033,Original prompt,C,Q09,1,1,Q09-E2,2,1,0.5,1,3,0.3333333333333333,1,2,0.5,0,"According to the provided course description for ITC C402 Internship:
+
+Prerequisites: None specified.
+Credit: 6 units.
+
+The course description does not mention any specific prerequisite courses beyond stating it is ""For IT"". The number of credit units is explicitly stated as 6.",The 6-credit fact is correct. The answer incorrectly reports no prerequisites and misuses an unrelated “For IT” label. Only the credit fact is supported.,ITC C402 Internship lists ITC C508 and ITC C403 as prerequisites and carries 6 credit units.,1,Q09-E2,Group-verified; source-audited,experiments/main/results/cpu_C_T1.json,22; 43; 10,23d414067892f6b21948b988d751aa50a74ae9ce28567f66425900e5272d6489
+REV034,Original prompt,C,Q10,0,0,,4,0,0,0,3,0,0,4,0,0,"The fourth-year first semester of the BSIT degree includes courses such as ""Human Computer Interaction,"" ""Information Security 1,"" ""Data Modeling,"" ""Integrative Programming & Technologies,"" ""Discrete Structures,"" ""Quantitative Techniques for IT,"" ""Network Technologies 1,"" ""System Administration & Maintenance,"" ""Social & Professional Issues in IT,"" ""IT Project 1,"" and ""Analytic Application."" The total number of units is 36.
+
+For the BSIT with specialization in Business Analytics, the fourth-year first semester includes courses like ""Statistics for Business Analytics,"" ""Macro Programming,"" ""Advanced Statistics,"" ""Data Analysis using Excel,"" ""Data Management and Statistical Analysis using Data Storytelling and Dashboard Design Using,"" which totals 24 units.",The response substitutes whole-program course categories and invented totals for the requested semester comparison. No requested answer or evidence element is complete.,"BSIT lists ITC C401, ITC C403, EMC C307 and ITC C508, for a total of 12 units. BSIT with specialization in Business Analytics lists ITC C206, ITC C401, ITC C403, ITC C611 and ITC C612, for a total of 15 units. Each listed first-semester course carries 3 units.",,,Group-verified; source-audited,experiments/main/results/cpu_C_T1.json,26; 24; 20,fc8637a5faa46b3d848bacf1221f198893f4a17c4dffe194192260fd99e84d54
+REV035,Original prompt,C,Q11,2,2,,2,0,0,2,3,0.6666666666666666,2,2,1,0,"The BSIT Business Analytics program develops three key data competencies:
+
+1. Understanding data management concepts and the importance of data availability for making reliable business decisions.
+2. Demonstrating an understanding of business intelligence, including data gathering, storing, analyzing, and accessing data.
+3. Describing how to find data within an organization and creating required reports.
+
+This knowledge is applicable to both local and international industries that require analytics skills, catering to various sectors such as finance, healthcare, retail, and more.","The answer supplies genuine source-supported outcomes rather than the required three-item competency set, and omits both requested business purposes. General industry examples are consistent with the description’s “any industry” scope, not extra program requirements. Correctness/support remain 2 while completeness is zero.","The specialization develops understanding of data structures, data analysis and data interpretation. The knowledge can support operational optimization and competitive advantage.",1;2,Q11-E1;Q11-E2,Group-verified; source-audited,experiments/main/results/cpu_C_T1.json,23; 24; 26,f8f2435aa00802dbb3a9c07e9f40a5b78a06df42b254330d2756f84eedf3a391
+REV036,Original prompt,C,Q12,1,1,Q12-E2;Q12-E4,4,2,0.5,3,3,1,2,4,0.5,0,"Based on the provided context:
+
+1. **Prerequisites**:
+   - ITC C604 Data Analysis using Excel requires no specific prerequisite.
+   - ITC C605 Data Management and Statistical Analysis using R has a prerequisite of ITC C601.
+
+2. **Credit Units**:
+   - Both courses require 3 units each.
+
+The main differences between these two courses are:
+
+- **Prerequisites**: ITC C604 has no specific prerequisite, while ITC C605 requires ITC C601 as a prerequisite.
+- **Credit Units**: Both courses are listed as requiring 3 units each.","Both 3-credit values are correct, but both prerequisite claims are wrong. The detached course continuation lacks the C604 heading in this context. The curriculum supplies both credit facts.","ITC C604 requires ITC C601 and ITC C603 and carries 3 credit units. ITC C605 requires ITC C604, ITC C602 and ITC C201 and also carries 3 credit units. Their prerequisite sets differ, while their credit units are the same.",1;2;3,Q12-E2;Q12-E4,Group-verified; source-audited,experiments/main/results/cpu_C_T1.json,54; 25; 25,408ecd02737f45e4cc9024be78b108da1bc81c27fe27dabd0388ff6ec82da0f7
+REV037,Original prompt,D,Q01,2,2,Q01-E1;Q01-E2,2,2,1,1,3,0.3333333333333333,2,2,1,1,"The Bachelor of Science in Computer Engineering (BSCpE) program focuses on the science and technology of designing, developing, implementing, maintaining, and integrating software and hardware components in modern computing systems and computer-controlled equipment.",Both program-focus elements are correct and supported by passage 1; the other passages do not add requested evidence.,"BSCpE covers the design, development, implementation, maintenance and integration of software and hardware components for modern computing systems and computer-controlled equipment.",1,Q01-E1;Q01-E2,Group-verified; source-audited,experiments/main/results/gpu_D_T1.json,3; 3; 3,f12e883ce02219f35b739a7e4bae885f4021f39b9ed618fac2acac83fb206807
+REV038,Original prompt,D,Q02,0,1,,4,0,0,0,3,0,0,3,0,0,"The provided context does not explicitly list specific unit values for ""Computer Architecture and Organization"" in the BScP(E) program's curriculum. However, it mentions that this course is part of the core courses for the Bachelor of Science in Computer Engineering degree.
+
+For the Bachelor of Science in Information Technology with specialization in Business Analytics (BSIT-BA), the course ""Computer Architecture and Organization"" is listed under the technical courses section, specifically within the IT Common Courses category. The number of units required for this course is 3.
+
+These two listings do not directly agree because they refer to different programs (Computer Engineering vs. Information Technology). The Computer Engineering listing includes additional courses like ""Object-Oriented Programming for CPE"" and ""Programming Logic & Design,"" while the BSIT-BA listing focuses more narrowly on the foundational aspects of computer architecture and organization.","No requested unit value is correctly supplied. The answer invents a BSIT-BA listing and value. Some general source-topic statements are supported, so partial source support remains.","The year-by-year curriculum lists CPE C401 as 4 units, the group-requirements table lists Computer Architecture & Organization as 2 units, and the course description lists 4 credit units. They do not agree (4, 2 and 4). These passages do not establish which listing should be corrected.",,,Group-verified; source-audited,experiments/main/results/gpu_D_T1.json,6; 26; 43,86adb93d2c4cdbbcd92e9e022400470532a51cced8a779b686b4b4564bdefb2d
+REV039,Original prompt,D,Q03,2,0,Q03-E1,1,1,1,1,3,0.3333333333333333,0,1,0,0,"According to the provided information from Source 1, ECE C405, Design Project 1, has 1 lecture unit listed.",The value is correct in the handbook. Source 1 is a curriculum table with an unqualified unit value; it does not support the claimed lecture-unit label.,"ECE C405, Design Project 1, lists 1 lecture unit.",1,,Group-verified; source-audited,experiments/main/results/gpu_D_T1.json,10; 36; 36,a33a2c8f96203ddeb392d2330100dc5c7029d8c48448b1b06f3593a31d4920fd
+REV040,Original prompt,D,Q04,2,2,Q04-E1;Q04-E2;Q04-E3;Q04-E4,4,4,1,3,3,1,4,4,1,1,"According to the provided context, for ECE C401, ECE Elective 1 (Broadcast Production Engineering 1):
+
+**Prerequisites:** ECE C306, ECE C308.
+
+**Lecture:** 3 units.
+
+**Laboratory:** 1 unit.
+
+**Credit:** 4 units.","The complete prerequisite set and all three unit fields are correct. The main course passage, its prerequisite continuation, and curriculum supply relevant support.","The prerequisites are ECE C306 and ECE C308. The course lists 3 lecture units, 1 laboratory unit and 4 credit units.",1;2;3,Q04-E1;Q04-E2;Q04-E3;Q04-E4,Group-verified; source-audited,experiments/main/results/gpu_D_T1.json,41; 41; 10,17e0f34745a83148200cec52114fd867f4e4748f5039f40b18e923528dcb7122
+REV041,Original prompt,D,Q05,1,1,Q05-E2,2,1,0.5,2,3,0.6666666666666666,1,2,0.5,0,"According to the provided context, EMC C402 Internship is listed in the Fourth Year, specifically in the First Semester. It carries 9 units.",The answer correctly gives 9 units but incorrectly says First Semester. Relevant table passages contain the unit fact; the flattened text does not fully establish the semester relationship.,"EMC C402 Internship is listed in the fourth year, second semester, with 9 units.",1;3,Q05-E2,Group-verified; source-audited,experiments/main/results/gpu_D_T1.json,15; 58; 15,15f31e0351cbcfc614f35923e0d77880cfa2922f11833582c65e8787d1e601ab
+REV042,Original prompt,D,Q06,2,2,Q06-E1;Q06-E2;Q06-E3;Q06-E4,4,4,1,1,3,0.3333333333333333,4,4,1,1,"According to the provided context:
+
+Prerequisites for EMC C504 Advanced 2D Animation include:
+- EMC C203
+- EMC C501
+
+Lecture hours for EMC C504 are:
+- 2 units
+
+Laboratory hours for EMC C504 are:
+- 1 unit
+
+Credit hours for EMC C504 are:
+- 3 units",The complete prerequisite set and all three unit fields are correct and supported by passage 1.,"The prerequisites are EMC C203 and EMC C501. Advanced 2D Animation lists 2 lecture units, 1 laboratory unit and 3 credit units.",1,Q06-E1;Q06-E2;Q06-E3;Q06-E4,Group-verified; source-audited,experiments/main/results/gpu_D_T1.json,60; 15; 60,3a9586175ce2822590d7906765057d901cf6ae4da693cc3eaef6b9d131f9e461
+REV043,Original prompt,D,Q07,2,2,Q07-E1,1,1,1,1,3,0.3333333333333333,1,1,1,1,The prerequisite listed for EMC C614 Multi-Player and Network Games is EMC C603.,EMC C603 is the correct prerequisite and is explicitly linked to EMC C614 in passage 1. The other returned courses or curriculum listings do not add a prerequisite fact.,The listed prerequisite is EMC C603.,1,Q07-E1,Group-verified; source-audited,experiments/main/results/gpu_D_T1.json,64; 63; 62,16aee27700af5a2e7984b63baed4cbc63e262f80ae760bd7f2a50b01c8c4cf4e
+REV044,Original prompt,D,Q08,1,1,Q08-E1,4,1,0.25,1,3,0.3333333333333333,1,3,0.3333333333333333,0,"The complete prerequisite list for Game Programming 1 is:
+
+- EMC C201: Principles of 2D Animation
+- EMC C203: Principles of 2D Animation
+- EMC C601: Applied Mathematics for Games
+
+Passing Game Programming 1 alone does not satisfy the listed prerequisites for Game Programming 2. The prerequisites for Game Programming 2 specifically require EMC C602, which is not covered by Game Programming 1. Game Programming 2 requires additional courses such as EMC C602, EMC C608, and EMC C604.","The three required C602 codes are present, but C201 is given the wrong title. The C603 explanation adds C604 and wrongly says C602 is not Game Programming 1; C604’s own prerequisite is omitted. Only the C602 answer element is complete. The returned C603 description covers its correct prerequisite set.","Game Programming 1 (EMC C602) requires EMC C201, EMC C203 and EMC C601. Game Programming 2 (EMC C603) requires EMC C602 and EMC C608. Game Programming 3 (EMC C604) requires EMC C603. Passing Game Programming 1 alone does not satisfy the full listed prerequisite set for Game Programming 2 because EMC C608 is also listed.",1,Q08-E2,Group-verified; source-audited,experiments/main/results/gpu_D_T1.json,62; 62; 17,2e8b81172ab272bb67833db8f5c4ffa364496ccacbb567d42f9ca67fbe725db0
+REV045,Original prompt,D,Q09,1,1,Q09-E2,2,1,0.5,2,3,0.6666666666666666,2,2,1,0,"According to the provided course descriptions:
+
+1. **Prerequisites**: ITC C302, ITC C304, ITC C306.
+
+2. **Credit Units**: 6 units.","The 6-credit value is correct, but the answer uses the preceding course’s prerequisite footer. The actual internship passage supplies C508 and C403, so both correct evidence units are available despite the answer error.",ITC C402 Internship lists ITC C508 and ITC C403 as prerequisites and carries 6 credit units.,1;2,Q09-E1;Q09-E2,Group-verified; source-audited,experiments/main/results/gpu_D_T1.json,49; 22; 48,ad882d8b508019f1d5b6943812bafb19f6113784aca2b927bb8d00decc665bdf
+REV046,Original prompt,D,Q10,0,0,,4,0,0,0,3,0,0,4,0,0,"The provided document does not include specific details about the fourth-year first semester courses and total units for the BSIT and BSIT with specialization in Business Analytics programs. Therefore, based solely on the given information, it is not possible to compare these two sets of course requirements. The context only provides information about the technical and professional courses offered across both degrees but does not specify any additional courses or unit breakdowns for the fourth year of either program.",The response gives no required comparison fact. The returned whole-program requirements and outcomes do not establish the requested semester listings.,"BSIT lists ITC C401, ITC C403, EMC C307 and ITC C508, for a total of 12 units. BSIT with specialization in Business Analytics lists ITC C206, ITC C401, ITC C403, ITC C611 and ITC C612, for a total of 15 units. Each listed first-semester course carries 3 units.",,,Group-verified; source-audited,experiments/main/results/gpu_D_T1.json,26; 24; 24,7edf49f10c868e8cd76baeb265569676edc60422fdeb7e23297c2d7cdaad11ab
+REV047,Original prompt,D,Q11,2,2,Q11-E1;Q11-E2,2,2,1,3,3,1,2,2,1,1,"The BSIT Business Analytics program specialization develops three key data competencies:
+
+1. Understanding data structures
+2. Data analysis
+3. Data interpretation
+
+This knowledge is applicable to both local and international industries that require analytics skills, catering to their demands for operational optimization and competitive advantage.",The complete competency and business-purpose sets are correct. The description and its overlapping continuation supply both evidence units.,"The specialization develops understanding of data structures, data analysis and data interpretation. The knowledge can support operational optimization and competitive advantage.",1;2;3,Q11-E1;Q11-E2,Group-verified; source-audited,experiments/main/results/gpu_D_T1.json,24; 23; 23,62efb04b08a2d099d7c6c8577ba5880bac3731436a1f40bd9819d8f7ae44cd56
+REV048,Original prompt,D,Q12,1,1,Q12-E2;Q12-E4,4,2,0.5,3,3,1,3,4,0.75,0,"Based on the provided context:
+
+1. **Prerequisites**:
+   - ITC C604 Data Analysis using Excel has no specified prerequisite.
+   - ITC C605 Data Management and Statistical Analysis using R requires ""ITC C601"" and ""ITC C603"".
+
+2. **Credit Units**:
+   - Both courses require 3 units each.
+
+The main differences between these two courses are:
+
+- **Prerequisites**: While both courses require 3 units, ITC C604 has no specific prerequisite, whereas ITC C605 has a prerequisite of ""ITC C601"" and ""ITC C603"".
+  
+- **Course Content**: Although they both involve data analysis and statistical tools, there's no indication that they cover exactly the same material. ITC C604 focuses on Excel specifically, while ITC C605 covers broader topics including R programming and data management techniques.
+
+In summary, ITC C604 is less prescriptive regarding its prerequisites compared to ITC C605, which necessitates prior knowledge of other related subjects.","Both credit values are correct, but the answer attaches C604’s footer to C605 and says C604 has none. The supplied heading/continuation pair establishes C604’s actual set; curriculum facts establish both credits.","ITC C604 requires ITC C601 and ITC C603 and carries 3 credit units. ITC C605 requires ITC C604, ITC C602 and ITC C201 and also carries 3 credit units. Their prerequisite sets differ, while their credit units are the same.",1;2;3,Q12-E1;Q12-E2;Q12-E4,Group-verified; source-audited,experiments/main/results/gpu_D_T1.json,54; 25; 53,a4bb4e24be3cef87494cedf54feee2460dc562f5376055f3ed236130f6a79c9f
+REV049,Original prompt,E,Q01,2,2,Q01-E1;Q01-E2,2,2,1,1,5,0.2,2,2,1,1,"The Bachelor of Science in Computer Engineering (BSCpE) program focuses on the science and technology of designing, developing, implementing, maintaining, and integrating software and hardware components in modern computing systems and computer-controlled equipment. It encompasses both theoretical knowledge and practical application in the fields of computer engineering.",Both required elements are correct and supported by passage 1. The short theory/practice statement is a reasonable general paraphrase rather than a new program requirement.,"BSCpE covers the design, development, implementation, maintenance and integration of software and hardware components for modern computing systems and computer-controlled equipment.",1,Q01-E1;Q01-E2,Group-verified; source-audited,experiments/main/results/gpu_E_T1.json,3; 3; 3; 6; 26,14185338e7c3308e813c1143d6fed61ca102b3af884ca38c923d547127404d51
+REV050,Original prompt,E,Q02,1,1,Q02-E1;Q02-E3,4,2,0.5,1,5,0.2,1,3,0.3333333333333333,0,"The unit value for Computer Architecture and Organization (CPE C401) in the BSCpE year-by-year curriculum is 4 units.
+
+In the group requirements section, it states:
+
+""Core Courses  85""
+
+And in the CPE C401 course description, it mentions:
+
+""CPE C401. Computer Architecture and Organization. This course includes the study of the evolution of computer architecture and the factors influencing the design of hardware and software elements of computer systems. The focus is on the understanding of the design issues; specifically, instruction set architecture and hardware architecture. Lecture:3 units. Laboratory: 1 unit. Credit: 4 units.""
+
+These listings do not exactly match due to different numbers being used for ""Credit"". However, they both indicate that the course has 4 units total credit hours.","The answer correctly gives the curriculum and description values as 4, but omits the 2-unit group listing. Its claim that the numbers disagree conflicts with its stated equal totals. Passage 2 supports the description credit only.","The year-by-year curriculum lists CPE C401 as 4 units, the group-requirements table lists Computer Architecture & Organization as 2 units, and the course description lists 4 credit units. They do not agree (4, 2 and 4). These passages do not establish which listing should be corrected.",2,Q02-E3,Group-verified; source-audited,experiments/main/results/gpu_E_T1.json,6; 35; 36; 26; 43,303e34c4b54d228d31c9e6f7b02e3bcc2bc3e983a8c013dc0eefb27ff17d3f46
+REV051,Original prompt,E,Q03,2,2,Q03-E1,1,1,1,2,5,0.4,1,1,1,1,"According to the provided context, ECE C405, Design Project 1, has 1 lecture unit.",The 1 lecture-unit value is correct and explicitly supported by the ECE C405 description in passage 5. Passage 1 also supplies a relevant partial curriculum fact.,"ECE C405, Design Project 1, lists 1 lecture unit.",1;5,Q03-E1,Group-verified; source-audited,experiments/main/results/gpu_E_T1.json,10; 36; 42; 37; 42,a300d94f0b297c72dbf91569149f65d1ae534ab9c77c4c88c35c62ec11fa789c
+REV052,Original prompt,E,Q04,1,1,Q04-E3;Q04-E4,4,2,0.5,3,5,0.6,4,4,1,0,"According to the provided context:
+
+**Prerequisites:** ECE C303
+
+**Lectures:** 4 units
+
+**Laboratories:** 1 unit
+
+**Credit:** 4 units",Laboratory 1 and credit 4 are correct; lecture 4 and ECE C303 are wrong. The correct course description is available in the returned evidence.,"The prerequisites are ECE C306 and ECE C308. The course lists 3 lecture units, 1 laboratory unit and 4 credit units.",1;2;3,Q04-E1;Q04-E2;Q04-E3;Q04-E4,Group-verified; source-audited,experiments/main/results/gpu_E_T1.json,41; 10; 41; 37; 42,8e7459c9f3e3b8841e6b09d76def16cb422124a70e9fb0c5626978ba30a81513
+REV053,Original prompt,E,Q05,1,1,,2,0,0,2,5,0.4,1,2,0.5,0,"According to the provided context, EMC C402 Internship is listed in the Fourth Year of the program. Specifically, it appears in the Fourth Year's First Semester under the ""Second Semester Units"" section:
+
+**Fourth Year**
+**First Semester**
+**Units**: 24
+
+**Second Semester**
+**Units**: 24
+
+Therefore, EMC C402 Internship is listed in the Fourth Year of the program, specifically in the First Semester, carrying 24 units.","Fourth Year is a correct partial fact, but First Semester and 24 units are wrong. Neither grouped answer element is complete. The returned internship table supports 9 units only.","EMC C402 Internship is listed in the fourth year, second semester, with 9 units.",1;3,Q05-E2,Group-verified; source-audited,experiments/main/results/gpu_E_T1.json,15; 60; 15; 58; 59,bab30646f047158ec8c4159c083253ef4ab0ba427f3675f76ae5b95734dd1d2d
+REV054,Original prompt,E,Q06,2,2,Q06-E1;Q06-E2;Q06-E3;Q06-E4,4,4,1,1,5,0.2,4,4,1,1,"According to the provided context, for EMC C504 Advanced 2D Animation:
+
+**Prerequisites:** EMC C203, EMC C501
+
+**Lecture Units:** 2 units
+
+**Laboratory Units:** 1 unit
+
+**Credit Units:** 3 units",The complete prerequisite set and all three unit fields are correct and supported by passage 1.,"The prerequisites are EMC C203 and EMC C501. Advanced 2D Animation lists 2 lecture units, 1 laboratory unit and 3 credit units.",1,Q06-E1;Q06-E2;Q06-E3;Q06-E4,Group-verified; source-audited,experiments/main/results/gpu_E_T1.json,60; 60; 15; 58; 15,887eaf5b87584fca891fdcdb8ccd4b27f06c3a3307adf2f79ec424da9b5a4c51
+REV055,Original prompt,E,Q07,2,2,Q07-E1,1,1,1,1,5,0.2,1,1,1,1,The prerequisite listed for EMC C614 Multi-Player and Network Games is EMC C603.,EMC C603 is the correct prerequisite and is explicitly linked to EMC C614 in passage 1. The other returned courses or curriculum listings do not add a prerequisite fact.,The listed prerequisite is EMC C603.,1,Q07-E1,Group-verified; source-audited,experiments/main/results/gpu_E_T1.json,64; 63; 17; 18; 62,fff1126b35d9c92b59134989da32e31bb516247c0c25c9198b04fa085694f526
+REV056,Original prompt,E,Q08,1,1,,4,0,0,1,5,0.2,1,3,0.3333333333333333,0,"The complete prerequisite list for Game Programming 1 (EMC C602) includes:
+
+1. EMC C201 (Introduction to Game Design & Development)
+2. EMC C203 (Principles of 2D Animation)
+
+Passing Game Programming 1 alone does **not** satisfy the listed prerequisites for Game Programming 2 (EMC C603). To pass Game Programming 2, one must have completed Game Programming 1 along with the additional requirements specified in the course description.","The answer calls its C602 list complete while omitting C601. It gives no complete C603 or C604 set and does not identify the additional C608 qualification. The relevant C602 passage supplies the full set, so the omission is visible.","Game Programming 1 (EMC C602) requires EMC C201, EMC C203 and EMC C601. Game Programming 2 (EMC C603) requires EMC C602 and EMC C608. Game Programming 3 (EMC C604) requires EMC C603. Passing Game Programming 1 alone does not satisfy the full listed prerequisite set for Game Programming 2 because EMC C608 is also listed.",3,Q08-E1,Group-verified; source-audited,experiments/main/results/gpu_E_T1.json,61; 18; 62; 17; 63,9570d3651f146e650afe1f48787dbdba5a86f2ca1c3e49049f2878ab18de3745
+REV057,Original prompt,E,Q09,1,1,Q09-E2,2,1,0.5,2,5,0.4,1,2,0.5,0,"According to the provided course descriptions:
+
+Prerequisites for ITC C402 Internship include:
+- None explicitly stated
+
+Credit units for ITC C402 Internship are:
+- 6 units",The 6-credit fact is correct. The answer incorrectly reports no explicit prerequisites. The returned curriculum supports the credit value but not that absence claim.,ITC C402 Internship lists ITC C508 and ITC C403 as prerequisites and carries 6 credit units.,1;3,Q09-E2,Group-verified; source-audited,experiments/main/results/gpu_E_T1.json,25; 5; 22; 44; 43,950126e697406f5ebed9c749efb1f50ed6c4c3d8bb1925874c457ac657e477b1
+REV058,Original prompt,E,Q10,0,1,,4,0,0,0,5,0,0,4,0,0,"The fourth-year first semester curriculum requirements for both the BSIT and BSIT with specialization in Business Analytics are identical across all four semesters.
+
+Here's a comparison based on the provided information:
+
+### First Year Semesters:
+**Semester 1:**
+- **BSIT:** HIS C101 (Readings in Philippine History), ENG C101 (Purposive Communication)
+- **BSIT-Business Analytics:** HIS C101 (Readings in Philippine History), ENG C101 (Purposive Communication)
+
+**Semester 2:**
+- **BSIT:** SSC C102 (Contemporary World), FOS C101 (Strategies for Academic Success in College)
+- **BSIT-Business Analytics:** SSC C102 (Contemporary World), FOS C101 (Strategies for Academic Success in College)
+
+### Second Year Semesters:
+**Semester 1:**
+- **BSIT:** ITC C103 (Fundamentals of IT), ITC C105 (Computer Programming 1)
+- **BSIT-Business Analytics:** ITC C103 (Fundamentals of IT), ITC C105 (Computer Programming 1)","The response gives unrelated first/second-year comparisons and incorrectly claims identical fourth-year curricula. Some course names are present in the context, but no requested answer element is complete. The isolated course-list tail lacks the requested year/semester relationship.","BSIT lists ITC C401, ITC C403, EMC C307 and ITC C508, for a total of 12 units. BSIT with specialization in Business Analytics lists ITC C206, ITC C401, ITC C403, ITC C611 and ITC C612, for a total of 15 units. Each listed first-semester course carries 3 units.",,,Group-verified; source-audited,experiments/main/results/gpu_E_T1.json,26; 24; 44; 25; 22,8266bf35299e93b71fd22bc1371f93a040fcb6a5e61d40dcb21c0a3b00627063
+REV059,Original prompt,E,Q11,2,2,Q11-E2,2,1,0.5,2,5,0.4,2,2,1,0,"Based on the provided information from Source 2, the BSIT Business Analytics program develops the following three data competencies:
+
+1. Understanding data management concepts and the importance of data availability for making reliable business decisions.
+2. Demonstrating an understanding of business intelligence, including data gathering, storing, analyzing, and accessing data.
+3. Describing how to find data in an organization and creating required reports.
+
+The knowledge gained from these competencies can serve two main business purposes:
+
+1. Operational optimization: This allows businesses to use data effectively to improve efficiency and performance.
+2. Competitive advantage: By leveraging data insights, companies can gain a competitive edge over rivals by making informed strategic decisions.","The outcome statements are source-supported, and both business purposes are correctly explained. The required three-item program-description competency set is absent, so completeness remains one-half.","The specialization develops understanding of data structures, data analysis and data interpretation. The knowledge can support operational optimization and competitive advantage.",1;2,Q11-E1;Q11-E2,Group-verified; source-audited,experiments/main/results/gpu_E_T1.json,23; 24; 24; 26; 54,7ce18d16624b555d3c1fa10ca318042e9eba736888df8dbb9571e123156f8a51
+REV060,Original prompt,E,Q12,1,1,Q12-E2;Q12-E4,4,2,0.5,4,5,0.8,3,4,0.75,0,"Based on the provided curriculum, there are several differences between ITC C604 Data Analysis using Excel and ITC C605 Data Management and Statistical Analysis using R:
+
+1. **Prerequisites**:
+   - **ITC C604**: Requires completion of ITC C601 (Statistics for Business Analytics).
+   - **ITC C605**: No specific prerequisite mentioned.
+
+2. **Credit Units**:
+   - **ITC C604**: 3 units.
+   - **ITC C605**: 3 units.
+
+These differences suggest that while both courses involve data analysis, they may cover different aspects or levels of complexity. ITC C604 appears to focus more specifically on statistical techniques within business analytics, requiring prior knowledge of statistics, whereas ITC C605 introduces foundational concepts in data management and statistical analysis using R, without specifying any particular pre-requisite beyond general familiarity with Excel.","Both credit values are correct. The C604 set omits C603 and C605 is wrongly said to have no prerequisite. The source heading/continuation supplies the full C604 set, and the curriculum supplies C605’s credit value.","ITC C604 requires ITC C601 and ITC C603 and carries 3 credit units. ITC C605 requires ITC C604, ITC C602 and ITC C201 and also carries 3 credit units. Their prerequisite sets differ, while their credit units are the same.",1;2;3;4,Q12-E1;Q12-E2;Q12-E4,Group-verified; source-audited,experiments/main/results/gpu_E_T1.json,53; 54; 25; 25; 21,85a51abc7e2f79c37203dabc82656421616d9d58f3058e204b21f99884fd34d5
+REV061,Revised prompt,D,Q01,2,2,Q01-E1;Q01-E2,2,2,1,1,3,0.3333333333333333,2,2,1,1,"The Bachelor of Science in Computer Engineering (BSCpE) program focuses on the science and technology of designing, developing, implementing, maintaining, and integrating software and hardware components in modern computing systems and computer-controlled equipment.",Both program-focus elements are correct and supported by passage 1.,"BSCpE covers the design, development, implementation, maintenance and integration of software and hardware components for modern computing systems and computer-controlled equipment.",1,Q01-E1;Q01-E2,Group-verified; source-audited,experiments/prompt/results/gpu_D_T1.json,3; 3; 3,b517279d64021b2c5bf66abef478bd91f73a7e5eb9b611db1c69771a9dd873f3
+REV062,Revised prompt,D,Q02,1,1,Q02-A1,4,1,0.25,0,3,0,0,3,0,0,"The BSCpE year-by-year curriculum lists 1 unit for Computer Architecture and Organization.
+
+In the group requirements section, it states:
+
+""Computer Engineering as a Discipline 1""
+
+And in the CPE C401 course description, it mentions:
+
+""Lecture: 0 unit. Lab: 9 units.""
+
+These listings do not agree because they present different numbers of units for Computer Architecture and Organization. The curriculum suggests 1 unit, while the course description indicates 9 units.","The reported values of 1 and 9 are assigned from unrelated courses. The answer correctly states that the listings disagree, so only that qualification is credited.","The year-by-year curriculum lists CPE C401 as 4 units, the group-requirements table lists Computer Architecture & Organization as 2 units, and the course description lists 4 credit units. They do not agree (4, 2 and 4). These passages do not establish which listing should be corrected.",,,Group-verified; source-audited,experiments/prompt/results/gpu_D_T1.json,6; 26; 43,5b0c00cf4dde663f409e7ed0e8bff1134143ed39b60e6a67d09b6022b6452d92
+REV063,Revised prompt,D,Q03,2,0,Q03-E1,1,1,1,1,3,0.3333333333333333,0,1,0,0,"According to the provided context, ECE C405, Design Project 1, has 1 lecture unit listed.","The 1 lecture-unit answer is correct, but the supplied curriculum record does not identify a lecture unit. Correctness and completeness therefore do not establish source support.","ECE C405, Design Project 1, lists 1 lecture unit.",1,,Group-verified; source-audited,experiments/prompt/results/gpu_D_T1.json,10; 36; 36,625aff23c7fbef9fc60252f962bf438a7685dcffcca0b80c3c3b8b294581a399
+REV064,Revised prompt,D,Q04,2,2,Q04-E1;Q04-E2;Q04-E3;Q04-E4,4,4,1,3,3,1,4,4,1,1,"The prerequisite for ECE C401, ECE Elective 1 (Broadcast Production Engineering 1) is ECE C306 and ECE C308.
+
+The lecture hours for this course are 3 units.
+
+The laboratory hours for this course are 1 unit.
+
+The credit units for this course are 4 units.",The complete prerequisite set and all three unit fields are correct and supported by the supplied ECE C401 passage and continuation.,"The prerequisites are ECE C306 and ECE C308. The course lists 3 lecture units, 1 laboratory unit and 4 credit units.",1;2;3,Q04-E1;Q04-E2;Q04-E3;Q04-E4,Group-verified; source-audited,experiments/prompt/results/gpu_D_T1.json,41; 41; 10,bf35f0c62c27996298f0291e7480f13bb07cce3ad3766e206053350c102db9c7
+REV065,Revised prompt,D,Q05,1,1,Q05-E2,2,1,0.5,2,3,0.6666666666666666,1,2,0.5,0,"The EMC C402 Internship is listed in the Fourth Year, First Semester. It carries 9 units.",The answer correctly gives 9 units but incorrectly says First Semester. The evidence supports the unit value but does not unambiguously preserve the semester mapping.,"EMC C402 Internship is listed in the fourth year, second semester, with 9 units.",1;3,Q05-E2,Group-verified; source-audited,experiments/prompt/results/gpu_D_T1.json,15; 58; 15,2daca407633b8c13ea659729ed952707aeafce2337479fd7dce4d5985d116027
+REV066,Revised prompt,D,Q06,2,2,Q06-E1;Q06-E2;Q06-E3;Q06-E4,4,4,1,1,3,0.3333333333333333,4,4,1,1,"The prerequisite for EMC C504 Advanced 2D Animation is EMC C203 and EMC C501.
+
+The lecture hours for EMC C504 are 2 units.
+
+The laboratory hours for EMC C504 are 1 unit.
+
+The credit hours for EMC C504 are 3 units.",The complete prerequisite set and all three unit fields are correct and supported by passage 1.,"The prerequisites are EMC C203 and EMC C501. Advanced 2D Animation lists 2 lecture units, 1 laboratory unit and 3 credit units.",1,Q06-E1;Q06-E2;Q06-E3;Q06-E4,Group-verified; source-audited,experiments/prompt/results/gpu_D_T1.json,60; 15; 60,f12b7eb2c5e00f30cfd92efaf30e22fd86d20cab441814f5f57bf31856744a8d
+REV067,Revised prompt,D,Q07,2,2,Q07-E1,1,1,1,1,3,0.3333333333333333,1,1,1,1,The prerequisite listed for EMC C614 Multi-Player and Network Games is EMC C603.,EMC C603 is the correct prerequisite and is explicitly linked to EMC C614 in passage 1. The other returned courses or curriculum listings do not add a prerequisite fact.,The listed prerequisite is EMC C603.,1,Q07-E1,Group-verified; source-audited,experiments/prompt/results/gpu_D_T1.json,64; 63; 62,14b2c996bf8348f8ce48079e2d4149ff5f236022e2bac4f29dddfff2ac747b9f
+REV068,Revised prompt,D,Q08,1,1,Q08-E1,4,1,0.25,1,3,0.3333333333333333,1,3,0.3333333333333333,0,"The complete prerequisite list for Game Programming 1 (EMC C602) includes:
+
+- EMC C201: Principles of 2D Animation
+- EMC C203: Principles of 2D Animation
+- EMC C601: Applied Mathematics for Games
+
+For Game Programming 2 (EMC C603), the prerequisite is:
+
+- EMC C602: Game Programming 1
+
+Passing Game Programming 1 alone would not satisfy the listed prerequisites for Game Programming 2 because it requires additional courses beyond just Game Programming 1.","The complete C602 code set is present, but C201 has the wrong title. C603’s set omits C608, C604 is unanswered, and the insufficiency explanation omits the required additional course. Only the C602 answer element is complete.","Game Programming 1 (EMC C602) requires EMC C201, EMC C203 and EMC C601. Game Programming 2 (EMC C603) requires EMC C602 and EMC C608. Game Programming 3 (EMC C604) requires EMC C603. Passing Game Programming 1 alone does not satisfy the full listed prerequisite set for Game Programming 2 because EMC C608 is also listed.",1,Q08-E2,Group-verified; source-audited,experiments/prompt/results/gpu_D_T1.json,62; 62; 17,6d486ad42f852f8b8101d153f319e2844ee6654b7230b4984783009e706bd4ef
+REV069,Revised prompt,D,Q09,2,2,Q09-E1;Q09-E2,2,2,1,2,3,0.6666666666666666,2,2,1,1,"The prerequisite for ITC C402 Internship is ITC C508, ITC C403. The credit units for this course are 6.",Both prerequisite codes and 6 credits are correct and explicitly supported by the internship description. The curriculum also supports the credit fact.,ITC C402 Internship lists ITC C508 and ITC C403 as prerequisites and carries 6 credit units.,1;2,Q09-E1;Q09-E2,Group-verified; source-audited,experiments/prompt/results/gpu_D_T1.json,49; 22; 48,0fdba5d8316c487e932cf50b2b4e3a83ce6d81659308c6bf9a438359f795f248
+REV070,Revised prompt,D,Q10,0,0,,4,0,0,0,3,0,0,4,0,0,"The fourth-year first semester of the BSIT major in Business Analytics includes the following courses:
+
+Technical Courses:
+- IT Common Courses: 18 units
+- IT Professional Courses: 51 units
+
+Total units for technical courses: 18 + 51 = 69 units
+
+For the BSIT major without specialization in Business Analytics, the fourth-year first semester would include these courses:
+
+Technical Courses:
+- IT Common Courses: 18 units
+- IT Professional Courses: 51 units
+
+Total units for technical courses: 18 + 51 = 69 units
+
+Both programs have identical course codes and total units for the fourth-year first semester of the BSIT major in Business Analytics.",The response assigns whole-program category totals of 69 to the fourth-year semester and incorrectly says the programs are identical. None of the requested semester facts is correctly answered or covered.,"BSIT lists ITC C401, ITC C403, EMC C307 and ITC C508, for a total of 12 units. BSIT with specialization in Business Analytics lists ITC C206, ITC C401, ITC C403, ITC C611 and ITC C612, for a total of 15 units. Each listed first-semester course carries 3 units.",,,Group-verified; source-audited,experiments/prompt/results/gpu_D_T1.json,26; 24; 24,f9078c51c1cb6e2c025a9c5b2f7ea55b185c0f9c8452c855986cdb50177c01d7
+REV071,Revised prompt,D,Q11,2,2,Q11-E1;Q11-E2,2,2,1,3,3,1,2,2,1,1,"The BSIT Business Analytics program described develops the following three data competencies:
+
+1. Understanding data structures
+2. Data analysis
+3. Data interpretation
+
+That knowledge can serve two business purposes:
+
+1. Operational optimization
+2. Competitive advantage",The three competencies and two purposes are correctly stated and supported by the program-description continuation.,"The specialization develops understanding of data structures, data analysis and data interpretation. The knowledge can support operational optimization and competitive advantage.",1;2;3,Q11-E1;Q11-E2,Group-verified; source-audited,experiments/prompt/results/gpu_D_T1.json,24; 23; 23,543c2a0ad1f4dfc587f32c221128ae4953fa8f784b01b95471eed063197dad19
+REV072,Revised prompt,D,Q12,1,1,Q12-E2;Q12-E4,4,2,0.5,3,3,1,3,4,0.75,0,"Based on the provided context:
+
+1. **Prerequisites**:
+   - ITC C604 Data Analysis using Excel has no specified prerequisite.
+   - ITC C605 Data Management and Statistical Analysis using R requires ""ITC C601"" and ""ITC C603"".
+
+2. **Credit Units**:
+   - Both courses require 3 units.
+
+The main differences between these two courses are:
+- **Prerequisites**: ITC C604 has no prerequisite, while ITC C605 requires ""ITC C601"" and ""ITC C603"".
+- **Credit Units**: Both courses require exactly 3 units.","Both credit values are correct, but the C604 prerequisite footer is assigned to C605. The true C604 set and both credit facts are available in the context.","ITC C604 requires ITC C601 and ITC C603 and carries 3 credit units. ITC C605 requires ITC C604, ITC C602 and ITC C201 and also carries 3 credit units. Their prerequisite sets differ, while their credit units are the same.",1;2;3,Q12-E1;Q12-E2;Q12-E4,Group-verified; source-audited,experiments/prompt/results/gpu_D_T1.json,54; 25; 53,4febbe4b6ccef538aaf55dc4520987a7a4b4dd0ab903952d4b6cb1d6a75dd596
+REV073,Prepared source,D,Q01,2,2,Q01-E1;Q01-E2,2,2,1,1,3,0.3333333333333333,2,2,1,1,"The Bachelor of Science in Computer Engineering (BSCpE) program focuses on the science and technology of designing, developing, implementing, maintaining, and integrating software and hardware components in modern computing systems and computer-controlled equipment.",Both program-focus elements are correct and supported by the program-description record in passage 1. The two curriculum records do not answer the focus question.,"BSCpE covers the design, development, implementation, maintenance and integration of software and hardware components for modern computing systems and computer-controlled equipment.",1,Q01-E1;Q01-E2,Group-verified; source-audited,experiments/sourceprep/results/gpu_D_T1.json,3; 4; 4,adaa6076785de886bef7303b4a82bae86a5806b9d0789a0ff55c25311f9d0b04
+REV074,Prepared source,D,Q02,1,1,Q02-E1;Q02-A1,4,2,0.5,1,3,0.3333333333333333,1,3,0.3333333333333333,0,"The unit value for Computer Architecture and Organization in the BSCpE year-by-year curriculum is 4 units. This can be seen in the first document's page 5 under record CSE-0063. The second document also lists this course with 4 units in its fourth year, second semester curriculum. However, it's important to note that the third document shows a different number of units for Computer Architecture and Organization at the beginning of the first year, listing it as 27 units. These listings do not fully agree since they differ in the number of units assigned to the same course.","The 4-unit year-by-year fact is correct and supported by record CSE-0063. The other two records concern different semesters and do not establish the alleged 4-unit and 27-unit course listings. The disagreement qualification is credited, but the requested group and description facts are missing.","The year-by-year curriculum lists CPE C401 as 4 units, the group-requirements table lists Computer Architecture & Organization as 2 units, and the course description lists 4 credit units. They do not agree (4, 2 and 4). These passages do not establish which listing should be corrected.",1,Q02-E1,Group-verified; source-audited,experiments/sourceprep/results/gpu_D_T1.json,5; 5; 4,0addd49621cd2331b53697e8bae6c7d2472e92d918d2e58ab7f35cc41e652921
+REV075,Prepared source,D,Q03,0,0,,1,0,0,0,3,0,0,1,0,0,"The provided context does not include any information about ECE C405, Design Project 1. Therefore, the available documents do not provide a sufficient answer to this specific request.",The response gives no requested lecture-unit answer. All three passages describe other courses; no evidence unit is covered.,"ECE C405, Design Project 1, lists 1 lecture unit.",,,Group-verified; source-audited,experiments/sourceprep/results/gpu_D_T1.json,41; 41; 42,eff4e2cdff41d7d451aa8a4c441c3e1d1f36bc810a28a8e57dac6449c8251f42
+REV076,Prepared source,D,Q04,2,2,Q04-E1;Q04-E2;Q04-E3;Q04-E4,4,4,1,2,3,0.6666666666666666,4,4,1,1,"The prerequisites for ECE C401, ECE Elective 1 (Broadcast Production Engineering 1) include ECE C306 and ECE C308. The lecture hours are 3 units, the laboratory hours are 1 unit, and the credit hours are 4 units.","All required facts are correct and supported by passages 1 and 3, which both identify ECE C401. Passage 2 concerns ECE C402.","The prerequisites are ECE C306 and ECE C308. The course lists 3 lecture units, 1 laboratory unit and 4 credit units.",1;3,Q04-E1;Q04-E2;Q04-E3;Q04-E4,Group-verified; source-audited,experiments/sourceprep/results/gpu_D_T1.json,41; 41; 41,3dc42a3a869e80366214024bfea0dc02d2eaa4eeda1a13166fa335fb8d99d2f8
+REV077,Prepared source,D,Q05,0,0,,2,0,0,0,3,0,0,2,0,0,"The EMC C402 Internship is not mentioned in the provided course descriptions for the Digital Animation Technology (DAT) curriculum at JRU College of Computer Studies and Engineering during the academic years and semesters specified in the given context. The only courses related to digital animation technology listed are EMC C204 (Principles of 3D Animation), EMC C504 (Advanced 2D Animation), EMC C511 (Animation Design and Production), and EMC C512 (Production Pipeline). None of these courses mention an internship component. Therefore, there is insufficient information to determine if EMC C402 Internship exists within the DAT curriculum and its corresponding year and semester.",The response supplies no requested year/semester or unit fact. The returned records concern other courses. Its extra course-title statement does not answer the question.,"EMC C402 Internship is listed in the fourth year, second semester, with 9 units.",,,Group-verified; source-audited,experiments/sourceprep/results/gpu_D_T1.json,"60; 60; 57,58",170b788bf33784b542bf6b07d46b0074d93e46855e557b4b2a70d5ea39c6f4b4
+REV078,Prepared source,D,Q06,2,2,Q06-E1;Q06-E2;Q06-E3;Q06-E4,4,4,1,1,3,0.3333333333333333,4,4,1,1,"For EMC C504 Advanced 2D Animation:
+
+Prerequisites:
+- EMC C203 (for Bachelor's degree)
+- EMC C501 (for Bachelor's degree)
+
+Lecture Units: 2
+Laboratory Units: 1
+Credit Units: 3",All prerequisite codes and unit fields are correct and supported by the explicit C504 record. The degree wording adds no conflicting prerequisite condition.,"The prerequisites are EMC C203 and EMC C501. Advanced 2D Animation lists 2 lecture units, 1 laboratory unit and 3 credit units.",1,Q06-E1;Q06-E2;Q06-E3;Q06-E4,Group-verified; source-audited,experiments/sourceprep/results/gpu_D_T1.json,"60; 57,58; 59,60",d6890744e75a7b99f8ef9d40d153091968994509659969435f73432c91a10117
+REV079,Prepared source,D,Q07,2,2,Q07-E1,1,1,1,1,3,0.3333333333333333,1,1,1,1,The prerequisite listed for EMC C614 Multi-Player and Network Games is EMC C603.,EMC C603 is the correct prerequisite and is explicitly linked to EMC C614 in passage 1. The other returned courses or curriculum listings do not add a prerequisite fact.,The listed prerequisite is EMC C603.,1,Q07-E1,Group-verified; source-audited,experiments/sourceprep/results/gpu_D_T1.json,64; 63; 63,6808cc7c4c0d041642f58c02b66dc47246018e7085afeaa147dbbc947198f2c7
+REV080,Prepared source,D,Q08,2,2,Q08-E1;Q08-E2;Q08-A1,4,3,0.75,2,3,0.6666666666666666,2,3,0.6666666666666666,0,"The complete prerequisite list for Game Programming 1 (EMC C602) includes:
+
+- EMC C201
+- EMC C203
+- EMC C601
+
+For Game Programming 2 (EMC C603), the prerequisite list includes:
+
+- EMC C602
+- EMC C608
+
+Passing Game Programming 1 alone does not satisfy the listed prerequisites for Game Programming 2. To meet the requirements for Game Programming 2, one must have completed both EMC C602 and EMC C608.","The C602 and C603 sets and the additional-C608 explanation are correct and supported by passages 1 and 2. C604’s prerequisite is omitted, so completeness is 3/4 rather than full.","Game Programming 1 (EMC C602) requires EMC C201, EMC C203 and EMC C601. Game Programming 2 (EMC C603) requires EMC C602 and EMC C608. Game Programming 3 (EMC C604) requires EMC C603. Passing Game Programming 1 alone does not satisfy the full listed prerequisite set for Game Programming 2 because EMC C608 is also listed.",1;2,Q08-E1;Q08-E2,Group-verified; source-audited,experiments/sourceprep/results/gpu_D_T1.json,62; 62; 63,d97fb6ff0e38e391e1f3d46438c90036e16b874395cc280617c660cf4f29feda
+REV081,Prepared source,D,Q09,0,0,,2,0,0,0,3,0,0,2,0,0,"The provided course descriptions do not include any details about the prerequisites or credit units for ITC C402 Internship. The relevant course codes (CSE-1000, CSE-1001, and CSE-1032) all pertain to different courses within the Information Technology department, specifically Computer Programming 1, Computer Programming 1, and ITE Elective 1 respectively. There is no mention of an internship course with this name in the given text. Therefore, based on the information provided, it cannot be determined what prerequisites and credit units would apply to ITC C402 Internship.","No requested prerequisite or credit answer is given. The returned records describe other IT courses, so they do not cover a required evidence unit.",ITC C402 Internship lists ITC C508 and ITC C403 as prerequisites and carries 6 credit units.,,,Group-verified; source-audited,experiments/sourceprep/results/gpu_D_T1.json,"43,44; 44; 50",f96e137fdaf66d834cffaa24d2b8a668708c3174609fe10863b63a6b17180847
+REV082,Prepared source,D,Q10,1,1,Q10-E3;Q10-E4,4,2,0.5,1,3,0.3333333333333333,2,4,0.5,0,"The fourth-year first semester curriculum for both BSIT and BSIT with specialization in Business Analytics includes the following courses:
+
+For BSIT:
+- ITC C206
+- ITC C401
+- ITC C403
+- ITC C611
+- ITC C612
+
+Total units: 15
+
+For BSIT with specialization in Business Analytics:
+- ITC C206
+- ITC C401
+- ITC C403
+- ITC C611
+- ITC C612
+
+Total units: 15
+
+Both programs have identical course selections for their fourth-year first semester, but differ only in the name of the specialization they offer. The BSIT program offers ""Information Technology"" while the BSIT with specialization in Business Analytics offers ""Business Analytics.""",The BSIT-BA set and 15-unit total are correct and supported by record CSE-0385. The same facts are incorrectly copied to regular BSIT; only the two BA answer elements are correct.,"BSIT lists ITC C401, ITC C403, EMC C307 and ITC C508, for a total of 12 units. BSIT with specialization in Business Analytics lists ITC C206, ITC C401, ITC C403, ITC C611 and ITC C612, for a total of 15 units. Each listed first-semester course carries 3 units.",3,Q10-E3;Q10-E4,Group-verified; source-audited,experiments/sourceprep/results/gpu_D_T1.json,25; 25; 25,e0557b919b642d07b2753848c71750bf63d4fa5f7e0397b17a552b51b31dae87
+REV083,Prepared source,D,Q11,2,1,Q11-E2,2,1,0.5,1,3,0.3333333333333333,2,2,1,0,"Based on the provided context:
+
+The BSIT Business Analytics program develops the following three data competencies:
+1. Data Management
+2. Data Analysis
+3. Data Interpretation
+
+That knowledge can serve two business purposes:
+1. Operational Optimization
+2. Competitive Advantage","Data management replaces the requested data structures term, so the grouped competency element is incomplete. Data management is a genuine program competency elsewhere in the handbook, but the supplied description does not support that substitution. Both business purposes are correct.","The specialization develops understanding of data structures, data analysis and data interpretation. The knowledge can support operational optimization and competitive advantage.",3,Q11-E1;Q11-E2,Group-verified; source-audited,experiments/sourceprep/results/gpu_D_T1.json,26; 26; 23,e3e3e39113cb8baccff47b32aa818596466857c42c1c114ac5909a701ff27a19
+REV084,Prepared source,D,Q12,2,2,Q12-E1;Q12-E2;Q12-E3;Q12-E4,4,4,1,3,3,1,4,4,1,1,"ITC C604 Data Analysis using Excel has a prerequisite of ITC C601 and ITC C603, while ITC C605 Data Management and Statistical Analysis using R requires ITC C604, ITC C602, and ITC C201 as prerequisites. In terms of credit units, both courses require 3 units.",Both complete prerequisite sets and both 3-credit values are correct. The prepared C604 and C605 records explicitly establish all four required facts.,"ITC C604 requires ITC C601 and ITC C603 and carries 3 credit units. ITC C605 requires ITC C604, ITC C602 and ITC C201 and also carries 3 credit units. Their prerequisite sets differ, while their credit units are the same.",1;2;3,Q12-E1;Q12-E2;Q12-E3;Q12-E4,Group-verified; source-audited,experiments/sourceprep/results/gpu_D_T1.json,"54; 53,54; 53,54",a800aa56a11075361c364eaf86af674efb4a0260dd6453f32eb81b22b2f9249d

@@ -5,6 +5,8 @@ export interface ActivityDocument {
   link: string;
   isNotebook: boolean;
   downloadName?: string;
+  downloadLink?: string;
+  sheets?: { label: string; link: string; description?: string }[];
 }
 
 export interface Activity {
@@ -12,13 +14,484 @@ export interface Activity {
   title: string;
   description: string;
   period: 'Prelim' | 'Midterm' | 'Finals';
+  yearLevel: string;
+  semester: string;
   type: string;
   techStack: string[];
   reflection: string;
   documents: ActivityDocument[];
 }
 
-export const activities: Activity[] = [];
+export const activities: Activity[] = [
+  /* ──────────────────────────────────────────
+     4th Year · 1st Semester · Prelim Period
+     ────────────────────────────────────────── */
+  {
+    id: '4y-pt-p1',
+    title: 'PT-P1: Data Analysis with Pivot Tables',
+    description:
+      'Performance task applying structured data analysis using pivot tables and step-by-step data transformation workflows for systematic insight extraction.',
+    period: 'Prelim',
+    yearLevel: '4th Year',
+    semester: '1st Semester',
+    type: 'Performance Task',
+    techStack: ['Data Analysis', 'Pivot Tables', 'Excel', 'Data Visualization'],
+    reflection: `For this exercise I built a customer feedback classifier for a sports team's online store and ticketing app, using Machine Learning for Kids. I picked that domain because it naturally produces the three kinds of messages the exercise needed: fans praising a smooth checkout, fans complaining about a damaged jersey, and fans panicking because their tickets won't load before kickoff. I wrote 100 example sentences per class, Positive Praise, Negative Complaint, and Urgent Support, trained the model, then tested it in three rounds. Clear, unambiguous phrases scored 90%. Phrases built around sarcasm, sentiment reversal, and hedged urgency dropped that to 33%. Out-of-vocabulary questions had no fixed right answer, but the model still tagged a few of them with high confidence even when it clearly shouldn't have been. After that, I added 32 new training examples targeting the failure patterns from the ambiguous round and re-tested seven of the phrases that had failed. Three flipped to correct, four stayed wrong.
+
+That whole sequence changed how I think about rules versus tagged learning. Before this, I would have assumed IF/ELSE rules could get you pretty far with something like sentiment sorting, since complaint words feel like they should be listable. What the sarcasm round showed me is that they're not. A rule like "if the sentence has a positive word, tag it praise" breaks the moment sentiment flips partway through a sentence, and no fixed list of words can catch that, because the meaning depends on the whole sentence, not one word. A trained model at least has a shot at learning that pattern if it sees enough of it, which is what my refinement step tried to do.
+
+I also learned something about data that I wouldn't have guessed going in. I already had 100 examples per class before refinement, so the ambiguous-round failures weren't about lacking data overall, they were about lacking one specific kind of data: sarcasm, reversal, and hedged urgency. Adding more plain praise or plain complaints wouldn't have helped, since the model was never confused about those. But targeted data didn't fix everything either. Three of seven retested phrases flipped to correct, four didn't, probably because those phrases used a slightly different structure than what I added. So volume and diversity aren't the same lever, and a model can be swimming in data and still miss a pattern it's never actually seen represented.
+
+The last thing I took from this was about where the model actually "understands" language versus where it doesn't. Based on how it failed on sentiment reversal, I think it's working off something closer to a bag of words than anything that tracks sentence structure or word order, since it kept latching onto individual words like "cancel" instead of noticing a "but" that flipped the meaning.
+
+This exercise is useful to me beyond just this one assignment. Learning to test a model in stages, clear cases first, then edge cases, then genuinely ambiguous ones, is a habit I want to carry into every model I build after this, including the ones for our capstone. And the data lesson especially will matter there: if our capstone's document-matching system ever underperforms on a specific type of accreditation document, my instinct now is to ask what kind of example is missing, not just how much data we have overall. That's a much more useful way to debug a model than just throwing more data at it and hoping.`,
+    documents: [
+      {
+        label: 'Report (PDF)',
+        link: `${BASE}activities/4th-year-prelim/PT-P1_BERNARDO, Luke Joaquin (1).pdf`,
+        isNotebook: false,
+      },
+      {
+        label: 'Workbook',
+        link: `${BASE}activities/4th-year-prelim/PT-P1_TestA_ClearPatterns.csv`,
+        isNotebook: false,
+        downloadLink: `${BASE}activities/4th-year-prelim/PT-P1_BERNARDO, Luke Joaquin.xlsx`,
+        downloadName: 'PT-P1_BERNARDO_Workbook.xlsx',
+        sheets: [
+          { label: 'Test A: Clear Patterns', link: `${BASE}activities/4th-year-prelim/PT-P1_TestA_ClearPatterns.csv` },
+          { label: 'Test B: Ambiguous', link: `${BASE}activities/4th-year-prelim/PT-P1_TestB_AmbiguousSarcastic.csv` },
+          { label: 'Test C: Out-of-Vocab', link: `${BASE}activities/4th-year-prelim/PT-P1_TestC_OutOfVocabulary.csv` },
+          { label: 'Step 5: Refinement', link: `${BASE}activities/4th-year-prelim/PT-P1_Step5_Refinement.csv` },
+        ],
+      },
+      {
+        label: 'Step 4 Screenshot',
+        link: `${BASE}activities/4th-year-prelim/PT-P1_BERNARDO_Step 4 (1).png`,
+        isNotebook: false,
+      },
+      {
+        label: 'Step 5 Screenshot',
+        link: `${BASE}activities/4th-year-prelim/PT-P1_BERNARDO_Step 5.png`,
+        isNotebook: false,
+      },
+    ],
+  },
+  {
+    id: '4y-pt-p2',
+    title: 'PT-P2: Neural Network Training & Testing (FFBP)',
+    description:
+      'Implementation and evaluation of a Feed-Forward Back-Propagation (FFBP) neural network, including structured training logs, IEEE-formatted reporting, and full notebook experimentation.',
+    period: 'Prelim',
+    yearLevel: '4th Year',
+    semester: '1st Semester',
+    type: 'Machine Learning Project',
+    techStack: ['Python', 'Neural Networks', 'FFBP', 'IEEE Report', 'Jupyter Notebook'],
+    reflection: `For this exercise I rebuilt my earlier no-code sentiment classifier from scratch in Keras, using the same 332 customer messages split across three classes. That no-code version had topped out at 43.3% validation accuracy on ambiguous phrasing after refinement, and I used that as the benchmark to beat. I ran fifteen experiments total: a baseline, three runs pushed deliberately toward underfitting, overfitting, and a regularized middle ground, one custom configuration, and then ten ablation runs where I changed exactly one setting at a time off whatever combination had worked best so far. Every run used the same pipeline and the same four-layer architecture, so I could isolate what each individual change actually did. My best run combined early stopping, an expanded and more diverse dataset, a recovered vocabulary, and a smaller batch size, and reached a weighted F1 of 0.8416, well past the benchmark.
+
+Along the way I saw underfitting and overfitting exactly the way they get described in lectures, but seeing them on my own loss curves made them click in a way reading about them never did. A tiny hidden layer and a tiny learning rate left both curves flat and high the whole time, the model never really learning anything. A huge hidden layer, a high learning rate, and no dropout did the opposite, training loss collapsing to zero while validation loss climbed the entire time, the model memorizing instead of generalizing. Early stopping was the clearest lesson of the whole exercise: rolling the weights back to the best validation point instead of letting training run to the end improved results almost for free, and it's the kind of safeguard I want to build into anything I train from now on rather than treating as optional.
+
+I also learned that more capacity isn't automatically better, which pushed back on my own instinct going in. Once early stopping and more data were already doing their job, adding a bigger hidden layer on top didn't help and sometimes made things slightly worse, probably by giving the model more room to latch onto noise before early stopping caught it. More data, on the other hand, helped every single time I tried it. That's consistent with what I noticed in the no-code version too: it's not really about how much data you have, it's about whether that data actually covers the patterns the model is missing.
+
+The other big realization was about control itself. In the no-code tool, every hyperparameter decision was hidden behind one training button, so when something went wrong, I had no way to tell whether it was a learning rate problem, a capacity problem, or something about how the tool reads text in the first place. Working directly in Keras meant I could actually test that. Swapping Adam for plain SGD at the exact same learning rate nearly broke training completely, something I never could have discovered without being able to change one variable at a time and watch what happened.
+
+This exercise gave me something more useful than just a better score: a method. Testing one variable at a time, reading loss curves honestly instead of only checking the final accuracy number, and treating early stopping and data quality as first tools rather than last resorts, is exactly the kind of process I'll need for our capstone's sentence-transformer models, where I won't have a no-code tool's defaults to fall back on and will have to make these same calls myself. Knowing which levers actually move the needle, and which ones just look like they should, is going to save me a lot of wasted experiments later.`,
+    documents: [
+      {
+        label: 'IEEE Report',
+        link: `${BASE}activities/4th-year-prelim/Luke_Joaquin_IEEE_Report (2).pdf`,
+        isNotebook: false,
+      },
+      {
+        label: 'Notebook',
+        link: `${BASE}activities/4th-year-prelim/Luke_Joaquin_Neural_Network_Training_Testing.html`,
+        isNotebook: true,
+      },
+      {
+        label: 'Training Log',
+        link: `${BASE}activities/4th-year-prelim/PT-P2_FFBP_Training_Log.csv`,
+        isNotebook: false,
+        downloadLink: `${BASE}activities/4th-year-prelim/Luke_Joaquin_FFBP_Training_Log_Template (1).xlsx`,
+        downloadName: 'FFBP_Training_Log.xlsx',
+      },
+    ],
+  },
+  {
+    id: '4y-prelim-exam',
+    title: 'Prelim Exam: Neural Network Basics',
+    description:
+      'Summative prelim exam covering word embeddings, neuron-to-linear-regression relationships, neural network depth and width, and the distinction between parameters and hyperparameters.',
+    period: 'Prelim',
+    yearLevel: '4th Year',
+    semester: '1st Semester',
+    type: 'Exam',
+    techStack: ['Word Embeddings', 'Neural Networks', 'Backpropagation', 'Hyperparameters'],
+    reflection: `The prelim had three questions on neural network basics. The first asked me to explain word embeddings. I wrote that they turn words into numbers so computers can work with language, with each word placed as a vector in a semantic space. Words with close meanings sit near each other, and I used the lecture example of "cat" and "kitten" being close while "cat" and "bus" are far apart. I drew a small diagram of that. The second asked how a single neuron relates to linear regression, and how adding depth and width helps. I wrote that a neuron takes inputs, multiplies them by weights, and makes a prediction, just like linear regression, and that stacking neurons lets each one look at the data at the same time. I used the example of one neuron learning a cat's shape, another learning its color, and later layers combining those into ears, eyes, and the whole shape. The third asked me to separate parameters from hyperparameters. I said parameters, like weights, are learned from training data through backpropagation, while hyperparameters are settings I choose, like the number of hidden layers and epochs.
+
+What I learned from the first two is that both ideas come down to the same thing: simple pieces that become useful when combined. Embeddings measure closeness in meaning instead of spelling, and neurons are just weighted sums that get powerful when layered. The third question taught me the clearest distinction. Parameters are what the model learns on its own, and hyperparameters are what I decide before training starts.
+
+But I made a mistake on that third question. In my parameter versus hyperparameter table, I listed ReLU as an optimizer. ReLU is an activation function, which decides what a neuron passes forward. An optimizer, like Adam or SGD, is what updates the weights during training. I mixed up two different pieces of the training loop.
+
+I had a chance to fix that confusion later, in the Keras exercise. Choosing between Adam and SGD there showed me what an optimizer actually does, since the same learning rate that worked with Adam nearly broke training under SGD. Going forward, I will keep activation functions and optimizers in separate boxes in my head: one shapes what a neuron outputs, and the other decides how the weights change. That will matter any time I set up or explain a model for our capstone.`,
+    documents: [
+      {
+        label: 'Exam (PDF)',
+        link: `${BASE}activities/4th-year-prelim/Prelim_Exam.pdf`,
+        isNotebook: false,
+      },
+    ],
+  },
+  {
+    id: '4y-ww-p2',
+    title: 'WW-P2: Written Work – Prelim 2',
+    description:
+      'Written work submission for the prelim period covering analytical reasoning, technical documentation, and course concept application.',
+    period: 'Prelim',
+    yearLevel: '4th Year',
+    semester: '1st Semester',
+    type: 'Written Work',
+    techStack: ['Technical Writing', 'Analysis', 'Documentation'],
+    reflection: `For this module I worked through Microsoft's "Introduction to Natural Language Processing Concepts" course, which moved step by step from common text analysis tasks into tokenization and preprocessing, then into statistical scoring methods like TF-IDF and TextRank, then into embedding-based semantic models, and finally into a hands-on exercise comparing a generative model against a specialized statistical tool. In that exercise, I used a chat playground to have a generative model judge review sentiment, pull out place names, and summarize a transcript, and it handled all three just from plain-language instructions. I also tried a separate tool, the Language Playground, which used statistical pattern matching instead of a generative model for detecting PII, and its documentation was upfront that it could miss things. Along the way I also ran the cosine similarity exercises comparing word vectors, which is where the embedding ideas actually became concrete instead of just theoretical.
+
+Going in, my sense of NLP came mostly from using generative AI tools, not from understanding how they work underneath. What I actually learned is that flexibility and predictability are two different things, and a model doesn't have to be "smart" to be the right choice for a task. The narrower Language Playground tool could still beat the generative model on a well-defined job like PII detection, just by being consistent. I also learned that preprocessing choices like tokenization and normalization aren't just a mechanical first step, they quietly shape everything that happens after them. And comparing TF-IDF against embeddings gave me a much clearer sense of why embeddings matter: TF-IDF only catches exact word matches, but embeddings place words in vector space by meaning, so they catch paraphrasing and synonyms that TF-IDF just can't see.
+
+The idea that stuck with me the most, though, was seeing attention-based embeddings as an extension of the same vector ideas rather than something completely separate. A fixed embedding gives a word the same vector no matter the sentence, but attention-based models calculate a word's vector on the fly depending on what's around it. That reframed generative models for me. They're not a totally different technology from the embeddings covered earlier in the module, they're really just a more context-aware version of the same underlying idea.
+
+This connects directly to my capstone, which my group and I are building under the working title "Integrating NLP for PACUCOA Accreditation Preparedness." We use sentence-transformer embeddings and cosine similarity to match accreditation criteria against institutional documents, so the cosine similarity method from this module isn't background knowledge for us, it's the exact operation our system relies on. Going forward, I want to understand attention and transformer architecture more deeply, since it's the basis for the models our capstone uses, and I want to look into how similarity thresholds get validated against human judgment, since that's the kind of question we'll need a real answer to once our system is actually being evaluated.`,
+    documents: [
+      {
+        label: 'Written Work (PDF)',
+        link: `${BASE}activities/4th-year-prelim/WW-P2 - BERNARDO, Luke Joaquin (1).pdf`,
+        isNotebook: false,
+      },
+    ],
+  },
+
+  /* ──────────────────────────────────────────
+     4th Year · 1st Semester · Midterm Period
+     ────────────────────────────────────────── */
+  {
+    id: '4y-pt-m1',
+    title: 'PT-M1: Building and Stress-Testing a Monster Hunter RAG Chatbot',
+    description:
+      'Performance task implementing a Retrieval-Augmented Generation (RAG) chatbot grounded on Monster Hunter: World lore using ChromaDB, MiniLM embeddings, and a Groq-hosted LLM — including controlled stress tests on grounding, refusal behavior, and temperature sensitivity.',
+    period: 'Midterm',
+    yearLevel: '4th Year',
+    semester: '1st Semester',
+    type: 'Performance Task',
+    techStack: ['RAG', 'ChromaDB', 'MiniLM', 'Groq API', 'Python', 'Jupyter Notebook'],
+    reflection: `For this lab I built a chatbot that only answers questions about Monster Hunter: World and its Iceborne expansion, using retrieval-augmented generation (RAG) instead of letting the model answer from its own memory. I loaded three lore files, split them into 500-character chunks with 50 characters of overlap, embedded them with all-MiniLM-L6-v2, and stored them in an in-memory ChromaDB index. For each question, the retriever pulled the three closest chunks and a Groq-hosted model answered from only those. I tested it four ways. A vague in-domain question pulled a trap-effectiveness table instead of a general summary. A specific question about Nergigante came back detailed and fully sourced. An out-of-domain question about Magnamalo got the exact refusal line I had written. Then I raised the temperature to 1.0 and deleted that refusal line from the system prompt. The model still refused, but it used looser, less consistent wording.
+
+That last result taught me the most. Before this lab, I assumed the biggest risk with a chatbot was the model making things up. What I saw was that grounding and refusal consistency are two different things. Grounding held up even after I removed the fallback sentence, since the instruction to use only the provided context still did real work. But the wording of the refusal changed. For a chatbot that someone else will use, how it says no matters too, and a prompt that only says what to do, without fixing how to say no, leaves that part to chance. One lucky run also doesn't tell me the next one will go the same way.
+
+The vague query taught me something different. The chatbot didn't fail there. The retriever did what it was built to do and returned the three chunks that scored highest, and the model summarized them faithfully and named its source. The mismatch was between my question and what the retriever could match. So when a RAG answer looks off, I should check what was retrieved before blaming the model.
+
+A smaller lesson came from the model itself. The lab template called for llama-3.1-8b-instant, but Groq had retired it by the time I ran the notebook, so I switched to openai/gpt-oss-20b. I only noticed because the notebook broke. That made the lecture point about model deprecation and version tracking feel real, since a pipeline with a hardcoded model name is fragile. I also kept the API key out of the notebook by collecting it at runtime with getpass, which is a small habit that stops a leaked credential from becoming a bigger problem.
+
+I plan to carry three things forward. When I build the next RAG system, I will test the retriever on its own first, since vague questions and weak chunks show up there before they ever reach the model. I will write refusal behavior into the prompt on purpose and test it at a higher temperature, instead of trusting one clean run. And I will not hardcode model names or keys. Those habits apply directly to the RAG work in this course, and the first one applies to our capstone, where the system has to pull the right passages from long accreditation documents.`,
+    documents: [
+      {
+        label: 'IEEE Report (PDF)',
+        link: `${BASE}activities/4th-year-midterm/PT-M1_IEEE_Report_BERNARDO.pdf`,
+        isNotebook: false,
+      },
+      {
+        label: 'Notebook',
+        link: `${BASE}activities/4th-year-midterm/PT-M1_BERNARDO.html`,
+        isNotebook: true,
+        downloadLink: `${BASE}activities/4th-year-midterm/PT-M1_BERNARDO.ipynb`,
+        downloadName: 'PT-M1_BERNARDO.ipynb',
+      },
+    ],
+  },
+  {
+    id: '4y-ww-m2',
+    title: 'WW-M2: RAG Chatbot Proposal for JRU Curriculum Comparisons',
+    description:
+      'Written work proposing a research study on a RAG chatbot to help Grade 12 students compare JRU CSE program curricula — including research design, evaluation methodology, and question set planning aligned with SDG 4.',
+    period: 'Midterm',
+    yearLevel: '4th Year',
+    semester: '1st Semester',
+    type: 'Written Work',
+    techStack: ['RAG', 'Research Design', 'Qwen3-8B', 'Technical Writing', 'SDG 4'],
+    reflection: `For this exercise, my group, DecisionThree, wrote a proposal for a RAG chatbot study. We did not build anything or collect any data. Our job was to plan a study well enough that someone could run it. We picked SDG 4, Quality Education, and narrowed it step by step. We started with access to tertiary program information, then moved to the difficulty of pulling together curriculum details, then to graduating Grade 12 students, and finally to comparing subjects, units, and practical requirements across the five JRU College of Computer Studies and Engineering programs. We settled on a research question about scale: as students compare more programs at once, how much do correctness, groundedness, and completeness drop off, if at all? We planned to test it with two-program, three-program, and full-set comparisons. We listed our sources, mainly the five official curriculum PDFs from April 2024. We also sketched a set of about 40 questions with a faculty-reviewed answer key, and we proposed Qwen3-8B as a starting model. We also made a short presentation of the proposal.
+
+What I learned first is how much work it takes to narrow a topic. "Access to program information" is too broad to test, and each step down made the question sharper. Even then, the details mattered. BSEMC has two majors in one document, so we decided students would pick a major and the chatbot would compare at that level. Before that, we would have treated BSEMC as one program and mixed up the results. I also learned that a good research question is one where you don't already know the answer. A simple RAG versus no-RAG test would likely come out in RAG's favor. Asking how performance changes as the comparison grows, which is where the "Lost in the Middle" findings point, gave us something we could actually find out.
+
+I also learned to be honest about what a proposal has not yet shown. We kept saying what we had not done: we haven't confirmed that JRU applicants really have this problem, we haven't confirmed permission to use the documents, and we haven't checked that the curriculum versions apply to incoming students. We also left things out on purpose, like grade prediction, "best fit" recommendations, and admissions. That made the plan smaller, but it also made it believable. And the part I found most useful was planning the evaluation before any building. Writing the answer key, locking the model and settings so only comparison size changes, and having two people score a sample made me see that the evaluation is the study, not an afterthought.
+
+I will use this in the next RAG work I do. In PT-M1, I tested a chatbot by trying a few questions. Next time, I want to write the test questions and the correct answers first, change one thing at a time, and score the results the same way each time. It also applies to our capstone, which depends on long accreditation documents. Logging each source with its version and date, and saying clearly what the system will not do, are habits I want to build into that work from the start.`,
+    documents: [
+      {
+        label: 'Proposal IEEE (PDF)',
+        link: `${BASE}activities/4th-year-midterm/WW-M2_DecisionThree_Proposal_IEEE.pdf`,
+        isNotebook: false,
+      },
+      {
+        label: 'Proposal Presentation (PDF)',
+        link: `${BASE}activities/4th-year-midterm/WW-M2_DecisionThree_Proposal_Presentation.pdf`,
+        isNotebook: false,
+      },
+    ],
+  },
+  {
+    id: '4y-ww-m2-revised',
+    title: 'WW-M2 (Revised): RAG Chatbot Proposal Extension – JRU CSE Program Inquiries',
+    description:
+      'Revised and extended group proposal reworking the RAG chatbot study design, refocusing the research question, expanding the evaluation plan with 40 held-out questions across six categories, and introducing source-versioning and structure-based chunking strategies.',
+    period: 'Midterm',
+    yearLevel: '4th Year',
+    semester: '1st Semester',
+    type: 'Written Work',
+    techStack: ['RAG', 'Research Design', 'Chunking Strategy', 'Evaluation Design', 'Technical Writing'],
+    reflection: `For the extension, my group, DecisionThree, went back to our WW-M2 proposal and reworked it. We still did not build anything or collect data. What changed was the study itself. Our first version asked how answer quality drops as students compare more programs at once. In the updated version, we dropped comparison size as the variable and asked how accurately, and with what documentary support, a RAG chatbot can answer Grade 12 students' questions about JRU CSE programs and curriculum requirements. We added a supporting question that compares the chatbot with the same language model without retrieval. We also changed the sources. The main one became the College General Information for School Year 2025–2026, and the April 2024 program profiles became supporting sources that don't automatically override it. Then we filled in the plan. We planned about 40 held-out questions, with 30 fully answerable questions across six categories, five partly answerable, and five unsupported. That gives about 80 responses across the two conditions, scored by two of us against a faculty-reviewed key. We also planned to chunk by document sections and intact course records instead of arbitrary page cuts.
+
+The biggest thing I learned is that the design has to match the question. With a with-retrieval condition and a without-retrieval condition, the model, the settings, and the questions stay the same, and only the retrieved passages differ. Even the instructions needed care. The without-retrieval condition can't be told to answer only from supplied documents, because it gets none. I also learned how much detail goes into scoring. A refusal gets no automatic credit, a response with no factual claims gets an undefined score instead of full marks, and we report every refusal and undefined score so nothing hides a failure. Small rules like those are what keep results honest.
+
+I also learned to treat sources as things with versions. A school-year label is not the same as a curriculum version, and a newer document does not automatically replace an older one, so we plan to log the edition, page numbers, and any conflicts for every source. The same care applies to what the chatbot says. A missing prerequisite does not prove a course has none, and a listed internship subject does not prove training hours. The chatbot should say what the documents support and stop there. And I noticed a link to my midterm. I wrote that structure-based chunking suits documents with sections, but I left out overlap. Here, we planned structure-based chunking and recorded the chunk limits and overlap as settings to choose and freeze before testing.
+
+I plan to reuse this in later RAG work and in our capstone. When I want to know whether retrieval actually helps, I will compare against the same model without it, instead of assuming it does. I will write the scoring rules before I see any results, and I will track document versions from the start. That last habit especially matters for the capstone, where the system depends on accreditation documents that change over time.`,
+    documents: [
+      {
+        label: 'Revised Proposal IEEE (PDF)',
+        link: `${BASE}activities/4th-year-midterm/WW-M2_Revised_Proposal_IEEE.pdf`,
+        isNotebook: false,
+      },
+      {
+        label: 'Revised Proposal Presentation (PDF)',
+        link: `${BASE}activities/4th-year-midterm/WW-M2_Revised_Proposal_Presentation.pdf`,
+        isNotebook: false,
+      },
+    ],
+  },
+  {
+    id: '4y-midterm-exam',
+    title: 'Midterm Exam: Traditional ML vs. LLM Development & RAG Chunking',
+    description:
+      'Summative midterm exam comparing traditional ML and LLM development lifecycles, explaining RAG pipeline chunking and retrieval evaluation, and analyzing chatbot failure modes caused by chunk size and boundaries.',
+    period: 'Midterm',
+    yearLevel: '4th Year',
+    semester: '1st Semester',
+    type: 'Exam',
+    techStack: ['RAG', 'LLM Development', 'Chunking', 'Retrieval Evaluation', 'Traditional ML'],
+    reflection: `The midterm had two tests. Test I asked me to compare how traditional ML and LLM development differ across the lifecycle. I answered that traditional ML trains a model for one defined prediction task, while LLM development usually starts with a pre-trained model and adapts the system around it. I drew both as flows: data, then development, then deployment. For ML, that meant data cleaning, training, tuning, and evaluating, then making specific predictions. For LLMs, it meant prompts and reliable documents, a pre-trained model adapted through prompt engineering, RAG, or fine-tuning, then deployment through an API or direct hosting. Test II asked why RAG development needs chunking and retrieval evaluation, and why a chatbot can fail to retrieve complete information. I drew the RAG pipeline and explained that picking one chunk size and never testing it can give poor answers, since a chunk that is too small misses the meaning the user asked about. For the second question, I tied the failure to chunk size and chunk boundaries, and said structure-based chunking suits documents with headers and sections, while recursive chunking suits long paragraphs.
+
+What I learned is that the real difference between ML and LLM work is where the effort goes. In ML, I build the model. In LLM work, the model already exists, so the effort goes into everything around it, like the prompts, the documents, and how the answer gets grounded. I also learned that there is no best chunking strategy. The right one depends on what the documents look like, and the only way to know is to test it and check what the retriever actually pulls back.
+
+I also missed something. I never mentioned chunk overlap, and that is the most direct fix for the exact problem the second question described. When a sentence gets cut at a chunk boundary, overlap keeps a bit of text shared between neighboring chunks, so the full idea still lands in at least one of them. I explained the problem well, but I left out the standard fix for it.
+
+This will matter in my later RAG work and in our capstone. We match accreditation criteria against long institutional documents, and those documents have headers, sections, and long paragraphs, which is the exact case I wrote about on the exam. Next time I will choose a chunking strategy based on the document structure, set an overlap on purpose, and test a few chunk sizes against real questions instead of picking one and moving on.`,
+    documents: [
+      {
+        label: 'Midterm Exam (PDF)',
+        link: `${BASE}activities/4th-year-midterm/Midterm_Exam.pdf`,
+        isNotebook: false,
+      },
+    ],
+  },
+
+  /* ──────────────────────────────────────────
+     4th Year · 1st Semester · Finals Period
+     ────────────────────────────────────────── */
+  {
+    id: '4y-pt-f1',
+    title: 'PT-F1: Chunk Size & Overlap Experiment on a FAISS RAG Notebook',
+    description:
+      'Performance task running a controlled RAG retrieval experiment with six chunk-size/overlap/top-K configurations on a FAISS index loaded with the JRU College General Information PDF, scored with Precision@3, Recall@3, and MRR@3.',
+    period: 'Finals',
+    yearLevel: '4th Year',
+    semester: '1st Semester',
+    type: 'Performance Task',
+    techStack: ['RAG', 'FAISS', 'Qwen3-8B', 'MiniLM', 'Precision@3', 'Recall@3', 'MRR@3', 'Python'],
+    reflection: `For this exercise, I ran a controlled experiment on chunk size and overlap using a FAISS notebook. First, I split the notebook into logical sections and added a Markdown cell above each code cell to explain it, then checked that it still ran. Next, I switched the model to Qwen3-8B in 4-bit form, which is the model my group, DecisionThree, proposed, and I loaded the assigned JRU College General Information PDF. I wrote five test questions with expected answers and page evidence: two easy, two average, and one difficult. Then I ran six configurations on a Tesla T4: a 1,000/200 baseline, 600/200, 1,400/200, no overlap, 100 overlap, and a Top-K of 5. I scored each with Precision@3, Recall@3, and MRR@3, and I tracked generation time and GPU memory. I provisionally kept 1,400 characters, 200 overlap, and Top-K 3. It had the highest recall, 0.800, and it used less time and memory than Top-K 5.
+
+What I learned first is that the chunk boundary can break an answer. In Q1, the retriever returned the units for course C401, but without the course heading, so the model could not tell which course they belonged to. The complete labeled passage was missed. That is the exact failure I wrote about on my midterm, where a chunk boundary cuts information apart. Overlap showed the same pattern in the numbers. With no overlap, recall fell to 0.600 and MRR to 0.500, while 200 overlap kept the baseline at 0.700 for both. Smaller chunks did worst, with recall of 0.467 at 600 characters. And retrieving more did not help. Top-K 5 added no new relevant evidence over Top-K 3, but it took about 41 seconds per answer and 12 GiB of GPU memory instead of about 30 seconds and 9 GiB.
+
+The second thing I learned is that good retrieval does not guarantee a good answer. Even with the best configuration, the model added things the evidence did not support. In Q3, it said 3 units were required hours and claimed no laboratory units. In Q5, it added a comment that design projects usually involve lab work. In Q4, the policy was right, but the citation used the printed page number, 82, instead of the PDF page label, 10. I had already written guardrails against these in the prompt, so the lesson is that a prompt reduces errors but does not remove them. I also learned to be careful with my own claims. I tested only five questions, ran each setup once, and labeled relevant chunks after the fact, so 1,400/200/3 is a provisional choice, not a proven best setting.
+
+This will help in the next stage of our proposed study, where we planned to pilot retrieval and then freeze the chunk limits, overlap, and number of retrieved passages before evaluating. I now have measured evidence for those choices. It also applies to our capstone, which works with long accreditation documents. There, I will keep headings attached to the content they describe, test a few chunk sizes against real questions, measure retrieval separately from the final answer, and say plainly how small my test was.`,
+    documents: [
+      {
+        label: 'IEEE Report (PDF)',
+        link: `${BASE}activities/4th-year-finals/PTF1_BERNARDO_IEEE_Report.pdf`,
+        isNotebook: false,
+      },
+      {
+        label: 'Notebook',
+        link: `${BASE}activities/4th-year-finals/PTF1_BERNARDO.html`,
+        isNotebook: true,
+        downloadLink: `${BASE}activities/4th-year-finals/PTF1_BERNARDO.ipynb`,
+        downloadName: 'PTF1_BERNARDO.ipynb',
+      },
+    ],
+  },
+  {
+    id: '4y-pt-f2',
+    title: 'PT-F2: Thirteen Chunking Setups – Chunk Size & Overlap Ablation Study',
+    description:
+      'Extended ablation study comparing 13 chunk-size and overlap combinations (300–1,400 chars × 0–20% overlap) across nine questions and 351 retrieved results, scored with Precision@3, Recall@3, and MRR@3 on an engineering curriculum PDF.',
+    period: 'Finals',
+    yearLevel: '4th Year',
+    semester: '1st Semester',
+    type: 'Performance Task',
+    techStack: ['RAG', 'FAISS', 'Ablation Study', 'MiniLM', 'Precision@3', 'Recall@3', 'MRR@3', 'Python'],
+    reflection: `For this activity, I extended my PT-F1 notebook into a larger experiment on chunk size and overlap. I compared the 1,000-character, 200-overlap baseline against twelve other settings: chunk sizes of 300, 500, 1,000, and 1,400 characters, each with 0%, 10%, and 20% overlap. I kept everything else the same: the same engineering PDF, the same embedding model, the same FAISS index type, and Top-K 3. I wrote nine questions, three easy, three average, and three difficult, and broke them into 26 required facts. Then I scored every setting with Precision@3, Recall@3, and MRR@3, and I tracked chunk count, indexing time, and index size. In total, that was 13 indexes, 117 question tests, and 351 retrieved results, and I checked every one of them. I recommended C10, which uses 1,400-character chunks with no overlap. It beat the baseline on all three scores: precision rose from 0.2222 to 0.2593, recall from 0.3981 to 0.4722, and MRR from 0.3704 to 0.4815. It also needed only 50 chunks instead of 84.
+
+The biggest thing I learned is that no single setting rule holds up on its own. In PT-F1, I thought overlap helped, and that was true at 1,000 characters, where recall rose from 0.1759 with no overlap to 0.3981 with 20%. But at 300 characters, more overlap made recall worse, and at 1,400 characters, no overlap gave the best precision and MRR. Bigger chunks also did not always win. The best setting depended on how size and overlap worked together. I also learned that a high similarity score does not mean a chunk is useful. One 300-character chunk scored 0.8499 for a prerequisite question and contained the right course codes and the 240 hours, but it started in the middle of a word and left out the course heading. Without the heading, you can't tell whose prerequisites they are. That is the same boundary problem I saw in PT-F1 and wrote about on my midterm.
+
+I also learned to read more than one number. C11 had slightly higher recall than C10, 0.4815 against 0.4722, and it fully covered four questions instead of three. If I had looked only at that, I would have chosen it. But on the difficult questions, which need several facts and the right course, C11's recall was 0.1111 and C10's was 0.6667. And no setting could retrieve the answer to Q1, so chunking alone was not going to fix everything.
+
+The hardest lesson was being honest about what the results mean. C10 has 32 of its 50 chunks over the embedding model's 256-token limit, so a fact could count as retrieved even though the vector could not represent it. I had only nine questions, and each difficulty group had only three. I also refined four matching rules after an earlier run, using the same questions, so this is a development experiment, not a clean test. And I measured timing once, so I did not treat the small speed gaps as meaningful. That is why I called C10 provisional.
+
+I will carry three habits forward. Before I pick a chunk size, I will check the embedding model's token limit. I will test chunk settings on questions that need several facts and the right course, not just easy lookups. And I will keep my development questions separate from the ones I use for the final check, which is what our WW-M2 plan already calls for. These matter for our capstone too, since it also works with long documents that have many similar passages. I would rather report a smaller, honest result than a stronger-sounding one I can't support.`,
+    documents: [
+      {
+        label: 'IEEE Report (PDF)',
+        link: `${BASE}activities/4th-year-finals/PTF2_BERNARDO_IEEE_Report_v2.pdf`,
+        isNotebook: false,
+      },
+      {
+        label: 'Notebook',
+        link: `${BASE}activities/4th-year-finals/PTF2_BERNARDO.html`,
+        isNotebook: true,
+        downloadLink: `${BASE}activities/4th-year-finals/PTF2_BERNARDO.ipynb`,
+        downloadName: 'PTF2_BERNARDO.ipynb',
+      },
+      {
+        label: 'Experiment Results',
+        link: `${BASE}activities/4th-year-finals/PTF2_BERNARDO_Experiment_Results_Table_A.csv`,
+        isNotebook: false,
+        downloadLink: `${BASE}activities/4th-year-finals/PTF2_BERNARDO_Experiment_Results.xlsx`,
+        downloadName: 'PTF2_BERNARDO_Experiment_Results.xlsx',
+        sheets: [
+          { label: "Table A", link: `${BASE}activities/4th-year-finals/PTF2_BERNARDO_Experiment_Results_Table_A.csv`, description: "PT-F2 retrieval experiment\nLuke Joaquin Bernardo. I obtained these results from my executed Google Colab notebook." },
+          { label: "Table B", link: `${BASE}activities/4th-year-finals/PTF2_BERNARDO_Experiment_Results_Table_B.csv` },
+          { label: "Table C", link: `${BASE}activities/4th-year-finals/PTF2_BERNARDO_Experiment_Results_Table_C.csv` },
+          { label: "Question Metrics", link: `${BASE}activities/4th-year-finals/PTF2_BERNARDO_Experiment_Results_Question_Metrics.csv` },
+          { label: "Evidence", link: `${BASE}activities/4th-year-finals/PTF2_BERNARDO_Experiment_Results_Evidence.csv` },
+        ],
+      },
+    ],
+  },
+  {
+    id: '4y-ww-f1-f2',
+    title: 'WW F1 & F2: Optimizing a RAG Chatbot – CPU vs. GPU Speed & Answer Quality',
+    description:
+      'Group written work (DecisionThree) comparing five RAG chunking and retrieval configurations for JRU CSE program questions, with controlled CPU and GPU timing experiments on Qwen2.5-1.5B-Instruct, measuring answer correctness, source support, and retrieval precision against generation speed.',
+    period: 'Finals',
+    yearLevel: '4th Year',
+    semester: '1st Semester',
+    type: 'Written Work',
+    techStack: ['RAG', 'Qwen2.5', 'FAISS', 'GPU Benchmarking', 'Answer Evaluation', 'Python', 'Jupyter Notebook'],
+    reflection: `For this activity, my group, DecisionThree, tested a RAG chatbot for JRU College of Computer Studies and Engineering questions. We used the CSE sections of the College General Information and a fixed set of 12 questions: four easy, four average, and four difficult. We compared five chunking and retrieval settings, which we called A to E, and we measured how long the chatbot took on a CPU and on a Tesla T4 GPU. For the speed tests, we ran a warm-up and three measured trials for each setting. We planned to use Qwen3-8B, but its CPU tests did not finish, so we switched to the smaller Qwen2.5-1.5B-Instruct to complete a fair CPU and GPU comparison. The GPU was about 13 to 15 times faster, and most of that came from faster generation. But the fastest setting was not the best one. Setting A answered quickest, yet only three of its 12 answers were fully correct, complete, and supported. We recommended D, which uses 800-character chunks, 200 overlap, top-k of three, and a revised prompt. It fully answered six of 12.
+
+What I learned first is that speed and answer quality are separate problems. A faster setup did not give better answers, so we had to check both. I also learned that the extra retrieval we expected to help did not. Retrieving five passages instead of three raised evidence coverage from 61.8% to 70.1%, but precision fell from 50.0% to 33.3%, completeness dropped, and each answer took longer. More retrieved material did not consistently help the model use the right course information. Raising overlap from 100 to 200 characters gave a smaller but real gain at a small time cost. And the revised prompt, which told the model to match facts to the named course and not to use neighboring courses, helped more than our bigger effort to reorganize the source into 1,094 labeled records. That reorganized version had gains and losses, and its precision dropped to 36.1%.
+
+I also learned how careful the checking has to be. We scored correctness and source support separately, because an answer can be right without being supported by the passages the model was given. One example was the ECE C405 lecture-unit question, where the answer had the correct value but the passage only showed a unit count with no lecture label. When we audited all 84 unique answer and context groups, we found one support score that was wrong, because the answer named the wrong source passage. Fixing it moved configuration C from five fully successful answers to four. A smaller case taught me something too. The source lists Computer Architecture as four units in one place and two in another, so a good answer has to point out the conflict instead of picking one.
+
+Our results also taught me to be honest about what we had and had not shown. We kept the failed Qwen3 CPU attempts in the records and did not make up times for them. We reported that the CPU and GPU ran on different Colab hosts, and we said that 12 questions we had looked at while improving the setup show development gains, not proof that it works on new questions. The prompt also did not fix missing retrieved evidence, since retrieval precision and coverage stayed the same.
+
+I will use this in the rest of our work and in the capstone. When I tune a system, I will measure speed and answer quality together, and I will check answers against the retrieved evidence instead of only against the right answer. I will also try the cheaper fixes, like a clearer prompt, before reworking the data. And before we claim the chatbot is reliable, we need new questions it has never seen, plus questions it should refuse to answer, which our proposal planned from the start.`,
+    documents: [
+      {
+        label: 'RAG Experiment Report (PDF)',
+        link: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Report.pdf`,
+        isNotebook: false,
+      },
+      {
+        label: 'Experiment Notebook',
+        link: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Notebook.html`,
+        isNotebook: true,
+        downloadLink: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Notebook.ipynb`,
+        downloadName: 'WW-F1F2_DecisionThree_RAG_Notebook.ipynb',
+      },
+      {
+        label: 'Experiment Results',
+        link: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Results_Results.csv`,
+        isNotebook: false,
+        downloadLink: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Results.xlsx`,
+        downloadName: 'WW-F1F2_RAG_Results.xlsx',
+        sheets: [
+          { label: "Results", link: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Results_Results.csv`, description: "DecisionThree RAG experiment results\nITC-C508 WW1–WW2. Fixed 12-question set. Times are seconds. Three measured trials per configuration.\nCurrent measured timings" },
+          { label: "Raw Responses", link: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Results_Raw_Responses.csv`, description: "All original response measurements\nTimes and answers are actual notebook outputs. Calculated columns attach matching evaluations without changing observations." },
+          { label: "Trial Log", link: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Results_Trial_Log.csv`, description: "All recorded trials and attempts\nNotebook trial records: current runs, preserved previous trials, supplementary GPU runs and interrupted CPU pilots." },
+          { label: "Answer Review", link: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Results_Answer_Review.csv`, description: "Answer correctness, support and completeness\nAll 84 unique cases were source-audited. One citation-related support score was corrected; earlier group verification is preserved in the history." },
+          { label: "Retrieved Evidence", link: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Results_Retrieved_Evidence.csv`, description: "Retrieved passages used by the chatbot\nActual generation-context passages from notebook records. Relevance flags are prepared source-based judgments." },
+          { label: "Questions", link: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Results_Questions.csv`, description: "Fixed questions and reference answers\nReference answers and counts come from the fixed notebook evaluation key, not generated chatbot answers." },
+          { label: "Source Evidence", link: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Results_Source_Evidence.csv`, description: "Handbook excerpts and required answer elements\nAuthoritative source: COL-GI-2026-2027_CSE_Only.pdf, preserved unchanged in the experiment data." },
+          { label: "Methods", link: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Results_Methods.csv`, description: "Methods, provenance and calculation checks" },
+        ],
+      },
+    ],
+  },
+  {
+    id: '4y-p-f1',
+    title: 'P-F1: Group Final Project – RAG Chatbot for JRU CSE Inquiries',
+    description:
+      'Group final project (DecisionThree) building and evaluating a full RAG pipeline for JRU College of Computer Studies and Engineering inquiries — including CPU and GPU experiments, Hugging Face Spaces deployment, and a 16-question evaluation with correctness and source-support scoring.',
+    period: 'Finals',
+    yearLevel: '4th Year',
+    semester: '1st Semester',
+    type: 'Final Project',
+    techStack: ['RAG', 'Qwen2.5', 'Chroma', 'MiniLM', 'Gradio', 'Hugging Face Spaces', 'ZeroGPU', 'Python'],
+    reflection: `For our final project, my group, DecisionThree, built and evaluated a RAG chatbot that answers questions about JRU's College of Computer Studies and Engineering programs. We used the CSE sections of the College General Information, with Qwen2.5-1.5B-Instruct as the generator and MiniLM embeddings with Chroma for retrieval. We split the work into three areas. John Cyruz Patron wrote the questions and reference answers, evaluated the answers, and prepared the IEEE report. Job Russel Enriquez prepared the source files, designed the interface, and analyzed the results in Excel. My part was the notebook, the CPU and GPU experiments, and the Hugging Face deployment. We also shared the job of checking that the notebook, workbook, CSV, report, and deployed chatbot all agreed with each other.
+
+On the notebook, I kept the supplied flow and connected PDF loading, chunking, embeddings, Chroma retrieval, Qwen generation, and the timing and export code into one working pipeline. I also fixed the runtime problems that came up. For example, Colab supplied a torchvision version that did not work with our pinned Torch installation, so I removed the unused package and added a runtime restart so the pinned packages load before the pipeline starts. For the experiments, I ran the planned configurations on CPU and on the T4 GPU, with a warm-up and three measured trials each, and I checked that the models were really running on the device I intended. I kept the actual outputs, warm-ups, setup times, and failed attempts. That included the Qwen3-8B CPU pilots, which were interrupted before they finished an answer. That is why we switched to the smaller Qwen2.5 model, and we kept those failed runs in the records instead of filling in times. The matched runs showed the GPU was about 13 to 15 times faster, mostly because generation got faster.
+
+For deployment, I put the selected pipeline on Hugging Face Spaces with Gradio and ZeroGPU, using the same model, prompt, and 800/200/3 settings as the notebook. I kept the settings fixed, ran the hosted checks, and saved the downloaded response records. The hosted checks taught me something the notebook could not. The internship answer gave the credit units but left out one of the two prerequisites even though retrieval had supplied both codes. And one tuition question that accidentally included a list number and quotation marks made the model invent a cost of three pesos per unit, while the same question without the list number said the fee was not available. We reported that as a sensitivity to input formatting and kept the bad record.
+
+The final results were humbling. On our 16-question run, the chatbot fully answered 6 of 12 answerable questions and handled only 1 of 4 unanswerable questions correctly, so 7 of 16 overall. Mean response time was 3.580 seconds. The failures were specific. It called six internship credit units six training hours, borrowed "Visual Basic for Excel" from a nearby course as a required Excel version, and made up Monday and Wednesday class times. Our prompt already told it to name missing details, and it still gave unsupported answers on three of the four. That taught me that an instruction in a prompt does not guarantee the behavior, and that speed and reliability are separate things. A fast system that makes up an answer is worse than a slow one that admits it does not know.
+
+I gained several skills. I can now wire a full RAG pipeline together and debug its environment, run a controlled experiment with fixed settings and verify the hardware, and deploy a model on ZeroGPU and check it with real requests. The bigger change was in how I report results. We kept failures visible, said that the original 12 questions were not a clean test, and listed what we did not do, such as the comparison without retrieval and the planned larger question set. Working in a team also showed me why shared review matters. Each of us owned a part, but the project only held together because we checked each other's files against the same evidence. We also disclosed that we used ChatGPT as an assistant and that the final scoring was AI-assisted, with our group responsible for checking everything.
+
+I can use all of this in later projects and in our capstone. I will keep the evaluation questions separate from the ones I tune on, test unanswerable questions from the start, and check a deployed system with real inputs instead of trusting the notebook. The next step for this chatbot is also clear: better course-aware retrieval and tests on new questions before anyone relies on it.`,
+    documents: [
+      {
+        label: 'Final IEEE Report',
+        link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_IEEE_Report.pdf`,
+        isNotebook: false,
+        downloadLink: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_IEEE_Report.docx`,
+        downloadName: 'PF1_DecisionThree_Final_IEEE_Report.docx',
+      },
+      {
+        label: 'Final Notebook',
+        link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Notebook.html`,
+        isNotebook: true,
+        downloadLink: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Notebook.ipynb`,
+        downloadName: 'PF1_DecisionThree_Final_Notebook.ipynb',
+      },
+      {
+        label: 'Evaluation Results',
+        link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Evaluation_Results.csv`,
+        isNotebook: false,
+        downloadLink: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Evaluation.xlsx`,
+        downloadName: 'PF1_DecisionThree_Final_Evaluation.xlsx',
+        sheets: [
+          { label: "Results", link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Evaluation_Results.csv`, description: "DecisionThree final evaluation\nSelected revised prompt; Qwen2.5-1.5B; GPU D (800/200/3)" },
+          { label: "Evaluation", link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Evaluation_Evaluation.csv`, description: "Final 16-question response evaluation" },
+          { label: "Elements", link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Evaluation_Elements.csv`, description: "Required answer elements and documentary coverage" },
+          { label: "Evidence", link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Evaluation_Evidence.csv`, description: "Actual passages supplied to the language model" },
+          { label: "Benchmarks", link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Evaluation_Benchmarks.csv`, description: "Earlier three-trial CPU/GPU experiments" },
+          { label: "Measurements", link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Evaluation_Measurements.csv`, description: "Earlier notebook response measurements, including warm-ups" },
+          { label: "TrialLog", link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Evaluation_TrialLog.csv`, description: "Earlier notebook trial and setup records" },
+          { label: "Setup", link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Evaluation_Setup.csv`, description: "Final evaluation setup and warm-up" },
+          { label: "Methods", link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Evaluation_Methods.csv`, description: "Sources, scoring rules and experiment boundaries" },
+        ],
+      },
+      {
+        label: 'Response Evaluation (CSV)',
+        link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Response_Evaluation.csv`,
+        isNotebook: false,
+        downloadLink: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Response_Evaluation.csv`,
+        downloadName: 'PF1_DecisionThree_Final_Response_Evaluation.csv',
+      },
+      {
+        label: 'Integrity Statement (PDF)',
+        link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Integrity_Statement.pdf`,
+        isNotebook: false,
+      },
+    ],
+  },
+];
 
 /*
   Previous project entries were removed from the Projects tab.
@@ -31,41 +504,6 @@ export const activities: Activity[] = [];
  */
 
 /*
-  {
-    id: 'prelim-long-quiz-set-b',
-    title: 'Prelim Long Quiz: Set B',
-    description:
-      'Long quiz assessment for the prelim period covering core course topics and applied problem solving.',
-    period: 'Prelim',
-    type: 'Long Quiz',
-    techStack: ['Course Assessment', 'Problem Solving', 'Concept Mastery'],
-    reflection: `Q1: Target Variable Selection
-
-The decision to use the energy rating as a target variable is something I was so much into because of the setting of the data since it was a Property Developer scenario. This dataset contained a number of attributes, such as square feet, proximity to the city center, the year of construction, energy efficiency, and the presence of parking, which I needed to select the one that would produce the most significant prediction target.
-
-Energy rating impressed me since it is both a categorical result and a result that has real-life implications in the real estate industry. The prediction of the energy rating would be of great use to property developers who may want to determine the property that would most likely be high-value or marketable. A Grade is not an efficient property, it is a selling point. I believe that when formulating the issue in terms of energy sustainability, the model is not only technically functional but also truly helpful in the field.
-
-Q2: KNN vs. Linear Regression
-
-As soon as I chose Energy Rating as the target variable, the algorithm to choose also became clear. Linear Regression works well with continuous numbers, but since Energy Rating is not a regression problem but a classification problem; it is A, B or C. That is why I chose K-Nearest Neighbors (KNN).
-
-The feature that I liked in KNN to use it on this project is its simplistic concept that similar properties should possess similar energy characteristics. When a large house is being examined which was constructed recently, then that house is likely to act similar to other large and contemporary houses in terms of energy consumption. The idea of KNN is that it utilizes the Euclidean distance to identify the k nearest similarities in the feature space, and then applies that similarity to the new property giving it the most prevalent label among the nearest similarity.
-
-Drawing the diagram was of great assistance to my thoughts. Squaring the footage on the y-axis and the year built on the x-axis I was able to observe the grouping of A, B, and C properties. It provided me with visual insight into the landing location of a new and unlabeled property and the way KNN would grade it depending on the distance.
-
-Q3: Training, Testing & Evaluation Metrics
-
-I had to stop halfway in my reply to Q3 due to lack of time. I began by emphasizing that we need to normalize data, as KNN requires the use of the Euclidean distance, and therefore raw values on very different scales would dominate Square Footage and Distance to City Center and Year Built. I indicated that a normalization puts all the features into a similar range so that all features make equal contributions to the distance formula, but that was as far as I got.
-
-The fundamental part of the question that I did not get was the actual training/test split and the metrics of evaluation. The complete answer would justify dividing the data into an 80/20 train-test set to ensure that the model was trained on one part and tested on the unseen data. In case of categorical Energy Rating and three classes (A, B, C), I would not use regression metrics such as MAE or RMSE, but accuracy, precision, recall, and F1-score. Missing out on those sections is an apparent weakness I have that is reflected in the necessity to work on time in written exams so that I can cover all the points, even though only briefly.`,
-    documents: [
-      {
-        label: 'Task File',
-        link: `${BASE}activities/prelim/Quiz SET B - BERNARDO.pdf`,
-        isNotebook: false,
-      },
-    ],
-  },
   {
     id: 'prelim-exam-set-b',
     title: 'Prelim Exam: Set B',

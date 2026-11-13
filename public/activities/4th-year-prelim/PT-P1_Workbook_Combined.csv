@@ -1,0 +1,200 @@
+── TestA_ClearPatterns ──
+
+Step 4 -- Test Case A: Clear Patterns,,,,,,,,,,,,,
+"Legend: Yellow cells = fill in after testing each phrase on the ""Make"" page. Predicted Category auto-colors by class; Confidence auto-colors low (red) to high (green); Notes generate automatically. For Confidence, type the number only (e.g. 87) -- do NOT type a % sign, it is added automatically.",,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+Positive Praise,,,,,,,,,Per-Category Accuracy Summary (this tab),,,,
+#,Input Text,Expected Category,Predicted Category,Confidence (%),Correct? (Y/N),Notes / Observation,,,Category,Total Tested,Correct Count,Incorrect Count,Accuracy (%)
+1,The new away kit arrived early and the fit is perfect for training.,Positive_Praise,Positive_Praise,98,Y,Confident and correct classification.,,,Positive_Praise,10,10,0,1
+2,I love how quickly the app confirmed my playoff ticket purchase.,Positive_Praise,Positive_Praise,93,Y,Confident and correct classification.,,,Negative_Complaint,10,9,1,0.9
+3,Support swapped my damaged shin guards without asking a single extra question.,Positive_Praise,Positive_Praise,94,Y,Confident and correct classification.,,,Urgent_Support,10,8,2,0.8
+4,"The stadium tour add-on was worth every peso, kids loved it.",Positive_Praise,Positive_Praise,100,Y,Confident and correct classification.,,,OVERALL,30,27,3,0.9
+5,My loyalty points covered almost half of my new gear order.,Positive_Praise,Positive_Praise,74,Y,"Correct, but low confidence -- add similar examples to reinforce.",,,,,,,
+6,The app's injury report updates are always accurate before kickoff.,Positive_Praise,Positive_Praise,87,Y,Confident and correct classification.,,,,,,,
+7,I appreciate how the group ticket discount applied instantly this time.,Positive_Praise,Positive_Praise,97,Y,Confident and correct classification.,,,,,,,
+8,The training backpack quality is way better than I expected for the price.,Positive_Praise,Positive_Praise,92,Y,Confident and correct classification.,,,,,,,
+9,Support helped me get my season pass reissued in under five minutes.,Positive_Praise,Positive_Praise,88,Y,Confident and correct classification.,,,,,,,
+10,I love that the app shows live substitution updates during the match.,Positive_Praise,Positive_Praise,96,Y,Confident and correct classification.,,,,,,,
+,,,,,,,,,,,,,
+Negative Complaint,,,,,,,,,,,,,
+#,Input Text,Expected Category,Predicted Category,Confidence (%),Correct? (Y/N),Notes / Observation,,,,,,,
+1,The warm-up jacket I ordered shrank noticeably after just one wash.,Negative_Complaint,Negative_Complaint,79,Y,"Correct, but low confidence -- add similar examples to reinforce.",,,,,,,
+2,My ticket confirmation email never arrived even though I was charged.,Negative_Complaint,Urgent_Support,62,N,Misclassified with low confidence -- likely a training data gap.,,,,,,,
+3,The app's fantasy standings haven't updated correctly in three rounds.,Negative_Complaint,Negative_Complaint,86,Y,Confident and correct classification.,,,,,,,
+4,I'm frustrated that the seat map didn't match what I actually received.,Negative_Complaint,Negative_Complaint,99,Y,Confident and correct classification.,,,,,,,
+5,The training cones I bought cracked after the very first session.,Negative_Complaint,Negative_Complaint,95,Y,Confident and correct classification.,,,,,,,
+6,This is the second time my membership renewal was billed incorrectly.,Negative_Complaint,Negative_Complaint,93,Y,Confident and correct classification.,,,,,,,
+7,The app keeps showing sold out gear that later appears back in stock.,Negative_Complaint,Negative_Complaint,94,Y,Confident and correct classification.,,,,,,,
+8,My order arrived with someone else's receipt and shipping label.,Negative_Complaint,Negative_Complaint,44,Y,"Correct, but low confidence -- add similar examples to reinforce.",,,,,,,
+9,The checkout process for group tickets is confusing and error prone.,Negative_Complaint,Negative_Complaint,40,Y,"Correct, but low confidence -- add similar examples to reinforce.",,,,,,,
+10,I'm disappointed the discount banner led to an expired promotion.,Negative_Complaint,Negative_Complaint,99,Y,Confident and correct classification.,,,,,,,
+,,,,,,,,,,,,,
+Urgent Support,,,,,,,,,,,,,
+#,Input Text,Expected Category,Predicted Category,Confidence (%),Correct? (Y/N),Notes / Observation,,,,,,,
+1,"I need my digital ticket resent right now, the gates close in fifteen minutes.",Urgent_Support,Urgent_Support,95,Y,Confident and correct classification.,,,,,,,
+2,"My card was charged twice for the same playoff seats, please fix this today.",Urgent_Support,Urgent_Support,86,Y,Confident and correct classification.,,,,,,,
+3,The app crashed during payment and I don't know if my order for the finals went through.,Urgent_Support,Urgent_Support,92,Y,Confident and correct classification.,,,,,,,
+4,Someone changed the delivery address on my account without my permission.,Urgent_Support,Negative_Complaint,70,N,Misclassified with low confidence -- likely a training data gap.,,,,,,,
+5,I'm locked out and the pre-sale window for premium seats ends in ten minutes.,Urgent_Support,Urgent_Support,90,Y,Confident and correct classification.,,,,,,,
+6,"Please help immediately, the mobile ticket won't scan and I'm already at the entrance.",Urgent_Support,Urgent_Support,99,Y,Confident and correct classification.,,,,,,,
+7,My membership was cancelled by mistake right before a major restock.,Urgent_Support,Negative_Complaint,79,N,Misclassified with low confidence -- likely a training data gap.,,,,,,,
+8,"This can't wait, our whole group's tickets are missing before kickoff in an hour.",Urgent_Support,Urgent_Support,93,Y,Confident and correct classification.,,,,,,,
+9,"I need urgent confirmation, the refund for a rescheduled match hasn't posted yet.",Urgent_Support,Urgent_Support,83,Y,Confident and correct classification.,,,,,,,
+10,The two factor code isn't arriving and the flash sale ends in minutes.,Urgent_Support,Urgent_Support,64,Y,"Correct, but low confidence -- add similar examples to reinforce.",,,,,,,
+
+── TestB_AmbiguousSarcastic ──
+
+Step 4 -- Test Case B: Ambiguous / Sarcastic Phrases,,,,,,,,,,,,,
+"Legend: Yellow cells = fill in after testing each phrase on the ""Make"" page. Predicted Category auto-colors by class; Confidence auto-colors low (red) to high (green); Notes generate automatically. For Confidence, type the number only (e.g. 87) -- do NOT type a % sign, it is added automatically.",,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+Positive Praise,,,,,,,,,Per-Category Accuracy Summary (this tab),,,,
+#,Input Text,Expected Category,Predicted Category,Confidence (%),Correct? (Y/N),Notes / Observation,,,Category,Total Tested,Correct Count,Incorrect Count,Accuracy (%)
+1,"I was ready to cancel my membership, but this renewal experience actually changed my mind.",Positive_Praise,Negative_Complaint,60,N,Misclassified with low confidence -- likely a training data gap.,,,Positive_Praise,10,4,6,0.4
+2,"Never thought I'd say this about a refund, but it was genuinely painless this time.",Positive_Praise,Negative_Complaint,81,N,Misclassified with high confidence -- review for misleading keywords.,,,Negative_Complaint,10,2,8,0.2
+3,"I complained about the old seat map for months, the new one finally fixed everything.",Positive_Praise,Negative_Complaint,76,N,Misclassified with low confidence -- likely a training data gap.,,,Urgent_Support,10,4,6,0.4
+4,"Honestly didn't expect the youth league gear to hold up this well, pleasantly surprised.",Positive_Praise,Positive_Praise,81,Y,Confident and correct classification.,,,OVERALL,30,10,20,0.3333333333333333
+5,"I was bracing for a fight over my warranty claim, but they approved it instantly.",Positive_Praise,Negative_Complaint,53,N,Misclassified with low confidence -- likely a training data gap.,,,,,,,
+6,"This is the first ticket drop that didn't crash the app, genuinely impressed.",Positive_Praise,Negative_Complaint,66,N,Misclassified with low confidence -- likely a training data gap.,,,,,,,
+7,"I usually dread the group booking process, this time it was actually smooth.",Positive_Praise,Positive_Praise,57,Y,"Correct, but low confidence -- add similar examples to reinforce.",,,,,,,
+8,"Didn't expect much from the loyalty upgrade email, but the perks are actually solid.",Positive_Praise,Positive_Praise,84,Y,Confident and correct classification.,,,,,,,
+9,"I've filed complaints before about delivery, this time nothing to report but praise.",Positive_Praise,Negative_Complaint,66,N,Misclassified with low confidence -- likely a training data gap.,,,,,,,
+10,"Went in expecting another sold-out disappointment, walked away with courtside seats.",Positive_Praise,Positive_Praise,75,Y,"Correct, but low confidence -- add similar examples to reinforce.",,,,,,,
+,,,,,,,,,,,,,
+Negative Complaint,,,,,,,,,,,,,
+#,Input Text,Expected Category,Predicted Category,Confidence (%),Correct? (Y/N),Notes / Observation,,,,,,,
+1,"Oh great, another restock that sold out before the page even finished loading.",Negative_Complaint,Negative_Complaint,76,Y,"Correct, but low confidence -- add similar examples to reinforce.",,,,,,,
+2,"Sure, love it when my saved cart empties itself right before checkout.",Negative_Complaint,Positive_Praise,91,N,Misclassified with high confidence -- review for misleading keywords.,,,,,,,
+3,"Fantastic, exactly what I needed, a scanner that rejects a valid ticket.",Negative_Complaint,Positive_Praise,77,N,Misclassified with low confidence -- likely a training data gap.,,,,,,,
+4,"Wonderful timing on this outage, right during the championship ticket drop.",Negative_Complaint,Positive_Praise,64,N,Misclassified with low confidence -- likely a training data gap.,,,,,,,
+5,Nice touch removing the size guide without telling anyone.,Negative_Complaint,Positive_Praise,88,N,Misclassified with high confidence -- review for misleading keywords.,,,,,,,
+6,Love how the app decided to log me out mid-payment again.,Negative_Complaint,Positive_Praise,81,N,Misclassified with high confidence -- review for misleading keywords.,,,,,,,
+7,Really convenient how support only responds after the sale is already over.,Negative_Complaint,Positive_Praise,72,N,Misclassified with low confidence -- likely a training data gap.,,,,,,,
+8,Great job burying the refund request button somewhere nobody can find it.,Negative_Complaint,Negative_Complaint,85,Y,Confident and correct classification.,,,,,,,
+9,So glad my jersey order arrived a size smaller than what I selected.,Negative_Complaint,Positive_Praise,83,N,Misclassified with high confidence -- review for misleading keywords.,,,,,,,
+10,"Perfect, the loyalty points expired the same week I planned to use them.",Negative_Complaint,Positive_Praise,60,N,Misclassified with low confidence -- likely a training data gap.,,,,,,,
+,,,,,,,,,,,,,
+Urgent Support,,,,,,,,,,,,,
+#,Input Text,Expected Category,Predicted Category,Confidence (%),Correct? (Y/N),Notes / Observation,,,,,,,
+1,"Not trying to overreact, but the whole ticketing system has been down for an hour.",Urgent_Support,Negative_Complaint,83,N,Misclassified with high confidence -- review for misleading keywords.,,,,,,,
+2,"Sorry to bother again, but the payment page has failed since this morning.",Urgent_Support,Negative_Complaint,85,N,Misclassified with high confidence -- review for misleading keywords.,,,,,,,
+3,"It's probably nothing, but I've been locked out since before the gates opened.",Urgent_Support,Urgent_Support,79,Y,"Correct, but low confidence -- add similar examples to reinforce.",,,,,,,
+4,"Just a heads up, nothing in my order history has loaded since yesterday.",Urgent_Support,Negative_Complaint,93,N,Misclassified with high confidence -- review for misleading keywords.,,,,,,,
+5,"I know it's late, but our group's checkout has been stuck since the afternoon.",Urgent_Support,Urgent_Support,69,Y,"Correct, but low confidence -- add similar examples to reinforce.",,,,,,,
+6,"Might be a small thing, but nobody on our team can access their tickets today.",Urgent_Support,Urgent_Support,89,Y,Confident and correct classification.,,,,,,,
+7,"Not sure if this is urgent, but the refund status has been stuck since Tuesday.",Urgent_Support,Urgent_Support,91,Y,Confident and correct classification.,,,,,,,
+8,"I hate to follow up again, but the export of our tickets still hasn't arrived.",Urgent_Support,Negative_Complaint,67,N,Misclassified with low confidence -- likely a training data gap.,,,,,,,
+9,"This has been quietly going on for hours, the sync with the venue never finished.",Urgent_Support,Negative_Complaint,68,N,Misclassified with low confidence -- likely a training data gap.,,,,,,,
+10,"No rush technically, but the whole app has been unresponsive since the pre-sale opened.",Urgent_Support,Negative_Complaint,71,N,Misclassified with low confidence -- likely a training data gap.,,,,,,,
+
+── TestC_OutOfVocabulary ──
+
+Step 4 -- Test Case C: Out-of-Vocabulary / Edge Cases,,,,,,
+"Legend: Yellow cells = fill in after testing each phrase on the ""Make"" page. Predicted Category auto-colors by class; Confidence auto-colors low (red) to high (green); Notes generate automatically. For Confidence, type the number only (e.g. 87) -- do NOT type a % sign, it is added automatically.",,,,,,
+,,,,,,
+,,,,,,
+Positive Praise,,,,,,
+#,Input Text,Expected Category,Predicted Category,Confidence (%),Correct? (Y/N),Notes / Observation
+1,Do you offer a referral bonus for inviting friends to join the fan club?,Uncertain / Split (no direct training match),Positive_Praise,25,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+2,Is there a version of the app built for smart TVs?,Uncertain / Split (no direct training match),Positive_Praise,10,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+3,What's included in the premium membership compared to the free tier?,Uncertain / Split (no direct training match),Negative_Complaint,18,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+4,Can I customize the notifications for just my favorite players?,Uncertain / Split (no direct training match),Positive_Praise,97,,Model confidently picked Positive_Praise despite this being an edge case -- consider adding it as a training example.
+5,Do you have a public roadmap for new fantasy league features?,Uncertain / Split (no direct training match),Positive_Praise,83,,Model confidently picked Positive_Praise despite this being an edge case -- consider adding it as a training example.
+6,Can I request a stadium tour for a large school group?,Uncertain / Split (no direct training match),Positive_Praise,14,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+7,Do you offer bulk discounts for youth team sponsorships?,Uncertain / Split (no direct training match),Positive_Praise,28,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+8,Is there a rewards catalog I can browse before redeeming points?,Uncertain / Split (no direct training match),Negative_Complaint,12,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+9,What's the process for suggesting a new app feature?,Uncertain / Split (no direct training match),Positive_Praise,30,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+10,Do you support gifting a season pass to someone else?,Uncertain / Split (no direct training match),Positive_Praise,19,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+,,,,,,
+Negative Complaint,,,,,,
+#,Input Text,Expected Category,Predicted Category,Confidence (%),Correct? (Y/N),Notes / Observation
+1,How do I update the shipping address saved on my account?,Uncertain / Split (no direct training match),Positive_Praise,13,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+2,Where can I download past invoices for my membership payments?,Uncertain / Split (no direct training match),Urgent_Support,9,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+3,Can I downgrade my season pass tier mid-season?,Uncertain / Split (no direct training match),Urgent_Support,12,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+4,How do I remove a card from my saved payment methods?,Uncertain / Split (no direct training match),Negative_Complaint,11,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+5,Where do I check how many loyalty points I currently have?,Uncertain / Split (no direct training match),Negative_Complaint,16,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+6,How do I dispute a charge that appears twice on my statement?,Uncertain / Split (no direct training match),Negative_Complaint,49,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+7,Can I transfer my membership to a family member?,Uncertain / Split (no direct training match),Urgent_Support,5,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+8,How do I change the email address linked to my account?,Uncertain / Split (no direct training match),Urgent_Support,9,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+9,Where can I report a damaged item without triggering a return fee?,Uncertain / Split (no direct training match),Negative_Complaint,71,,Model confidently picked Negative_Complaint despite this being an edge case -- consider adding it as a training example.
+10,How do I cancel an auto-renewing subscription before the next cycle?,Uncertain / Split (no direct training match),Negative_Complaint,24,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+,,,,,,
+Urgent Support,,,,,,
+#,Input Text,Expected Category,Predicted Category,Confidence (%),Correct? (Y/N),Notes / Observation
+1,What's the average response time for a support ticket right now?,Uncertain / Split (no direct training match),Positive_Praise,66,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+2,Is phone support available on match days outside normal hours?,Uncertain / Split (no direct training match),Positive_Praise,25,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+3,How do I check if there's a known outage on the ticketing system?,Uncertain / Split (no direct training match),Urgent_Support,69,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+4,What information do you need to verify my identity for account recovery? ,Uncertain / Split (no direct training match),Urgent_Support,20,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+5,How do I enable two factor authentication for extra account security?,Uncertain / Split (no direct training match),Urgent_Support,10,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+6,Is there a status page I can check during a live match outage?,Uncertain / Split (no direct training match),Urgent_Support,80,,Model confidently picked Urgent_Support despite this being an edge case -- consider adding it as a training example.
+7,What's your policy on lost tickets right before a sold out event?,Uncertain / Split (no direct training match),Urgent_Support,79,,Model confidently picked Urgent_Support despite this being an edge case -- consider adding it as a training example.
+8,How do I add a backup contact method in case I lose account access?,Uncertain / Split (no direct training match),Urgent_Support,12,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+9,What's the escalation path if a live issue isn't resolved quickly?,Uncertain / Split (no direct training match),Urgent_Support,68,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+10,How do I report suspicious activity on my account immediately?,Uncertain / Split (no direct training match),Urgent_Support,86,,Model confidently picked Urgent_Support despite this being an edge case -- consider adding it as a training example.
+,,,,,,
+,,,,,,
+"Note: These are out-of-vocabulary / edge-case phrases with no single correct label, so no accuracy summary applies. Categories above group phrases by the class they sit closest to topically. The Notes column flags whether the model still committed confidently to one class.",,,,,,
+
+── Step5_Refinement ──
+
+PT-P1 Deep Learning Exercise — Step 5: Model Refinement Iteration,,,,,,,,
+"Legend: Yellow cells = fill in. List the new training examples you added, then re-test the same failed phrases from Step 4 and compare Before vs. After results.",,,,,,,,
+,,,,,,,,
+Part A — New Training Examples Added (targeting Step 4 failures),,,,,,,,
+#,New Example Text Added,Target Category,Reason Added (which failure it targets),,,,,
+1,"I expected another headache with the refund, but it went through instantly, no complaints at all.",Positive_Praise,"Targets concession/reversal phrasing that starts negative but ends positive (Test B #1, #5)",,,,,
+2,"I usually complain about the checkout, but today it was fast and totally painless.",Positive_Praise,"Targets 'usually negative, but this time positive' reversal structure (Test B #6, #9)",,,,,
+3,"Wasn't sure the new jersey would fit, but it turned out even better than the size chart promised.",Positive_Praise,"Targets doubt-then-praise reversal pattern (Test B #4, #10)",,,,,
+4,"I was dreading the exchange process, but they handled my wrong-size cleats in minutes.",Positive_Praise,Concession/reversal: negative opener resolved positively,,,,,
+5,"Never expected the mobile ticket scanner to actually work smoothly, but it scanned instantly.",Positive_Praise,Concession/reversal: doubt followed by praise,,,,,
+6,"I complained about slow shipping last season, but this order arrived two days early.",Positive_Praise,Concession/reversal: past complaint reversed by present praise,,,,,
+7,"I usually hate calling support, but this time they resolved everything on the first try.",Positive_Praise,"Concession/reversal: 'usually negative, but this time' pattern",,,,,
+8,"Wasn't expecting much from the loyalty program, but the points actually covered my whole order.",Positive_Praise,Concession/reversal: low expectation exceeded,,,,,
+9,"I was bracing for another crashed checkout, but the season pass purchase went through flawlessly.",Positive_Praise,"Concession/reversal: anticipated failure, got success",,,,,
+10,"I've been let down by past restocks, but this drop actually had enough stock for everyone.",Positive_Praise,Concession/reversal: past disappointment reversed,,,,,
+11,"Went in expecting a fight over my refund, walked away with it processed the same day.",Positive_Praise,"Concession/reversal: expected conflict, got smooth resolution",,,,,
+12,"Oh fantastic, my saved payment method failed again right before the sale ended.",Negative_Complaint,"Targets sarcastic positive-word openers ('fantastic') paired with a real complaint (Test B #3, #4)",,,,,
+13,"Great, love how the tracking link leads nowhere every single time I order.",Negative_Complaint,"Targets 'love how' sarcasm pattern that the model reads as genuine praise (Test B #6, #7)",,,,,
+14,"Perfect, another jersey that arrived a size too small despite matching the chart.",Negative_Complaint,"Targets 'perfect'/'great job' sarcastic openers (Test B #9, #10)",,,,,
+15,"Wonderful, my loyalty points vanished the exact week I needed them.",Negative_Complaint,Sarcastic positive opener ('wonderful') masking a complaint,,,,,
+16,"Oh brilliant, the app crashed right as I finished entering my card details.",Negative_Complaint,Sarcastic positive opener ('brilliant') masking a complaint,,,,,
+17,"Fantastic, another shipment that arrived missing half the order.",Negative_Complaint,Sarcastic positive opener ('fantastic') masking a complaint,,,,,
+18,Really great how the discount code only works after the sale ends.,Negative_Complaint,Sarcastic 'great' used ironically,,,,,
+19,Love how my seat upgrade charge went through but the seats never changed.,Negative_Complaint,Sarcastic 'love how' pattern from Test B,,,,,
+20,So convenient that the support line closes exactly when I need it most.,Negative_Complaint,Sarcastic 'convenient' masking frustration,,,,,
+21,"Great, the exchange took a month and still sent the wrong size.",Negative_Complaint,Sarcastic 'great' paired with real complaint,,,,,
+22,Nice job letting my membership lapse without a single warning email.,Negative_Complaint,Sarcastic 'nice job' pattern,,,,,
+23,"Not trying to be dramatic, but the whole checkout system has been down since this morning and I need it fixed.",Urgent_Support,"Targets hedged urgency ('not trying to overreact') that reads as calm complaint (Test B #1, #2)",,,,,
+24,"Sorry to bother you again, but my account has been locked since last night and I need access before the event today.",Urgent_Support,"Targets apologetic/downplayed urgency phrasing (Test B #8, #10)",,,,,
+25,"Didn't want to make a big deal of it, but I've been locked out since early this morning and the gates open soon.",Urgent_Support,Hedged urgency: downplaying language before a real time-sensitive issue,,,,,
+26,"This is probably minor, but the payment gateway has been down for over an hour during the sale.",Urgent_Support,Hedged urgency: 'probably minor' understatement,,,,,
+27,"Hate to keep bugging you, but my tickets never generated and the match starts in thirty minutes.",Urgent_Support,Hedged urgency: apologetic framing before urgent issue,,,,,
+28,"Might be nothing, but my account shows a login I don't recognize and I can't get back in.",Urgent_Support,Hedged urgency: 'might be nothing' understatement,,,,,
+29,"I know everyone's busy, but the refund for my cancelled order still hasn't posted and my statement closes today.",Urgent_Support,Hedged urgency: deference before deadline pressure,,,,,
+30,"Not sure if this counts as urgent, but the whole checkout has been frozen since this morning and the sale ends soon.",Urgent_Support,Hedged urgency: explicit self-doubt about urgency,,,,,
+31,"Just flagging this quietly, but our group's tickets disappeared and the match is in an hour.",Urgent_Support,Hedged urgency: 'quietly' downplaying a time-critical issue,,,,,
+32,"Low priority I guess, but I've been trying to reach support for hours about a charge I don't recognize.",Urgent_Support,Hedged urgency: explicitly self-labeled as low priority,,,,,
+,,,,,,,,
+Part B — Before vs. After Re-Test Comparison,,,,,,,,
+#,Test Phrase (from Step 4 failures),Expected Category,Predicted BEFORE,Confidence BEFORE (%),Predicted AFTER,Confidence AFTER (%),Improved? (Y/N),Notes
+1,"I was ready to cancel my membership, but this renewal experience actually changed my mind.",Positive_Praise,Negative_Complaint,60,Positive_Praise,47,Y,
+2,"This is the first ticket drop that didn't crash the app, genuinely impressed.",Positive_Praise,Negative_Complaint,66,Negative_Complaint,70,N,
+3,"Sure, love it when my saved cart empties itself right before checkout.",Negative_Complaint,Positive_Praise,91,Positive_Praise,87,N,
+4,Love how the app decided to log me out mid-payment again.,Negative_Complaint,Positive_Praise,81,Positive_Praise,73,N,
+5,My ticket confirmation email never arrived even though I was charged.,Negative_Complaint,Urgent_Support,62,Negative_Complaint,61,Y,
+6,"Not trying to overreact, but the whole ticketing system has been down for an hour.",Urgent_Support,Negative_Complaint,83,Urgent_Support,63,Y,
+7,"Just a heads up, nothing in my order history has loaded since yesterday.",Urgent_Support,Negative_Complaint,93,Negative_Complaint,88,N,
+,,,,,,,,
+Improvement Summary,,,,,,,,
+Metric,Value,,,,,,,
+Phrases Re-tested,7,,,,,,,
+Phrases Improved (Y),3,,,,,,,
+Phrases Still Incorrect (N),4,,,,,,,
+Phrases Unchanged (Already Correct Before & After),0,,,,,,,
+,,,,,,,,
+New Training Examples Added -- by Category,,,,,,,,
+Category,Examples Added,,,,,,,
+Positive_Praise,11,,,,,,,
+Negative_Complaint,11,,,,,,,
+Urgent_Support,10,,,,,,,

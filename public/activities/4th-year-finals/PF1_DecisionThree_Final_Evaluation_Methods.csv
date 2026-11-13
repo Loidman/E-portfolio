@@ -1,0 +1,37 @@
+Item,Explanation
+Results origin,"Actual outputs of DecisionThree_Final_Project_Evaluation_Fixed (1).ipynb, Section 11. The ZIP transports those notebook-generated records."
+Run ID,20261110T085803_ec00489c
+Recorded date (UTC),2026-11-10 09:00:36.463000
+Final evaluation design,12 original answerable questions and four unanswerable questions. One fresh response per question after one excluded warm-up.
+Development exposure,Q01–Q12 were used during development. The complete 16-question set is not a wholly unseen test set.
+Scoring provenance,"AI-assisted review against the fixed rubric, source PDF, actual responses, full prompts and all 48 retrieved passages. Q01–Q12 exactly match the previously audited development responses and context. No new group verification is claimed."
+Correctness,0 = incorrect; 1 = partly correct or mixed; 2 = correct. Correctness and completeness are separate.
+Source support,"0 = unsupported substantive answer; 1 = mixed support; 2 = claims supported by the supplied context, including appropriate acknowledgement of missing information."
+Completeness,Correct required elements / all required elements. Prerequisite and course-code lists count as grouped complete sets.
+Answerable success,"Correctness 2, source support 2 and completeness 1."
+Unanswerable success,The response identifies the specific information gap and does not invent the requested detail. Both U1 and U2 must be met.
+Retrieval precision,"For answerable questions: useful ranked passages / 3, following the fixed original relevance rules. For unanswerable questions, topical relevance is recorded separately and ordinary Precision@3 is N/A."
+Evidence coverage,"For answerable questions: fully covered required documentary facts / required documentary facts. For unanswerable questions, N/A rather than 0/0."
+PDF page numbers,All evidence pages are 1-based positions in COL-GI-2026-2027_CSE_Only.pdf. A printed handbook page number may differ. Character offsets are 0-based extracted-text positions.
+Q05 layout limitation,"The internship is in fourth year, second semester. The extracted two-column table flattens semester membership; 9 units are retrieved, but full year/semester coverage is not credited."
+Q15 total,"The total mentioned on filtered PDF page 12 is a curriculum-unit total, not a tuition amount. The generated answer correctly refuses to compute fees."
+Source PDF,inputs/source/COL-GI-2026-2027_CSE_Only.pdf
+Source SHA256,e57415260cad9688fee013e17934fd1cc0550122427a3ac8a36ec993850bb052
+Question file,inputs/final_evaluation/test_questions_16.json
+Question SHA256,92eed7e6350e0d70d25a7109a4c2438fb3b9723a05ca6d00b73aad9f94828f95
+Reference and rubric,inputs/final_evaluation/reference_answers_16.json and Final_Evaluation_Rubric.md
+Raw execution record,final_project/results/20261110T085803_ec00489c/evaluation_record.json
+Execution record SHA256,fe91f3edac75b5bdd2475835c7ee5f1e2d8faf374ee961c93ad1cc0f6329f816
+Model,Qwen/Qwen2.5-1.5B-Instruct
+Embedding model,sentence-transformers/all-MiniLM-L6-v2
+Final configuration,"D: chunk size 800 characters, overlap 200 characters, top_k 3"
+Generation controls,float32; greedy decoding; seed 42; max_new_tokens 256; torch_threads 2
+Hardware,Tesla T4 GPU; Intel Xeon CPU @ 2.00GHz
+Historical benchmark population,"The Benchmarks, Measurements and TrialLog sheets retain the earlier notebook-generated experiment tables. They are not the new 16-response evaluation."
+Benchmark design,Three measured trials of 12 questions per configuration. Warm-up trial 0 and setup are excluded from response means. CPU A–C and GPU A–E use the original prompt; revised-prompt and prepared-source GPU D remain separate.
+CPU/GPU comparison limit,CPU and GPU sessions used different host CPUs. Compare only matching original-prompt configurations for reported speedups.
+Source-based follow-up,"Selected revised-prompt D retained 6/12 fully correct, complete, supported development answers. Prepared-source D retained 5/12. Later changes were not assumed to improve quality."
+Supplementary Qwen3,"Qwen3-8B used a separate 4-bit NF4 deployment. GPU trials completed; CPU pilots were interrupted before an answer. It is feasibility evidence, not a controlled model-only comparison. Raw supplementary files remain in the package."
+Version control,Pinned model revisions and recorded software versions are retained in the raw controls. Removing unused torchvision resolves a Colab import conflict without changing the RAG model settings.
+Timing definition,Total response = retrieval + preparation + generation + decoding. Setup and warm-up are reported separately.
+Reproducing reviewed scores,"Reviews bind to exact question, answer, prompt and ordered retrieved evidence. New outputs require new review; scores must not be applied by question ID alone."

@@ -1,0 +1,45 @@
+Step 4 -- Test Case C: Out-of-Vocabulary / Edge Cases,,,,,,
+"Legend: Yellow cells = fill in after testing each phrase on the ""Make"" page. Predicted Category auto-colors by class; Confidence auto-colors low (red) to high (green); Notes generate automatically. For Confidence, type the number only (e.g. 87) -- do NOT type a % sign, it is added automatically.",,,,,,
+,,,,,,
+,,,,,,
+Positive Praise,,,,,,
+#,Input Text,Expected Category,Predicted Category,Confidence (%),Correct? (Y/N),Notes / Observation
+1,Do you offer a referral bonus for inviting friends to join the fan club?,Uncertain / Split (no direct training match),Positive_Praise,25,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+2,Is there a version of the app built for smart TVs?,Uncertain / Split (no direct training match),Positive_Praise,10,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+3,What's included in the premium membership compared to the free tier?,Uncertain / Split (no direct training match),Negative_Complaint,18,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+4,Can I customize the notifications for just my favorite players?,Uncertain / Split (no direct training match),Positive_Praise,97,,Model confidently picked Positive_Praise despite this being an edge case -- consider adding it as a training example.
+5,Do you have a public roadmap for new fantasy league features?,Uncertain / Split (no direct training match),Positive_Praise,83,,Model confidently picked Positive_Praise despite this being an edge case -- consider adding it as a training example.
+6,Can I request a stadium tour for a large school group?,Uncertain / Split (no direct training match),Positive_Praise,14,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+7,Do you offer bulk discounts for youth team sponsorships?,Uncertain / Split (no direct training match),Positive_Praise,28,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+8,Is there a rewards catalog I can browse before redeeming points?,Uncertain / Split (no direct training match),Negative_Complaint,12,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+9,What's the process for suggesting a new app feature?,Uncertain / Split (no direct training match),Positive_Praise,30,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+10,Do you support gifting a season pass to someone else?,Uncertain / Split (no direct training match),Positive_Praise,19,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+,,,,,,
+Negative Complaint,,,,,,
+#,Input Text,Expected Category,Predicted Category,Confidence (%),Correct? (Y/N),Notes / Observation
+1,How do I update the shipping address saved on my account?,Uncertain / Split (no direct training match),Positive_Praise,13,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+2,Where can I download past invoices for my membership payments?,Uncertain / Split (no direct training match),Urgent_Support,9,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+3,Can I downgrade my season pass tier mid-season?,Uncertain / Split (no direct training match),Urgent_Support,12,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+4,How do I remove a card from my saved payment methods?,Uncertain / Split (no direct training match),Negative_Complaint,11,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+5,Where do I check how many loyalty points I currently have?,Uncertain / Split (no direct training match),Negative_Complaint,16,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+6,How do I dispute a charge that appears twice on my statement?,Uncertain / Split (no direct training match),Negative_Complaint,49,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+7,Can I transfer my membership to a family member?,Uncertain / Split (no direct training match),Urgent_Support,5,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+8,How do I change the email address linked to my account?,Uncertain / Split (no direct training match),Urgent_Support,9,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+9,Where can I report a damaged item without triggering a return fee?,Uncertain / Split (no direct training match),Negative_Complaint,71,,Model confidently picked Negative_Complaint despite this being an edge case -- consider adding it as a training example.
+10,How do I cancel an auto-renewing subscription before the next cycle?,Uncertain / Split (no direct training match),Negative_Complaint,24,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+,,,,,,
+Urgent Support,,,,,,
+#,Input Text,Expected Category,Predicted Category,Confidence (%),Correct? (Y/N),Notes / Observation
+1,What's the average response time for a support ticket right now?,Uncertain / Split (no direct training match),Positive_Praise,66,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+2,Is phone support available on match days outside normal hours?,Uncertain / Split (no direct training match),Positive_Praise,25,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+3,How do I check if there's a known outage on the ticketing system?,Uncertain / Split (no direct training match),Urgent_Support,69,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+4,What information do you need to verify my identity for account recovery? ,Uncertain / Split (no direct training match),Urgent_Support,20,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+5,How do I enable two factor authentication for extra account security?,Uncertain / Split (no direct training match),Urgent_Support,10,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+6,Is there a status page I can check during a live match outage?,Uncertain / Split (no direct training match),Urgent_Support,80,,Model confidently picked Urgent_Support despite this being an edge case -- consider adding it as a training example.
+7,What's your policy on lost tickets right before a sold out event?,Uncertain / Split (no direct training match),Urgent_Support,79,,Model confidently picked Urgent_Support despite this being an edge case -- consider adding it as a training example.
+8,How do I add a backup contact method in case I lose account access?,Uncertain / Split (no direct training match),Urgent_Support,12,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+9,What's the escalation path if a live issue isn't resolved quickly?,Uncertain / Split (no direct training match),Urgent_Support,68,,"Low or split confidence, as expected for an out-of-vocabulary phrase."
+10,How do I report suspicious activity on my account immediately?,Uncertain / Split (no direct training match),Urgent_Support,86,,Model confidently picked Urgent_Support despite this being an edge case -- consider adding it as a training example.
+,,,,,,
+,,,,,,
+"Note: These are out-of-vocabulary / edge-case phrases with no single correct label, so no accuracy summary applies. Categories above group phrases by the class they sit closest to topically. The Notes column flags whether the model still committed confidently to one class.",,,,,,

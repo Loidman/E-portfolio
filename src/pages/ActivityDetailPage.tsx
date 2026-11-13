@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, FileText, Code, Lightbulb, BookOpen, Maximize2, X } from 'lucide-react';
+import { ArrowLeft, FileText, Code, Lightbulb, BookOpen, Maximize2, X, Download } from 'lucide-react';
 import { activities, periodColors, periodTextColors, periodBgColors } from '../data/activities';
+import { scrollImmediately } from '../utils/projectScroll';
 
 export function ActivityDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -10,11 +11,17 @@ export function ActivityDetailPage() {
   const activity = activities.find((a) => a.id === id);
 
   const [activeDocIndex, setActiveDocIndex] = useState(0);
+  const [activeSheetIndex, setActiveSheetIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isReflectionOpen, setIsReflectionOpen] = useState(false);
   const [csvRows, setCsvRows] = useState<string[][]>([]);
   const [csvError, setCsvError] = useState<string | null>(null);
   const [isCsvLoading, setIsCsvLoading] = useState(false);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+
+  useLayoutEffect(() => {
+    scrollImmediately(0);
+  }, [id]);
 
   if (!activity) {
     return (
@@ -34,7 +41,12 @@ export function ActivityDetailPage() {
 
   const activeDoc = activity.documents[activeDocIndex];
   const hasMultipleDocs = activity.documents.length > 1;
-  const isCsvDoc = activeDoc.link.toLowerCase().endsWith('.csv');
+  const hasSheets = activeDoc.sheets && activeDoc.sheets.length > 0;
+  const sheetDescription = hasSheets ? activeDoc.sheets![activeSheetIndex].description : undefined;
+  const wrapSheetText = activity.period === 'Finals' && hasSheets;
+  const csvLink = hasSheets ? activeDoc.sheets![activeSheetIndex].link : activeDoc.link;
+  const isCsvDoc = csvLink.toLowerCase().endsWith('.csv');
+  const isImageDoc = /\.(png|jpe?g|gif|webp|svg)$/i.test(activeDoc.link);
 
   const parseCsv = (text: string) => {
     const rows: string[][] = [];
@@ -117,7 +129,7 @@ export function ActivityDetailPage() {
     setIsCsvLoading(true);
     setCsvError(null);
 
-    fetch(activeDoc.link)
+    fetch(csvLink)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Unable to load CSV');
@@ -146,10 +158,11 @@ export function ActivityDetailPage() {
     return () => {
       isMounted = false;
     };
-  }, [activeDoc.link, isCsvDoc]);
+  }, [csvLink, isCsvDoc]);
 
   const handleTabClick = (index: number) => {
     setActiveDocIndex(index);
+    setActiveSheetIndex(0);
     const tab = tabRefs.current[index];
     if (tab) {
       tab.scrollIntoView({
@@ -216,23 +229,41 @@ export function ActivityDetailPage() {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="lg:col-span-2"
           >
-            <div className="glass-card p-6 h-full">
-              <div className="flex items-center gap-3 mb-5">
-                <div className={`p-2.5 rounded-lg bg-gradient-to-br ${periodColors[activity.period]}`}>
-                  <Lightbulb className="w-5 h-5 text-white" />
+            <div className="glass-card p-6 h-full flex flex-col">
+              <div className="flex items-center justify-between mb-5">
+                <div className="flex items-center gap-3">
+                  <div className={`p-2.5 rounded-lg bg-gradient-to-br ${periodColors[activity.period]}`}>
+                    <Lightbulb className="w-5 h-5 text-white" />
+                  </div>
+                  <h2 className="text-xl font-bold text-slate-100">Reflection</h2>
                 </div>
-                <h2 className="text-xl font-bold text-slate-100">Reflection</h2>
+                {activity.reflection && (
+                  <button
+                    onClick={() => setIsReflectionOpen(true)}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-700/50 hover:bg-slate-600/60 text-slate-400 hover:text-slate-200 text-xs font-medium transition-all duration-200"
+                    title="Expand reflection"
+                  >
+                    <Maximize2 className="w-3.5 h-3.5" />
+                    Expand
+                  </button>
+                )}
               </div>
 
               {activity.reflection ? (
-                <p
-                  className="text-slate-300 leading-relaxed text-sm"
-                  dangerouslySetInnerHTML={{
+                <div className="flex-1 overflow-hidden relative">
+                  <div className="text-slate-300 leading-relaxed text-sm max-h-[400px] overflow-hidden" dangerouslySetInnerHTML={{
                     __html: activity.reflection
                       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                       .replace(/\n/g, '<br />'),
-                  }}
-                />
+                  }} />
+                  <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-slate-800/95 to-transparent pointer-events-none" />
+                  <button
+                    onClick={() => setIsReflectionOpen(true)}
+                    className="absolute bottom-2 left-1/2 -translate-x-1/2 text-xs font-semibold text-sky-400 hover:text-sky-300 transition-colors z-10"
+                  >
+                    Read more →
+                  </button>
+                </div>
               ) : (
                 <div className="flex flex-col items-center justify-center py-12 text-center">
                   <Lightbulb className="w-12 h-12 text-slate-600 mb-3" />
@@ -249,7 +280,7 @@ export function ActivityDetailPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="lg:col-span-3"
+            className="lg:col-span-3 min-w-0"
           >
             <div className="glass-card overflow-hidden flex flex-col" style={{ minHeight: '600px' }}>
               {/* Tab Bar / Header */}
@@ -265,11 +296,10 @@ export function ActivityDetailPage() {
                             tabRefs.current[i] = el;
                           }}
                           onClick={() => handleTabClick(i)}
-                          className={`flex items-center gap-2 px-4 py-3 text-sm font-medium transition-colors border-b-2 ${
-                            activeDocIndex === i
+                          className={`flex items-center gap-2 px-4 py-3 text-sm font-medium transition-colors border-b-2 ${activeDocIndex === i
                               ? `border-current ${periodTextColors[activity.period]} bg-slate-800/50`
                               : 'border-transparent text-slate-500 hover:text-slate-300'
-                          }`}
+                            }`}
                         >
                           {doc.isNotebook ? (
                             <BookOpen className="w-4 h-4" />
@@ -294,41 +324,59 @@ export function ActivityDetailPage() {
                   )}
                 </div>
 
-                {/* CSV Download */}
-                {isCsvDoc && (
-                  <a
-                    href={activeDoc.link}
-                    download={activeDoc.downloadName}
-                    className="flex items-center gap-1.5 mx-3 px-3 py-1.5 rounded-md bg-slate-700/50 hover:bg-slate-600/60 text-slate-400 hover:text-slate-200 text-xs font-medium transition-all duration-200 flex-shrink-0"
-                  >
-                    <FileText className="w-3.5 h-3.5" />
-                    Download CSV
-                  </a>
-                )}
-
-                {/* Fullscreen Button */}
-                {!isCsvDoc && (
+                {/* Download + Fullscreen (always visible in header) */}
+                <div className="flex items-center gap-1.5 px-2 flex-shrink-0">
+                  {(isCsvDoc || activeDoc.downloadLink) && (
+                    <a
+                      href={activeDoc.downloadLink || activeDoc.link}
+                      download={activeDoc.downloadName}
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-700/50 hover:bg-slate-600/60 text-slate-400 hover:text-slate-200 text-xs font-medium transition-all duration-200"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      {activeDoc.downloadLink?.endsWith('.xlsx') ? 'Download Excel' : activeDoc.downloadLink?.endsWith('.docx') ? 'Download Word' : 'Download'}
+                    </a>
+                  )}
                   <button
                     onClick={() => setIsFullscreen(true)}
-                    className="flex items-center gap-1.5 mx-3 px-3 py-1.5 rounded-md bg-slate-700/50 hover:bg-slate-600/60 text-slate-400 hover:text-slate-200 text-xs font-medium transition-all duration-200 flex-shrink-0"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-700/50 hover:bg-slate-600/60 text-slate-400 hover:text-slate-200 text-xs font-medium transition-all duration-200"
                     title="Fullscreen"
                   >
                     <Maximize2 className="w-3.5 h-3.5" />
                     Fullscreen
                   </button>
-                )}
+                </div>
               </div>
 
               {/* Content */}
               {isCsvDoc ? (
-                <div className="p-4 overflow-auto csv-scroll" style={{ minHeight: '550px' }}>
-                  <p className="text-xs text-slate-500 mb-3">CSV preview</p>
+                <div className="p-4 overflow-auto csv-scroll flex-1" style={{ minHeight: '500px', maxHeight: wrapSheetText ? '600px' : undefined }}>
+                  {/* Sheet Sub-Tabs */}
+                  {hasSheets && (
+                    <div className="flex items-center gap-1 mb-3 overflow-x-auto tab-scroll pb-1">
+                      {activeDoc.sheets!.map((sheet, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setActiveSheetIndex(i)}
+                          className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 whitespace-nowrap ${activeSheetIndex === i
+                              ? 'bg-sky-500/20 text-sky-300 border border-sky-500/40'
+                              : 'bg-slate-700/40 text-slate-500 hover:text-slate-300 hover:bg-slate-700/60 border border-transparent'
+                            }`}
+                        >
+                          {sheet.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {sheetDescription && (
+                    <p className="mb-4 text-sm leading-relaxed text-slate-400 whitespace-pre-line">{sheetDescription}</p>
+                  )}
                   {isCsvLoading ? (
-                    <p className="text-slate-400 text-sm">Loading CSV preview...</p>
+                    <p className="text-slate-400 text-sm">Loading preview...</p>
                   ) : csvError ? (
                     <p className="text-rose-400 text-sm">{csvError}</p>
                   ) : csvRows.length === 0 ? (
-                    <p className="text-slate-400 text-sm">No data found in this CSV.</p>
+                    <p className="text-slate-400 text-sm">No data found.</p>
                   ) : (
                     <div className="overflow-auto rounded-lg border border-slate-700/60 csv-scroll">
                       <table className="min-w-full text-xs text-slate-300">
@@ -345,7 +393,7 @@ export function ActivityDetailPage() {
                           {csvBodyRows.map((row, rowIndex) => (
                             <tr key={`row-${rowIndex}`} className="border-t border-slate-700/50">
                               {csvHeaders.map((_, colIndex) => (
-                                <td key={`cell-${rowIndex}-${colIndex}`} className="px-3 py-2 whitespace-nowrap">
+                                <td key={`cell-${rowIndex}-${colIndex}`} className={`px-3 py-2 ${wrapSheetText ? 'min-w-[140px] max-w-[360px] whitespace-pre-wrap break-words align-top' : 'whitespace-nowrap'}`}>
                                   {row[colIndex] ?? ''}
                                 </td>
                               ))}
@@ -355,22 +403,22 @@ export function ActivityDetailPage() {
                       </table>
                     </div>
                   )}
-                  <div className="mt-3 flex items-center justify-between">
-                    <p className="text-xs text-slate-500">Scroll to view all rows.</p>
-                    <button
-                      onClick={() => setIsFullscreen(true)}
-                      className="text-xs font-semibold text-sky-400 hover:text-sky-300"
-                    >
-                      Open fullscreen
-                    </button>
-                  </div>
+                </div>
+              ) : isImageDoc ? (
+                <div className="flex items-center justify-center p-6 overflow-auto flex-1" style={{ minHeight: '500px' }}>
+                  <img
+                    key={activeDoc.link}
+                    src={activeDoc.link}
+                    alt={activeDoc.label}
+                    className="max-w-full max-h-[70vh] rounded-lg object-contain shadow-lg"
+                  />
                 </div>
               ) : (
                 <iframe
                   key={activeDoc.link}
                   src={activeDoc.link}
                   className="w-full flex-1"
-                  style={{ minHeight: '550px' }}
+                  style={{ minHeight: '500px' }}
                   title={`${activity.title} – ${activeDoc.label}`}
                 />
               )}
@@ -383,9 +431,10 @@ export function ActivityDetailPage() {
       <AnimatePresence>
         {isFullscreen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className="fixed inset-0 z-50 flex flex-col bg-slate-950"
           >
             {/* Modal Header */}
@@ -396,11 +445,10 @@ export function ActivityDetailPage() {
                     <button
                       key={i}
                       onClick={() => handleTabClick(i)}
-                      className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                        activeDocIndex === i
+                      className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-md transition-colors ${activeDocIndex === i
                           ? `${periodTextColors[activity.period]} bg-slate-800`
                           : 'text-slate-500 hover:text-slate-300'
-                      }`}
+                        }`}
                     >
                       {doc.isNotebook ? <BookOpen className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
                       {doc.label}
@@ -413,18 +461,50 @@ export function ActivityDetailPage() {
                 )}
               </div>
 
-              <button
-                onClick={() => setIsFullscreen(false)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-700/50 hover:bg-red-500/20 hover:text-red-400 text-slate-400 text-sm font-medium transition-all duration-200"
-              >
-                <X className="w-4 h-4" />
-                Close
-              </button>
+              <div className="flex items-center gap-2">
+                {(isCsvDoc || activeDoc.downloadLink) && (
+                  <a
+                    href={activeDoc.downloadLink || activeDoc.link}
+                    download={activeDoc.downloadName}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-700/50 hover:bg-slate-600/60 text-slate-400 hover:text-slate-200 text-sm font-medium transition-all duration-200"
+                  >
+                    <Download className="w-4 h-4" />
+                    {activeDoc.downloadLink?.endsWith('.xlsx') ? 'Download Excel' : activeDoc.downloadLink?.endsWith('.docx') ? 'Download Word' : 'Download'}
+                  </a>
+                )}
+                <button
+                  onClick={() => setIsFullscreen(false)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-700/50 hover:bg-red-500/20 hover:text-red-400 text-slate-400 text-sm font-medium transition-all duration-200"
+                >
+                  <X className="w-4 h-4" />
+                  Close
+                </button>
+              </div>
             </div>
 
             {/* Fullscreen content */}
             {isCsvDoc ? (
               <div className="flex-1 overflow-auto p-4 csv-scroll">
+                {/* Sheet Sub-Tabs (fullscreen) */}
+                {hasSheets && (
+                  <div className="flex items-center gap-1 mb-3 overflow-x-auto tab-scroll pb-1">
+                    {activeDoc.sheets!.map((sheet, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setActiveSheetIndex(i)}
+                        className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 whitespace-nowrap ${activeSheetIndex === i
+                            ? 'bg-sky-500/20 text-sky-300 border border-sky-500/40'
+                            : 'bg-slate-700/40 text-slate-500 hover:text-slate-300 hover:bg-slate-700/60 border border-transparent'
+                          }`}
+                      >
+                        {sheet.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {sheetDescription && (
+                  <p className="mb-4 text-sm leading-relaxed text-slate-400 whitespace-pre-line">{sheetDescription}</p>
+                )}
                 {isCsvLoading ? (
                   <p className="text-slate-400 text-sm">Loading CSV preview...</p>
                 ) : csvError ? (
@@ -447,7 +527,7 @@ export function ActivityDetailPage() {
                         {csvBodyRows.map((row, rowIndex) => (
                           <tr key={`fs-row-${rowIndex}`} className="border-t border-slate-700/50">
                             {csvHeaders.map((_, colIndex) => (
-                              <td key={`fs-cell-${rowIndex}-${colIndex}`} className="px-3 py-2 whitespace-nowrap">
+                              <td key={`fs-cell-${rowIndex}-${colIndex}`} className={`px-3 py-2 ${wrapSheetText ? 'min-w-[140px] max-w-[360px] whitespace-pre-wrap break-words align-top' : 'whitespace-nowrap'}`}>
                                 {row[colIndex] ?? ''}
                               </td>
                             ))}
@@ -458,6 +538,15 @@ export function ActivityDetailPage() {
                   </div>
                 )}
               </div>
+            ) : isImageDoc ? (
+              <div className="flex-1 flex items-center justify-center p-6 overflow-auto">
+                <img
+                  key={`fs-${activeDoc.link}`}
+                  src={activeDoc.link}
+                  alt={activeDoc.label}
+                  className="max-w-full max-h-[90vh] rounded-lg object-contain"
+                />
+              </div>
             ) : (
               <iframe
                 key={`fs-${activeDoc.link}`}
@@ -466,6 +555,57 @@ export function ActivityDetailPage() {
                 title={`${activity.title} – ${activeDoc.label} (fullscreen)`}
               />
             )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* Reflection Reader Modal */}
+      <AnimatePresence>
+        {isReflectionOpen && activity.reflection && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm"
+            onClick={() => setIsReflectionOpen(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              className="bg-slate-900 border border-slate-700/60 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[80vh] flex flex-col overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-slate-700/60 flex-shrink-0">
+                <div className="flex items-center gap-3">
+                  <div className={`p-2 rounded-lg bg-gradient-to-br ${periodColors[activity.period]}`}>
+                    <Lightbulb className="w-4 h-4 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-100">Reflection</h3>
+                </div>
+                <button
+                  onClick={() => setIsReflectionOpen(false)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-700/50 hover:bg-red-500/20 hover:text-red-400 text-slate-400 text-sm font-medium transition-all duration-200"
+                >
+                  <X className="w-4 h-4" />
+                  Close
+                </button>
+              </div>
+
+              {/* Modal Body */}
+              <div className="flex-1 overflow-y-auto px-6 py-5">
+                <div
+                  className="text-slate-300 leading-loose text-sm"
+                  dangerouslySetInnerHTML={{
+                    __html: activity.reflection
+                      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                      .replace(/\n/g, '<br />'),
+                  }}
+                />
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
