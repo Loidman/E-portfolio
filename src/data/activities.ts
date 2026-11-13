@@ -350,6 +350,13 @@ I will carry three habits forward. Before I pick a chunk size, I will check the 
         isNotebook: false,
       },
       {
+        label: 'Source Document (PDF)',
+        link: `${BASE}activities/4th-year-finals/PTF2_BERNARDO_IEEE_Report.pdf`,
+        isNotebook: false,
+        downloadLink: `${BASE}activities/4th-year-finals/PTF2_BERNARDO_IEEE_Report.pdf`,
+        downloadName: 'PTF1_Member1_Computer_and_Electronics_Engineering.pdf',
+      },
+      {
         label: 'Notebook',
         link: `${BASE}activities/4th-year-finals/PTF2_BERNARDO.html`,
         isNotebook: true,
@@ -421,6 +428,16 @@ I will use this in the rest of our work and in the capstone. When I tune a syste
           { label: "Methods", link: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Results_Methods.csv`, description: "Methods, provenance and calculation checks" },
         ],
       },
+      {
+        label: 'Experiment Data (ZIP)',
+        link: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Experiment_Data.csv`,
+        isNotebook: false,
+        downloadLink: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Experiment_Data.zip`,
+        downloadName: 'DecisionThree_RAG_Experiment_Data.zip',
+        sheets: [
+          { label: 'Package Files', link: `${BASE}activities/4th-year-finals/WW-F1F2_DecisionThree_RAG_Experiment_Data.csv`, description: 'Files included in the original experiment data package. Download the ZIP to access their contents.' },
+        ],
+      },
     ],
   },
   {
@@ -488,6 +505,23 @@ I can use all of this in later projects and in our capstone. I will keep the eva
         label: 'Integrity Statement (PDF)',
         link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Integrity_Statement.pdf`,
         isNotebook: false,
+      },
+      {
+        label: 'Member Responsibility Matrix',
+        link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Member_Responsibility.pdf`,
+        isNotebook: false,
+        downloadLink: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Member_Responsibility.docx`,
+        downloadName: 'DecisionThree_Member_Responsibility_Matrix.docx',
+      },
+      {
+        label: 'Project Input Package (ZIP)',
+        link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Project_Input.csv`,
+        isNotebook: false,
+        downloadLink: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Project_Input.zip`,
+        downloadName: 'DecisionThree_Final_Project_Input.zip',
+        sheets: [
+          { label: 'Package Files', link: `${BASE}activities/4th-year-finals/PF1_DecisionThree_Final_Project_Input.csv`, description: 'Files included in the original final project input package. Download the ZIP to access their contents.' },
+        ],
       },
     ],
   },

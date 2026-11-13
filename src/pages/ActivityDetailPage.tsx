@@ -333,7 +333,7 @@ export function ActivityDetailPage() {
                       className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-700/50 hover:bg-slate-600/60 text-slate-400 hover:text-slate-200 text-xs font-medium transition-all duration-200"
                     >
                       <Download className="w-3.5 h-3.5" />
-                      {activeDoc.downloadLink?.endsWith('.xlsx') ? 'Download Excel' : activeDoc.downloadLink?.endsWith('.docx') ? 'Download Word' : 'Download'}
+                      {activeDoc.downloadLink?.endsWith('.xlsx') ? 'Download Excel' : activeDoc.downloadLink?.endsWith('.docx') ? 'Download Word' : activeDoc.downloadLink?.endsWith('.zip') ? 'Download ZIP' : 'Download'}
                     </a>
                   )}
                   <button
@@ -469,7 +469,7 @@ export function ActivityDetailPage() {
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-700/50 hover:bg-slate-600/60 text-slate-400 hover:text-slate-200 text-sm font-medium transition-all duration-200"
                   >
                     <Download className="w-4 h-4" />
-                    {activeDoc.downloadLink?.endsWith('.xlsx') ? 'Download Excel' : activeDoc.downloadLink?.endsWith('.docx') ? 'Download Word' : 'Download'}
+                    {activeDoc.downloadLink?.endsWith('.xlsx') ? 'Download Excel' : activeDoc.downloadLink?.endsWith('.docx') ? 'Download Word' : activeDoc.downloadLink?.endsWith('.zip') ? 'Download ZIP' : 'Download'}
                   </a>
                 )}
                 <button
