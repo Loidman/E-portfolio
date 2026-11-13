@@ -177,8 +177,8 @@ export function App() {
 
             <div className="space-y-3 text-slate-300 leading-relaxed">
               <p>Good day, Sir Raga,</p>
-              <p>I hope you're having a productive week.</p>
-              <p>You will find my answers for <span className="text-sky-400 font-semibold">Exercise #WW-P1</span> in the <span className="text-sky-400 font-semibold">Course Expectations</span> tab.</p>
+              <p>I have updated my e-portfolio with my <span className="text-sky-400 font-semibold">4th Year, 1st Semester</span> submissions for the <span className="text-sky-400 font-semibold">Prelim, Midterm, and Finals</span> periods. You can find them in the <span className="text-sky-400 font-semibold">Projects</span> tab.</p>
+              <p>Each project includes my reflection and supporting files, including reports, notebooks, and experiment results. You can now preview the notebooks, Excel worksheets, and final project report directly on the site, or download the original files.</p>
               <p>Thank you for your time and guidance.</p>
             </div>
 
